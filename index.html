@@ -16,7 +16,8 @@
         /* Header & Nav */
         header { background: linear-gradient(135deg, #0066ff 0%, #1a1a1a 100%); color: white; padding: 0.8rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); overflow: hidden; }
         nav { display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem; position: relative; overflow: visible; }
-        .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: bold; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: bold; text-decoration: none; color: white; }
+        .logo:hover { opacity: 1; }
         .logo-img { height: 40px; width: auto; }
         nav ul { display: flex; list-style: none; gap: 2rem; transition: all 0.4s ease; }
         nav ul.menu-hidden { display: none; }
@@ -63,9 +64,9 @@
 
         /* Footer */
         footer { background: #0a0a0a; color: white; padding: 2rem; margin-top: 4rem; border-top: 2px solid #0066ff; display: flex; justify-content: flex-end; align-items: center; gap: 2rem; min-height: 120px; position: relative; }
-        .footer-contact-right { display: flex; flex-direction: column; align-items: flex-end; gap: 0.75rem; }
+        .footer-contact-right { display: flex; flex-direction: column; align-items: center; gap: 0.75rem; }
         .footer-contact-right h3 { margin: 0; color: #0066ff; font-size: 1.2rem; }
-        .social-links { display: flex; flex-direction: column; gap: 0.5rem; align-items: flex-end; }
+        .social-links { display: flex; flex-direction: row; gap: 1rem; align-items: center; }
         .footer-social { display: inline-block; color: white; text-decoration: none; padding: 0.5rem 1rem; transition: 0.3s; }
         .footer-social:hover { background: #0066ff; }
         .footer-copyright { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); font-size: 0.85rem; text-align: center; width: 100%; }
@@ -112,7 +113,7 @@
         @media (max-width: 480px) {
             /* Header */
             nav { padding: 0 0.75rem; }
-            .logo span { display: none; }
+            .logo span { font-size: 0.9rem; }
             .logo-img { height: 25px; }
             nav ul { font-size: 0.75rem; }
             .hamburger { font-size: 1.3rem; }
@@ -145,10 +146,10 @@
     <!-- ===== HEADER ===== -->
     <header>
         <nav>
-            <div class="logo">
+            <a href="#" class="logo" id="logo-link">
                 <img src="images/logo.png" alt="UKM Chip.Com Logo" class="logo-img">
                 <span>Chip.Com</span>
-            </div>
+            </a>
             <button class="hamburger" id="hamburger">☰</button>
             <ul id="menu">
                 <li><a href="#features">Dokumentasi</a></li>
@@ -252,7 +253,7 @@
     <!-- ===== FOOTER / KONTAK KAMI ===== -->
     <footer id="contact">
         <div class="footer-contact-right">
-            <h3>Kontak Kami</h3>
+            <h3>Kontak Kami :</h3>
             <div class="social-links">
                 <a href="https://www.instagram.com/chipcomstmik_id/" target="_blank" class="footer-social">
                     <i class="fa-brands fa-instagram"></i> Instagram
