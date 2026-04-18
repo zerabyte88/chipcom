@@ -75,6 +75,33 @@
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
         @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Fade In Up Animation */
+        .fade-in-up { opacity: 0; transform: translateY(30px); }
+        .fade-in-up.animate { animation: slideUp 0.8s ease-out forwards; }
+
+        /* History Section */
+        .history { background: #f8f9fa; padding: 4rem 2rem; }
+        .history-container { max-width: 1000px; margin: 0 auto; }
+        .history h2 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; color: #0066ff; }
+        .history-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        .history-text { font-size: 1.05rem; line-height: 1.8; color: #555; }
+        .history-text p { margin-bottom: 1.5rem; }
+        .history-image { width: 100%; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+
+        @media (max-width: 768px) {
+            .history { padding: 2rem 1rem; }
+            .history-content { grid-template-columns: 1fr; gap: 1.5rem; }
+            .history h2 { font-size: 1.8rem; margin-bottom: 1.5rem; }
+            .history-text { font-size: 0.95rem; line-height: 1.6; }
+            .history-text p { margin-bottom: 1rem; }
+        }
+        
+        @media (max-width: 480px) {
+            .history { padding: 1.5rem 0.75rem; }
+            .history h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+            .history-text { font-size: 0.85rem; line-height: 1.5; }
+        }
         
         @media (max-width: 768px) {
             /* Header & Nav */
@@ -225,20 +252,37 @@
         setInterval(nextSlide, 5000);
     </script>
 
+    <!-- ===== SEJARAH UKM CHIPCOM SECTION ===== -->
+    <section class="history">
+        <div class="history-container fade-in-up">
+            <h2>Sejarah UKM Chip.Com</h2>
+            <div class="history-content">
+                <div class="history-text fade-in-up">
+                    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, eget ultricies nunc nisl eget nunc.</p>
+                    
+                    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, eget ultricies nunc nisl eget nunc.</p>
+                    
+                    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, eget ultricies nunc nisl eget nunc.</p>
+                </div>
+                <img src="images/logo.png" alt="ChipCom Logo" class="history-image fade-in-up">
+            </div>
+        </div>
+    </section>
+
     <!-- ===== DOKUMENTASI SECTION ===== -->
-    <section class="features" id="features">
+    <section class="features fade-in-up" id="features">
 
         <h2>Dokumentasi</h2>
         <div class="features-grid">
-            <div class="feature-card">
+            <div class="feature-card fade-in-up">
             <img src="images/IMG_20241019_134456.jpg" alt="Pertemuan" class="feature-image">
                 <h3>Pertemuan</h3>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in-up">
                 <img src="images/IMG-20250201-WA0064.jpg" alt="Pelatihan Dasar" class="feature-image">
                 <h3>Pelatihan Dasar</h3>
             </div>
-            <div class="feature-card">
+            <div class="feature-card fade-in-up">
                 <img src="images/LMC_20250517_204332582.jpg" alt="Dies Natalis" class="feature-image">
                 <h3>Dies Natalis</h3>
             </div>
@@ -268,6 +312,28 @@
             <p>&copy; 2026 UKM Chip.Com</p>
         </div>
     </footer>
+
+    <script>
+        // Intersection Observer for fade-in-up animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with fade-in-up class
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 
 </body>
 </html>
