@@ -21,6 +21,7 @@
         nav ul { display: flex; list-style: none; gap: 2rem; }
         nav a { color: white; text-decoration: none; transition: opacity 0.3s; }
         nav a:hover { opacity: 0.8; }
+        .hamburger { display: none; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
 
         /* Hero Section */
         .hero { position: relative; color: white; padding: 6rem 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 500px; overflow: hidden; }
@@ -59,10 +60,14 @@
         
         @media (max-width: 768px) {
             /* Header & Nav */
-            nav { padding: 0 1rem; flex-wrap: wrap; gap: 1rem; }
+            nav { padding: 0 1rem; }
             .logo { font-size: 0.85rem; }
             .logo-img { height: 30px; }
-            nav ul { gap: 1rem; font-size: 0.85rem; flex-wrap: wrap; }
+            nav ul { display: none; gap: 1rem; font-size: 0.85rem; position: absolute; top: 100%; left: 0; right: 0; background: linear-gradient(135deg, #0066ff 0%, #1a1a1a 100%); flex-direction: column; padding: 1rem; }
+            nav ul.active { display: flex; }
+            nav ul li { width: 100%; }
+            nav ul a { display: block; padding: 0.75rem 1rem; }
+            .hamburger { display: block; }
             
             /* Hero Section */
             .hero { padding: 3rem 1rem; min-height: 400px; }
@@ -93,8 +98,8 @@
             nav { padding: 0 0.75rem; }
             .logo span { display: none; }
             .logo-img { height: 25px; }
-            nav ul { gap: 0.75rem; font-size: 0.75rem; }
-            nav a { padding: 0.3rem 0.5rem; }
+            nav ul { font-size: 0.75rem; }
+            .hamburger { font-size: 1.3rem; }
             
             /* Hero */
             .hero { padding: 2rem 1rem; min-height: 350px; }
@@ -128,12 +133,31 @@
                 <img src="images/logo.png" alt="UKM Chip.Com Logo" class="logo-img">
                 <span>Chip.Com</span>
             </div>
-            <ul>
+            <button class="hamburger" id="hamburger">☰</button>
+            <ul id="menu">
                 <li><a href="#features">Dokumentasi</a></li>
                 <li><a href="#contact">Kontak Kami</a></li>
             </ul>
         </nav>
     </header>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const menu = document.getElementById('menu');
+
+        hamburger.addEventListener('click', function() {
+            menu.classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        const menuLinks = menu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                menu.classList.remove('active');
+            });
+        });
+    </script>
 
     <!-- ===== HERO SECTION ===== -->
     <section class="hero">
