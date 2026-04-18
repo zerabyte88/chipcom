@@ -7,99 +7,230 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
-        /* Reset & Base Styles */
+        /* =========================================
+           1. PENGATURAN DASAR (RESET)
+           ========================================= */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; }
-
-        /* Header & Nav */
-        header { background: #0066ff; color: white; padding: 0.8rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); overflow: hidden; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 0 1.5rem; position: relative; overflow: visible; }
-        .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: bold; text-decoration: none; color: white; }
-        .logo:hover { opacity: 1; }
-        .logo-img { height: 40px; width: auto; }
-        nav ul { display: flex; list-style: none; gap: 2rem; transition: all 0.4s ease; }
-        nav ul.menu-hidden { display: none; }
-        nav a { color: white; text-decoration: none; transition: opacity 0.3s; }
-        nav a:hover { opacity: 0.8; }
-        .hamburger { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; transition: transform 0.3s ease; }
-        .hamburger:hover { transform: scale(1.1); }
-
-        /* Desktop menu styling */
-        @media (min-width: 769px) {
-            header { overflow: hidden; }
-            nav { position: relative; }
-            nav ul { position: fixed; top: 3rem; right: 1.5rem; background: #000; border-radius: 8px; flex-direction: column; padding: 1rem; gap: 0; min-width: 200px; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; animation: none; z-index: 101; }
-            nav ul.active { opacity: 1; visibility: visible; animation: slideDown 0.4s ease; }
-            nav ul li { width: 100%; }
-            nav ul a { display: block; padding: 0.75rem 1.5rem; white-space: nowrap; }
+        html { scroll-behavior: smooth; } /* Efek scroll halus saat klik menu */
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            overflow-x: hidden; /* Mencegah halaman bisa digeser ke kanan-kiri (bug horizontal scroll) */
         }
 
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        /* =========================================
+           2. HEADER & NAVIGASI ATAS
+           ========================================= */
+        header { 
+            background: #0066ff; 
+            color: white; 
+            padding: 0.8rem 0; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+        }
+        nav { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 1.5rem; 
+            position: relative; 
+        }
+        
+        /* Logo Kiri Atas */
+        .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: bold; text-decoration: none; color: white; }
+        .logo-img { height: 40px; width: auto; }
+        
+        /* Tombol Garis Tiga (Menu Toggle) */
+        .hamburger { 
+            background: none; border: none; color: white; 
+            font-size: 1.8rem; cursor: pointer; 
+            transition: transform 0.3s ease; display: block; 
+        }
+        .hamburger:hover { transform: scale(1.1); }
 
-        /* Hero Section */
-        .hero { position: relative; color: white; padding: 6rem 2rem; text-align: center; display: flex; align-items: center; justify-content: center; min-height: 500px; overflow: hidden; }
-        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.4); z-index: 1; }
-        .slideshow { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; }
-        .slide { position: absolute; width: 100%; height: 100%; opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
+        /* Kotak Dropdown Menu */
+        nav ul { 
+            display: flex; flex-direction: column; 
+            position: absolute; top: 3.5rem; right: 1.5rem; 
+            background: #000; padding: 1rem; text-align: left; 
+            gap: 1rem; list-style: none; border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            min-width: 200px;
+            opacity: 0; visibility: hidden; /* Sembunyikan default */
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+            transform: translateY(-10px);
+            z-index: 101;
+        }
+        /* Saat Menu Aktif (Diklik) */
+        nav ul.active { opacity: 1; visibility: visible; transform: translateY(0); }
+        nav a { color: white; text-decoration: none; transition: opacity 0.3s; font-weight: 500; display: block; padding: 0.5rem; }
+        nav a:hover { opacity: 0.8; background: #222; border-radius: 5px; }
+
+        /* =========================================
+           3. HERO SECTION (BANNER SLIDESHOW ATAS)
+           ========================================= */
+        .hero { 
+            position: relative; color: white; padding: 6rem 2rem; 
+            text-align: center; display: flex; align-items: center; 
+            justify-content: center; min-height: 500px; overflow: hidden; 
+        }
+        /* Efek Gelap (Overlay) di atas gambar */
+        .hero::before { 
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
+            background: rgba(0, 0, 0, 0.4); z-index: 1; 
+        }
+        /* Gambar Slideshow */
+        .slideshow, .slide { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 0; }
+        .slide { opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
         .slide.active { opacity: 1; }
-        .hero-content { max-width: 800px; animation: slideUp 0.8s ease-out; position: relative; z-index: 2; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; }
+        
+        /* Konten Teks di Atas Banner */
+        .hero-content { max-width: 800px; animation: slideUp 0.8s ease-out; position: relative; z-index: 2; width: 100%; }
+        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; }
         .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.95; }
-        .cta-button { background: white; color: #0066ff; padding: 0.75rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 600; border: none; cursor: pointer; transition: 0.3s; }
+        
+        /* Tombol Daftar Sekarang */
+        .cta-button { 
+            background: white; color: #0066ff; padding: 0.75rem 2rem; 
+            border-radius: 50px; text-decoration: none; font-weight: 600; 
+            border: none; cursor: pointer; transition: 0.3s; display: inline-block; 
+        }
         .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
 
-        /* Features Section */
-        .features { max-width: 1200px; margin: 4rem auto; padding: 0 2rem; background: white; }
-        .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #0066ff; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .feature-card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); text-align: center; display: flex; flex-direction: column; gap: 1rem; color: #333; }
-        .feature-image { width: 100%; height: 250px; background: #eee; border-radius: 8px; display: flex; align-items: center; justify-content: center; object-fit: cover; object-position: center; }
-        .view-all-wrapper { text-align: center; margin-top: 2rem; }
-        .view-all-link { color: #0066ff; text-decoration: none; font-weight: bold; padding: 0.75rem 2rem; display: inline-block; transition: 0.3s; }
-
-        /* Footer (Perbaikan Layout) */
-        footer { background: #0a0a0a; color: white; padding: 3rem 2rem; margin-top: 4rem; border-top: 2px solid #0066ff; display: flex; flex-direction: column; align-items: flex-end; gap: 2rem; position: relative; }
-        .footer-contact-right { display: flex; flex-direction: column; align-items: flex-start; gap: 0.75rem; margin-right: 2rem; }
-        .footer-contact-right h3 { margin: 0; color: #0066ff; font-size: 1.2rem; }
-        .footer-social { display: inline-block; color: white; text-decoration: none; padding: 0.5rem 1rem; transition: 0.3s; }
-        .footer-social:hover { background: #0066ff; }
-        .footer-copyright { position: relative; width: 100%; text-align: center; font-size: 0.85rem; margin-top: 1rem; }
-
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        /* =========================================
+           4. HISTORY SECTION (SEJARAH)
+           ========================================= */
+        .history { background: #f8f9fa; padding: 4rem 1.5rem; }
+        .history-container { max-width: 1000px; margin: 0 auto; }
+        .history h2 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; color: #0066ff; }
         
-        /* Fade In Up Animation */
+        /* Grid untuk membagi 2 kolom (Kiri: Logo, Kanan: Teks) */
+        .history-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+        
+        /* Logo Sejarah (Sekarang Transparan tanpa shadow) */
+        .history-image { 
+            width: 100%; 
+            max-width: 350px; /* Batasi ukuran biar gak terlalu raksasa */
+            margin: 0 auto;
+            background: transparent; /* Hapus background */
+            box-shadow: none; /* Hapus bayangan */
+            object-fit: contain; /* Pastikan proporsi gambar aman */
+        }
+        
+        /* Teks Sejarah */
+        .history-text { font-size: 1.05rem; line-height: 1.8; color: #555; }
+        .history-text p { margin-bottom: 1.5rem; text-align: justify; }
+
+        /* =========================================
+           5. FEATURES SECTION (DOKUMENTASI)
+           ========================================= */
+        .features { max-width: 1200px; margin: 4rem auto; padding: 0 1.5rem; background: white; }
+        .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #0066ff; }
+        
+        /* Grid Foto Dokumentasi */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .feature-card { 
+            background: white; padding: 1.5rem; border-radius: 10px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08); text-align: center; 
+            display: flex; flex-direction: column; gap: 1rem; color: #333; 
+        }
+        .feature-image { width: 100%; height: 200px; background: #eee; border-radius: 8px; display: block; object-fit: cover; object-position: center; }
+        
+        /* Tombol Lihat Semua */
+        .view-all-wrapper { text-align: center; margin-top: 2rem; }
+        .view-all-link { 
+            color: #0066ff; text-decoration: none; font-weight: bold; 
+            padding: 0.75rem 2rem; display: inline-block; transition: 0.3s; 
+            border: 2px solid #0066ff; border-radius: 50px; 
+        }
+        .view-all-link:hover { background: #0066ff; color: white; }
+
+        /* =========================================
+           6. FOOTER (KONTAK & COPYRIGHT)
+           ========================================= */
+        footer { 
+            background: #0a0a0a; color: white; margin-top: 4rem; 
+            border-top: 2px solid #0066ff; 
+            /* Catatan: Padding dihapus dari sini agar elemen di dalamnya bisa full width */
+        }
+        
+        /* Kontainer Utama Footer (Mentok Kanan) */
+        .footer-content { 
+            max-width: 1200px; margin: 0 auto; 
+            padding: 3rem 1.5rem; /* Padding dipindah ke sini */
+            display: flex; justify-content: flex-end; /* Memaksa konten rata kanan */
+        }
+        
+        /* Bungkus Teks Kontak */
+        .contact-wrapper { text-align: right; }
+        .contact-wrapper h3 { color: #0066ff; font-size: 1.2rem; margin-bottom: 0.5rem; }
+        
+        /* Detail Kontak & Icon */
+        .contact-info p { 
+            display: flex; align-items: flex-start; justify-content: flex-end; /* Icon & Teks di kanan */
+            gap: 10px; color: #ccc; margin-bottom: 0.5rem; 
+        }
+        .contact-info i { color: #0066ff; margin-top: 5px; }
+        
+        /* Garis Copyright Bawah (Sekarang Full Kiri-Kanan) */
+        .footer-bottom { 
+            border-top: 1px solid #333; /* Garisnya ada di sini sekarang */
+            padding: 1.5rem; text-align: center; 
+            width: 100%; font-size: 0.85rem; color: #888; 
+            background: #0a0a0a;
+        }
+
+        /* =========================================
+           7. ANIMASI MUNCUL (FADE IN UP)
+           ========================================= */
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .fade-in-up { opacity: 0; transform: translateY(30px); }
         .fade-in-up.animate { animation: slideUp 0.8s ease-out forwards; }
 
-        /* History Section */
-        .history { background: #f8f9fa; padding: 4rem 2rem; }
-        .history-container { max-width: 1000px; margin: 0 auto; }
-        .history h2 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; color: #0066ff; }
-        .history-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-        .history-text { font-size: 1.05rem; line-height: 1.8; color: #555; }
-        .history-text p { margin-bottom: 1.5rem; }
-        .history-image { width: 100%; border-radius: 10px; }
-
-        /* Responsive */
+        /* =========================================
+           8. RESPONSIVE DESIGN (KHUSUS TAMPILAN HP)
+           ========================================= */
         @media (max-width: 768px) {
-            .footer-contact-right { align-items: center; margin-right: 0; }
-            footer { align-items: center; }
-            .history-content { grid-template-columns: 1fr; }
+            /* Dropdown Menu Full Width di HP */
+            nav ul { top: 100%; right: 0; width: 100%; border-radius: 0; background: #0066ff; text-align: center; }
+            nav a:hover { background: rgba(255,255,255,0.1); }
+
+            /* Ukuran Teks Hero Dikecilkan */
+            .hero { min-height: 400px; padding: 4rem 1rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            
+            /* Susunan Sejarah Ditumpuk (Gambar atas, teks bawah) */
+            .history h2, .features h2 { font-size: 2rem; }
+            .history-content { grid-template-columns: 1fr; gap: 2rem; }
+            
+            /* Dokumentasi Ditumpuk */
+            .feature-image { height: 250px; }
+            .features-grid { grid-template-columns: 1fr; }
+            
+            /* Penyelamat Footer di HP (Pindah ke Tengah Biar Rapi) */
+            .footer-content { justify-content: center; } /* Bawa ke tengah */
+            .contact-wrapper { text-align: center; }
+            .contact-info p { justify-content: center; flex-direction: column; align-items: center; gap: 5px; }
+            .contact-info i { margin-top: 0; }
         }
     </style>
-
 </head>
+
 <body>
 
-    <!-- ===== HEADER ===== -->
     <header>
         <nav>
             <a href="#" class="logo" id="logo-link">
                 <img src="images/logo.png" alt="UKM Chip.Com Logo" class="logo-img">
                 <span>Chip.Com</span>
             </a>
+
             <button class="hamburger" id="hamburger">☰</button>
+
             <ul id="menu">
                 <li><a href="#features">Dokumentasi</a></li>
                 <li><a href="#contact">Kontak Kami</a></li>
@@ -110,18 +241,34 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const menu = document.getElementById('menu');
-        hamburger.addEventListener('click', function() { menu.classList.toggle('active'); hamburger.classList.toggle('active'); });
+        
+        // Membuka/menutup menu saat tombol diklik
+        hamburger.addEventListener('click', function(e) { 
+            e.stopPropagation();
+            menu.classList.toggle('active'); 
+        });
+
+        // Menutup menu otomatis jika salah satu link diklik
         const menuLinks = menu.querySelectorAll('a');
-        menuLinks.forEach(link => { link.addEventListener('click', function() { menu.classList.remove('active'); hamburger.classList.remove('active'); }); });
+        menuLinks.forEach(link => { 
+            link.addEventListener('click', function() { menu.classList.remove('active'); }); 
+        });
+
+        // Menutup menu jika user ngeklik area kosong di luar menu
+        document.addEventListener('click', function(e) {
+            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                menu.classList.remove('active');
+            }
+        });
     </script>
 
-    <!-- ===== HERO SECTION ===== -->
     <section class="hero">
         <div class="slideshow">
             <div class="slide active" style="background-image: url('images/IMG_20241019_134456.jpg');"></div>
             <div class="slide" style="background-image: url('images/IMG-20250201-WA0064.jpg');"></div>
             <div class="slide" style="background-image: url('images/LMC_20250517_204332582.jpg');"></div>
         </div>
+
         <div class="hero-content">
             <h1>lorem ipsum dolor sit amet</h1>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
@@ -133,59 +280,79 @@
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
-        function showSlide(n) { slides.forEach(slide => slide.classList.remove('active')); slides[n].classList.add('active'); }
-        function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; showSlide(currentSlide); }
-        setInterval(nextSlide, 5000);
+        if(totalSlides > 0) {
+            function showSlide(n) { slides.forEach(slide => slide.classList.remove('active')); slides[n].classList.add('active'); }
+            function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; showSlide(currentSlide); }
+            setInterval(nextSlide, 5000); // Ganti gambar tiap 5 detik
+        }
     </script>
 
-    <!-- ===== SEJARAH UKM CHIPCOM SECTION ===== -->
     <section class="history">
         <div class="history-container fade-in-up">
             <h2>Sejarah UKM Chip.Com</h2>
             <div class="history-content">
+                
+                <img src="images/logo.png" alt="ChipCom Logo" class="history-image fade-in-up">
+                
                 <div class="history-text fade-in-up">
                     <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, eget ultricies nunc nisl eget nunc.</p>
-                    
                     <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, eget ultricies nunc nisl eget nunc.</p>
-                    
                     <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, eget ultricies nunc nisl eget nunc.</p>
                 </div>
-                <img src="images/logo.png" alt="ChipCom Logo" class="history-image fade-in-up">
+                
             </div>
         </div>
     </section>
 
-    <!-- ===== DOKUMENTASI SECTION ===== -->
     <section class="features fade-in-up" id="features">
         <h2>Dokumentasi</h2>
         <div class="features-grid">
-            <div class="feature-card fade-in-up"><img src="images/IMG_20241019_134456.jpg" alt="Pertemuan" class="feature-image"><h3>Pertemuan</h3></div>
-            <div class="feature-card fade-in-up"><img src="images/IMG-20250201-WA0064.jpg" alt="Pelatihan Dasar" class="feature-image"><h3>Pelatihan Dasar</h3></div>
-            <div class="feature-card fade-in-up"><img src="images/LMC_20250517_204332582.jpg" alt="Dies Natalis" class="feature-image"><h3>Dies Natalis</h3></div>
+            <div class="feature-card fade-in-up">
+                <img src="images/IMG_20241019_134456.jpg" alt="Pertemuan" class="feature-image">
+                <h3>Pertemuan</h3>
+            </div>
+            <div class="feature-card fade-in-up">
+                <img src="images/IMG-20250201-WA0064.jpg" alt="Pelatihan Dasar" class="feature-image">
+                <h3>Pelatihan Dasar</h3>
+            </div>
+            <div class="feature-card fade-in-up">
+                <img src="images/LMC_20250517_204332582.jpg" alt="Dies Natalis" class="feature-image">
+                <h3>Dies Natalis</h3>
+            </div>
         </div>
         <div class="view-all-wrapper"><a href="#" class="view-all-link">Lihat Semua Dokumentasi</a></div>
     </section>
 
-    <!-- ===== FOOTER / KONTAK KAMI ===== -->
     <footer id="contact">
-        <div class="footer-contact-right">
-            <h3>Kontak Kami :</h3>
-            <div class="space-y-3 text-gray-400">
-                <p><i class="fa-brands fa-instagram"></i> chipcomstmik_id</p>
-                <p><i class="fas fa-phone"></i> +62 822-5185-5328</p>
-                <p><i class="fas fa-map-marker-alt"></i> Jl. Pangeran Hidayatullah, Banjarmasin</p>
+        <div class="footer-content">
+            <div class="contact-wrapper">
+                <h3>Kontak Kami :</h3>
+                <div class="contact-info">
+                    <p><i class="fa-brands fa-instagram"></i> chipcomstmik_id</p>
+                    <p><i class="fas fa-phone"></i> +62 822-5185-5328</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Pangeran Hidayatullah, Sungai Jingah, Kec. Banjarmasin Utara,<br>Kota Banjarmasin, Kalimantan Selatan 70122</p>
+                </div>
             </div>
         </div>
-        <div class="footer-copyright">
+
+        <div class="footer-bottom">
             <p>&copy; 2026 UKM Chip.Com. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('animate'); observer.unobserve(entry.target); } });
+            entries.forEach(entry => { 
+                if (entry.isIntersecting) { 
+                    entry.target.classList.add('animate'); 
+                    observer.unobserve(entry.target); 
+                } 
+            });
         }, { threshold: 0.1 });
+        
+        // Menerapkan observer ke semua elemen yang punya class 'fade-in-up'
         document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
     </script>
+
 </body>
-</html
+</html>
