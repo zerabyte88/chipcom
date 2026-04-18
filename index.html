@@ -1,445 +1,270 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UKM Chip.Com</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: '#3b82f6', // Blue 500
-                        secondary: '#8b5cf6', // Violet 500
-                        dark: '#0f172a', // Slate 900
-                        darker: '#020617', // Slate 950
-                    },
-                    animation: {
-                        'blob': 'blob 7s infinite',
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        blob: {
-                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <style>
-        body { font-family: 'Poppins', sans-serif; }
-        .glass-nav { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-        .glass-card { background: rgba(30, 41, 59, 0.5); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .text-gradient { background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* Scrollbar Styling */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0f172a; }
-        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #8b5cf6; }
 
-        /* Animation Classes */
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-    </style>
+    <title>Unit Kegiatan Mahasiswa (UKM) STMIK IB</title>
+
 </head>
-<body class="bg-darker text-slate-200 overflow-x-hidden selection:bg-primary selection:text-white">
+<body>
 
-    <!-- Navbar -->
-    <nav class="fixed w-full z-50 glass-nav border-b border-white/5 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-primary/30">
-                        <i class="fa-solid fa-microchip"></i>
-                    </div>
-                    <span class="font-bold text-2xl tracking-tight text-white">Chip<span class="text-primary">.Com</span></span>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#home" class="text-sm font-medium hover:text-primary transition-colors">Beranda</a>
-                    <a href="#about" class="text-sm font-medium hover:text-primary transition-colors">Tentang Kami</a>
-                    <a href="#divisi" class="text-sm font-medium hover:text-primary transition-colors">Divisi</a>
-                    <a href="#kegiatan" class="text-sm font-medium hover:text-primary transition-colors">Kegiatan</a>
-                    <a href="#join" class="px-6 py-2.5 rounded-full bg-white text-darker font-semibold text-sm hover:bg-slate-200 transition-transform transform hover:scale-105 active:scale-95 shadow-[0_0_15px_rgba(255,255,255,0.3)]">Join Sekarang</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="images/logo.png" alt="UKM Chip.Com Logo" class="logo-img">
+                <span>UKM Chip.Com</span>
             </div>
-        </div>
-
-        <!-- Mobile Menu Panel -->
-        <div id="mobile-menu" class="hidden md:hidden bg-dark border-b border-white/10 absolute w-full">
-            <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
-                <a href="#home" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5 hover:text-primary transition-colors">Beranda</a>
-                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5 hover:text-primary transition-colors">Tentang Kami</a>
-                <a href="#divisi" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5 hover:text-primary transition-colors">Divisi</a>
-                <a href="#kegiatan" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-white/5 hover:text-primary transition-colors">Kegiatan</a>
-                <a href="#join" class="block px-3 py-2 mt-4 text-center rounded-lg bg-gradient-to-r from-primary to-secondary text-white font-semibold text-base">Join Sekarang</a>
-            </div>
-        </div>
-    </nav>
+            <ul>
+                <li><a href="#features">Dokumentasi</a></li>
+                <li><a href="#contact">Kontak Kami</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center">
-        <!-- Background Blobs -->
-        <div class="absolute top-0 -left-4 w-72 h-72 bg-primary rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob"></div>
-        <div class="absolute top-0 -right-4 w-72 h-72 bg-secondary rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob animation-delay-2000"></div>
-        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob animation-delay-4000"></div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card text-sm font-medium text-primary mb-8 animate-fade-in-up">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-                </span>
-                Pendaftaran Anggota Baru 2026 Dibuka!
-            </div>
-            
-            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in-up" style="animation-delay: 0.1s;">
-                Code, Create, <br class="hidden md:block" />
-                <span class="bg-gradient-to-r from-primary via-secondary to-pink-500 text-gradient">Connect.</span>
-            </h1>
-            
-            <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-400 mb-10 animate-fade-in-up" style="animation-delay: 0.2s;">
-                Eksplorasi batas kreativitasmu di dunia digital. UKM Chip.Com adalah rumah bagi mahasiswa yang bersemangat dalam teknologi, pemrograman, desain, dan inovasi.
-            </p>
-            
-            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.3s;">
-                <a href="#join" class="px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-bold text-lg hover:shadow-[0_0_30px_rgba(59,130,246,0.5)] transition-all transform hover:-translate-y-1">
-                    Mulai Perjalananmu <i class="fa-solid fa-arrow-right ml-2"></i>
-                </a>
-                <a href="#about" class="px-8 py-4 rounded-full glass-card text-white font-semibold text-lg hover:bg-white/10 transition-all">
-                    Pelajari Lebih Lanjut
-                </a>
-            </div>
-        </div>
-        
-        <!-- Scroll Down Indicator -->
-        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <a href="#about" class="text-slate-400 hover:text-white transition-colors">
-                <i class="fa-solid fa-chevron-down text-2xl"></i>
-            </a>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>lorem ipsum dolor sit amet</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <button class="cta-button">Get Started</button>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 relative border-t border-white/5 bg-dark">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <h2 class="text-primary font-semibold tracking-wider uppercase text-sm mb-2">Tentang Kami</h2>
-                    <h3 class="text-3xl md:text-4xl font-bold mb-6 text-white">Bukan Sekadar Komunitas IT Biasa.</h3>
-                    <p class="text-slate-400 mb-6 leading-relaxed">
-                        UKM Chip.Com didirikan dengan satu tujuan: mencetak talenta-talenta digital masa depan. Kami percaya bahwa teknologi terbaik diciptakan melalui kolaborasi, eksperimen yang tiada henti, dan secangkir kopi panas di malam hari.
-                    </p>
-                    <p class="text-slate-400 mb-8 leading-relaxed">
-                        Di sini, kamu nggak cuma belajar *ngoding* atau bikin desain. Kamu akan membangun portofolio, mengikuti kompetisi bergengsi, dan menemukan keluarga baru yang sama-sama *geeky* dan seru!
-                    </p>
-                    
-                    <div class="grid grid-cols-2 gap-6">
-                        <div>
-                            <div class="text-4xl font-bold text-white mb-1">15+</div>
-                            <div class="text-sm text-slate-500 font-medium">Anggota Aktif</div>
-                        </div>
-                        <div>
-                            <div class="text-4xl font-bold text-white mb-1">2+</div>
-                            <div class="text-sm text-slate-500 font-medium">Proyek Selesai</div>
-                        </div>
-                        <div>
-                            <div class="text-4xl font-bold text-white mb-1">10+</div>
-                            <div class="text-sm text-slate-500 font-medium">Tahun Berdiri</div>
-                        </div>
-                        <div>
-                            <div class="text-4xl font-bold text-white mb-1">99%</div>
-                            <div class="text-sm text-slate-500 font-medium">Keseruan (1% cari tau sendiri)</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="relative reveal delay-200">
-                    <div class="absolute inset-0 bg-gradient-to-tr from-primary to-secondary rounded-3xl transform rotate-3 scale-105 opacity-50 blur-lg"></div>
-                    <div class="relative rounded-3xl overflow-hidden glass-card p-2">
-                        <!-- Placeholder for Real Image -->
-                        <div class="aspect-[4/3] bg-slate-800 rounded-2xl flex items-center justify-center relative overflow-hidden group">
-                            <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent z-10"></div>
-                            <i class="fa-solid fa-users text-6xl text-slate-600 group-hover:scale-110 transition-transform duration-500"></i>
-                            <div class="absolute bottom-4 left-4 z-20">
-                                <p class="text-white font-semibold">Gathering Anggota 2025</p>
-                                <p class="text-slate-300 text-sm">Gedung Rektorat</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2>Dokumentasi</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>Pertemuan</h3>
             </div>
-        </div>
-    </section>
-
-    <!-- Divisi Section -->
-    <section id="divisi" class="py-24 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
-                <h2 class="text-primary font-semibold tracking-wider uppercase text-sm mb-2">Peminatan / Divisi</h2>
-                <h3 class="text-3xl md:text-5xl font-bold text-white mb-4">Pilih Jalan Ninjamu</h3>
-                <p class="text-slate-400">Temukan *passion* mu di antara divisi-divisi unggulan kami. Nggak perlu jago dari awal, yang penting mau belajar bareng!</p>
+            <div class="feature-card">
+                <h3>Pelatihan Dasar</h3>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Divisi 1 -->
-                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 hover:border-primary/50 transition-all duration-300 group reveal cursor-pointer relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="w-14 h-14 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-code"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Programming</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Fokus pada Web Dev, Mobile Apps, dan Software Engineering. Mulai dari HTML mentah sampai framework modern, kita bedah di sini.</p>
-                    <span class="text-blue-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">Lihat Detail <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-
-                <!-- Divisi 2 -->
-                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 hover:border-pink-500/50 transition-all duration-300 group reveal delay-100 cursor-pointer relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="w-14 h-14 rounded-xl bg-pink-500/20 flex items-center justify-center text-pink-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-pen-nib"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">UI/UX & Design</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Menciptakan antarmuka yang nggak cuma cantik, tapi juga fungsional. Bergaul dengan Figma, Illustrator, dan psikologi user.</p>
-                    <span class="text-pink-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">Lihat Detail <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-
-                <!-- Divisi 3 -->
-                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 hover:border-emerald-500/50 transition-all duration-300 group reveal delay-200 cursor-pointer relative overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="w-14 h-14 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-network-wired"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">Networking</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Master topologi, konfigurasi router, sampai keamanan cyber. Cocok buat kamu yang suka ngoprek infrastruktur IT!</p>
-                    <span class="text-emerald-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">Lihat Detail <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-
-                <!-- Divisi 4 -->
-                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 hover:border-purple-500/50 transition-all duration-300 group reveal cursor-pointer relative overflow-hidden lg:col-start-2">
-                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="w-14 h-14 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:scale-110 transition-transform">
-                        <i class="fa-solid fa-gamepad"></i>
-                    </div>
-                    <h4 class="text-xl font-bold text-white mb-3">E-Sports & Game Dev</h4>
-                    <p class="text-slate-400 text-sm leading-relaxed mb-6">Bukan cuma main game, kita juga bikin game! Mulai dari turnamen internal kampus sampai perakitan aset game 2D/3D.</p>
-                    <span class="text-purple-400 text-sm font-semibold flex items-center gap-1 group-hover:gap-2 transition-all">Lihat Detail <i class="fa-solid fa-arrow-right"></i></span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galeri / Kegiatan Singkat -->
-    <section id="kegiatan" class="py-20 bg-dark border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-end mb-12 reveal">
-                <div>
-                    <h2 class="text-primary font-semibold tracking-wider uppercase text-sm mb-2">Galeri Kegiatan</h2>
-                    <h3 class="text-3xl font-bold text-white">Dokumentasi</h3>
-                </div>
-                <a href="https://www.instagram.com/chipcomstmik_id/" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex text-sm text-slate-400 hover:text-primary transition-colors items-center gap-2">
-  Lihat Semua Di Instagram <i class="fa-brands fa-instagram"></i></a>
-            </div>
-
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4 reveal">
-    
-    <div class="aspect-square rounded-xl bg-slate-800 overflow-hidden group relative">
-        <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-            <p class="text-white font-medium">Pertemuan</p>
-        </div>
-        <img src="images/IMG_20241019_134456.jpg" alt="Pertemuan" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-    </div>
-
-    <div class="aspect-square rounded-xl bg-slate-800 overflow-hidden group relative">
-        <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-            <p class="text-white font-medium">Pelatihan Dasar</p>
-        </div>
-        <img src="images/IMG-20250201-WA0064.jpg" alt="Pelatihan Dasar" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-    </div>
-
-    <div class="aspect-square rounded-xl bg-slate-800 overflow-hidden group relative">
-        <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-            <p class="text-white font-medium">Dies Natalis</p>
-        </div>
-        <img src="images/LMC_20250517_204332582.jpg" alt="Dies Natalis" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-    </div>
-
-    <div class="aspect-square rounded-xl bg-slate-800 overflow-hidden group relative">
-        <div class="absolute inset-0 bg-gradient-to-t from-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"></div>
-        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-            <p class="text-white font-medium">Lomba</p>
-        </div>
-        <img src="images/IMG_20250517_191613.jpg" alt="Lomba" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-    </div>
-
-</div>      
-            <div class="mt-8 text-center sm:hidden">
-                <a href="#" class="text-sm text-primary font-medium hover:underline">Lihat Semua Instagram <i class="fa-brands fa-instagram ml-1"></i></a>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA / Join Section -->
-    <section id="join" class="py-24 relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-b from-darker to-primary/20 pointer-events-none"></div>
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="glass-card rounded-3xl p-10 md:p-16 text-center relative overflow-hidden border border-primary/20 shadow-[0_0_50px_rgba(59,130,246,0.15)] reveal">
-                <!-- Decorative Elements -->
-                <div class="absolute -top-24 -right-24 w-48 h-48 bg-primary rounded-full filter blur-[80px] opacity-50"></div>
-                <div class="absolute -bottom-24 -left-24 w-48 h-48 bg-secondary rounded-full filter blur-[80px] opacity-50"></div>
-                
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Siap Menjadi Bagian dari Kami?</h2>
-                <p class="text-slate-300 text-lg mb-10 max-w-2xl mx-auto">
-                    Jangan sampai kelewatan!. Jadilah bagian dari Organisasi kampus tercinta ini.
-                </p>
-                
-                <form class="flex flex-col sm:flex-row gap-4 justify-center max-w-xl mx-auto mb-6" onsubmit="event.preventDefault(); alert('Ini cuma demo ya! Pendaftaran belum diproses. 🤪');">
-                    <input type="email" placeholder="Masukkan Email Mahasiswa..." class="px-6 py-4 rounded-full bg-dark/50 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary flex-grow transition-colors" required>
-                    <button type="submit" class="px-8 py-4 rounded-full bg-white text-darker font-bold hover:bg-slate-200 transition-transform transform hover:scale-105 active:scale-95 whitespace-nowrap">
-                        Daftar Sekarang
-                    </button>
-                </form>
-                <p class="text-sm text-slate-500">*Gratis biaya pendaftaran. Terbuka untuk semua Jurusan.</p>
+            <div class="feature-card">
+                <h3>Dies Natalis</h3>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-darker pt-16 pb-8 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 mb-6">
-                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center text-white font-bold text-sm">
-                            <i class="fa-solid fa-microchip"></i>
-                        </div>
-                        <span class="font-bold text-xl tracking-tight text-white">Chip<span class="text-primary">.Com</span></span>
-                    </div>
-                    <p class="text-slate-400 text-sm leading-relaxed max-w-sm mb-6">
-                        Wadah kreativitas dan inovasi mahasiswa di bidang Teknologi Informasi. Berpusat di Kampus Tercinta, siap menaklukkan era digital.
-                    </p>
-                    <div class="flex gap-4">
-                        <a href="https://www.instagram.com/chipcomstmik_id/" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-slate-300 hover:text-white hover:bg-primary transition-all"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://discord.gg/UdAAYdcg" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-slate-300 hover:text-white hover:bg-primary transition-all"><i class="fa-brands fa-discord"></i></a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-semibold mb-6">Tautan Cepat</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#home" class="text-slate-400 text-sm hover:text-primary transition-colors">Beranda</a></li>
-                        <li><a href="#about" class="text-slate-400 text-sm hover:text-primary transition-colors">Tentang Kami</a></li>
-                        <li><a href="#divisi" class="text-slate-400 text-sm hover:text-primary transition-colors">Divisi</a></li>
-                        <li><a href="#kegiatan" class="text-slate-400 text-sm hover:text-primary transition-colors">Galeri</a></li>
-                    </ul>
-                </div>
-                
-            
-            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-slate-500 text-sm">
-                    &copy; 2026 UKM Chip.Com. All rights reserved.
-                </p>
-            </div>
-        </div>
+    <footer id="contact">
+        <p>&copy; 2026 UKM Chip.Com. All rights reserved.</p>
     </footer>
 
-    <!-- Interactive Scripts -->
-    <script>
-        // Mobile Menu Toggle
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            const icon = btn.querySelector('i');
-            if(menu.classList.contains('hidden')) {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            } else {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            }
-        });
-
-        // Close mobile menu when clicking a link
-        const mobileLinks = menu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                menu.classList.add('hidden');
-                btn.querySelector('i').classList.remove('fa-xmark');
-                btn.querySelector('i').classList.add('fa-bars');
-            });
-        });
-
-        // Navbar Scroll Effect (Glassmorphism solidifies slightly on scroll)
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 20) {
-                navbar.classList.add('shadow-lg', 'bg-darker/90');
-                navbar.classList.remove('bg-dark/70');
-            } else {
-                navbar.classList.remove('shadow-lg', 'bg-darker/90');
-                navbar.classList.add('bg-dark/70');
-            }
-        });
-
-        // Scroll Animation Observer (Reveal elements as they enter viewport)
-        const revealElements = document.querySelectorAll('.reveal');
-        
-        const revealCallback = (entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    // Optional: Stop observing once revealed
-                    // observer.unobserve(entry.target); 
-                }
-            });
-        };
-
-        const revealOptions = {
-            threshold: 0.15, // Trigger when 15% of element is visible
-            rootMargin: "0px 0px -50px 0px"
-        };
-
-        const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
-
-        revealElements.forEach(el => {
-            revealObserver.observe(el);
-        });
-    </script>
 </body>
 </html>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #0066ff 0%, #1a1a1a 100%);
+            color: white;
+            padding: 0.8rem 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 0.5rem 0 0.3rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-right: auto;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin-right: 0;
+            padding-right: 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        nav a:hover {
+            opacity: 0.8;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0066ff 0%, #1a1a1a 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: slideUp 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #0066ff;
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: #0066ff;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0a0a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 0.9rem;
+            }
+
+            .logo-img {
+                height: 35px;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+                min-height: auto;
+            }
+        }
+</style>
