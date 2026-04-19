@@ -9,7 +9,7 @@
     
     <style>
         /* =========================================
-           1. PENGATURAN DASAR (RESET)
+           1. BASE RESET & TYPOGRAPHY
            ========================================= */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; } 
@@ -21,7 +21,7 @@
         }
 
         /* =========================================
-           2. HEADER & NAVIGASI ATAS
+           2. HEADER & NAVIGATION
            ========================================= */
         header { 
             background: #0066ff; 
@@ -37,18 +37,18 @@
             padding: 0 1.5rem; position: relative; 
         }
         
-        /* Logo Kiri Atas */
+        /* Logo Styling */
         .logo { 
             display: flex; align-items: center; gap: 0.75rem; 
             font-weight: bold; text-decoration: none; color: white; 
-            -webkit-tap-highlight-color: transparent; /* Hilangkan highlight di HP */
-            user-select: none; /* Cegah teks/logo terblok biru saat diklik cepat */
+            -webkit-tap-highlight-color: transparent; 
+            user-select: none; 
             outline: none;
         }
         .logo:hover { opacity: 0.9; }
         .logo-img { height: 40px; width: auto; }
         
-        /* Tombol Garis Tiga (Menu Toggle) */
+        /* Mobile Menu Toggle Button */
         .hamburger { 
             background: none; border: none; color: white; 
             font-size: 1.8rem; cursor: pointer; 
@@ -58,11 +58,12 @@
         }
         .hamburger:hover { transform: scale(1.1); }
 
-        /* Kotak Dropdown Menu */
+        /* Dropdown Navigation Menu */
         nav ul { 
             display: flex; flex-direction: column; 
             position: absolute; top: 3.5rem; right: 1.5rem; 
-            background: #000; padding: 1rem; text-align: left; 
+            background: #000; padding: 1rem; 
+            text-align: center; /* Set text alignment to center for menu items */
             gap: 1rem; list-style: none; border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             min-width: 200px;
@@ -73,12 +74,12 @@
         }
         nav ul.active { opacity: 1; visibility: visible; transform: translateY(0); }
         
-        /* Efek khusus link di dalam menu dropdown */
+        /* Dropdown Menu Links */
         nav ul a { color: white; text-decoration: none; transition: opacity 0.3s, background 0.3s; font-weight: 500; display: block; padding: 0.5rem; }
         nav ul a:hover { opacity: 0.8; background: #222; border-radius: 5px; }
 
         /* =========================================
-           3. HERO SECTION (BANNER SLIDESHOW ATAS)
+           3. HERO SECTION
            ========================================= */
         .hero { 
             position: relative; color: white; padding: 6rem 2rem; 
@@ -89,14 +90,18 @@
             content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
             background: rgba(0, 0, 0, 0.4); z-index: 1; 
         }
+        
+        /* Slideshow Background */
         .slideshow, .slide { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 0; }
         .slide { opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
         .slide.active { opacity: 1; }
         
+        /* Hero Content Container */
         .hero-content { max-width: 800px; animation: slideUp 0.8s ease-out; position: relative; z-index: 2; width: 100%; }
         .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; }
         .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.95; }
         
+        /* Call to Action Button */
         .cta-button { 
             background: white; color: #0066ff; padding: 0.75rem 2rem; 
             border-radius: 50px; text-decoration: none; font-weight: 600; 
@@ -105,114 +110,86 @@
         .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
 
         /* =========================================
-           4. HISTORY SECTION (SEJARAH)
+           4. HISTORY SECTION
            ========================================= */
         .history { background: #f8f9fa; padding: 4rem 1.5rem; }
         .history-container { max-width: 1000px; margin: 0 auto; }
         .history h2 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; color: #0066ff; }
-        
         .history-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-        
-        .history-image { 
-            width: 100%; max-width: 350px; margin: 0 auto;
-            background: transparent; box-shadow: none; object-fit: contain; 
-        }
-        
+        .history-image { width: 100%; max-width: 350px; margin: 0 auto; background: transparent; box-shadow: none; object-fit: contain; }
         .history-text { font-size: 1.05rem; line-height: 1.8; color: #555; }
         .history-text p { margin-bottom: 1.5rem; text-align: justify; }
 
         /* =========================================
-           5. FEATURES SECTION (DOKUMENTASI)
+           5. VISION AND MISSION SECTION
+           ========================================= */
+        .vision-mission { padding: 4rem 1.5rem; background: white; }
+        .vision-mission-container { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .vision-mission h2 { font-size: 2.5rem; margin-bottom: 3rem; color: #0066ff; }
+        .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; text-align: left; }
+        .vm-card { background: #f8f9fa; padding: 2.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .vm-card h3 { color: #0066ff; margin-bottom: 1rem; font-size: 1.8rem; text-align: center; }
+        
+        /* Text-align: justify for Vision and Mission text */
+        .vm-card p, .vm-card ul { font-size: 1.05rem; color: #555; line-height: 1.8; text-align: justify; }
+        .vm-card ul { padding-left: 1.5rem; margin-top: 1rem; }
+        .vm-card li { margin-bottom: 0.5rem; }
+
+        /* =========================================
+           6. ORGANIZATIONAL STRUCTURE SECTION
+           ========================================= */
+        .structure { padding: 4rem 1.5rem; background: #f8f9fa; }
+        .structure-container { max-width: 1000px; margin: 0 auto; text-align: center; }
+        .structure h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #0066ff; }
+        .structure-content p { font-size: 1.05rem; color: #555; margin-bottom: 2.5rem; line-height: 1.8; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; }
+        .structure-img { width: 100%; max-width: 800px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); display: block; margin: 0 auto; }
+
+        /* =========================================
+           7. DOCUMENTATION / FEATURES SECTION
            ========================================= */
         .features { max-width: 1200px; margin: 4rem auto; padding: 0 1.5rem; background: white; }
         .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: #0066ff; }
-        
         .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .feature-card { 
-            background: white; padding: 1.5rem; border-radius: 10px; 
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08); text-align: center; 
-            display: flex; flex-direction: column; gap: 1rem; color: #333; 
-        }
+        .feature-card { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.08); text-align: center; display: flex; flex-direction: column; gap: 1rem; color: #333; }
         .feature-image { width: 100%; height: 200px; background: #eee; border-radius: 8px; display: block; object-fit: cover; object-position: center; }
-        
         .view-all-wrapper { text-align: center; margin-top: 2rem; }
-        .view-all-link { 
-            color: #0066ff; text-decoration: none; font-weight: bold; 
-            padding: 0.75rem 2rem; display: inline-block; transition: 0.3s; 
-            border: 2px solid #0066ff; border-radius: 50px; 
-        }
+        .view-all-link { color: #0066ff; text-decoration: none; font-weight: bold; padding: 0.75rem 2rem; display: inline-block; transition: 0.3s; border: 2px solid #0066ff; border-radius: 50px; }
         .view-all-link:hover { background: #0066ff; color: white; }
 
         /* =========================================
-           6. FOOTER (KONTAK, COPYRIGHT)
+           8. FOOTER
            ========================================= */
-        footer { 
-            background: #0a0a0a; color: white; margin-top: 4rem; 
-            border-top: 2px solid #0066ff; 
-        }
-        
-        .footer-content { 
-            max-width: 95%; margin: 0 auto; 
-            padding: 3rem 1.5rem; 
-            display: flex; 
-            justify-content: flex-end; 
-            align-items: center; 
-        }
-        
+        footer { background: #0a0a0a; color: white; margin-top: 4rem; border-top: 2px solid #0066ff; }
+        .footer-content { max-width: 95%; margin: 0 auto; padding: 3rem 1.5rem; display: flex; justify-content: flex-end; align-items: center; }
         .contact-wrapper { text-align: right; }
         .contact-wrapper h3 { color: #0066ff; font-size: 1.2rem; margin-bottom: 0.5rem; }
-        
-        .contact-info p { 
-            display: flex; align-items: flex-start; justify-content: flex-end; 
-            gap: 10px; color: #ccc; margin-bottom: 0.5rem; 
-        }
+        .contact-info p { display: flex; align-items: flex-start; justify-content: flex-end; gap: 10px; color: #ccc; margin-bottom: 0.5rem; }
         .contact-info i { color: #0066ff; margin-top: 5px; }
-        
-        .footer-bottom { 
-            border-top: 1px solid #333; padding: 1.5rem; text-align: center; 
-            width: 100%; font-size: 0.85rem; color: #888; background: #0a0a0a;
-        }
+        .footer-bottom { border-top: 1px solid #333; padding: 1.5rem; text-align: center; width: 100%; font-size: 0.85rem; color: #888; background: #0a0a0a; }
 
         /* =========================================
-           7. ANIMASI MUNCUL (FADE IN UP)
+           9. ANIMATIONS
            ========================================= */
         @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         .fade-in-up { opacity: 0; transform: translateY(30px); }
         .fade-in-up.animate { animation: slideUp 0.8s ease-out forwards; }
 
         /* =========================================
-           8. RESPONSIVE DESIGN (KHUSUS TAMPILAN HP)
+           10. RESPONSIVE DESIGN (MEDIA QUERIES)
            ========================================= */
         @media (max-width: 768px) {
             nav ul { top: 100%; right: 0; width: 100%; border-radius: 0; background: #0066ff; text-align: center; }
             nav ul a:hover { background: rgba(255,255,255,0.1); }
-
             .hero { min-height: 400px; padding: 4rem 1rem; }
             .hero h1 { font-size: 2.2rem; }
             .hero p { font-size: 1.1rem; }
-            
-            .history h2, .features h2 { font-size: 2rem; }
-            .history-content { grid-template-columns: 1fr; gap: 2rem; }
-            
+            .history h2, .vision-mission h2, .structure h2, .features h2 { font-size: 2rem; }
+            .history-content, .vm-grid { grid-template-columns: 1fr; gap: 2rem; }
             .feature-image { height: 250px; }
             .features-grid { grid-template-columns: 1fr; }
-            
-            .footer-content { 
-                justify-content: center; 
-                text-align: center;
-                padding: 2rem 1rem;
-            } 
-            
+            .footer-content { justify-content: center; text-align: center; padding: 2rem 1rem; } 
             .contact-wrapper { text-align: center; }
-            
-            .contact-info p { 
-                justify-content: center; 
-                flex-direction: column; 
-                align-items: center; 
-                gap: 5px; 
-                font-size: 0.85rem; 
-                line-height: 1.4;
-            }
+            .contact-info p { justify-content: center; flex-direction: column; align-items: center; gap: 5px; font-size: 0.85rem; line-height: 1.4; }
             .contact-info i { margin-top: 0; font-size: 1rem; }
         }
     </style>
@@ -227,9 +204,12 @@
                 <span>Chip.Com</span>
             </a>
 
-            <button class="hamburger" id="hamburger">☰</button>
+            <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">☰</button>
 
             <ul id="menu">
+                <li><a href="#sejarah">Sejarah</a></li>
+                <li><a href="#visi-misi">Visi & Misi</a></li>
+                <li><a href="#struktur">Struktur Organisasi</a></li>
                 <li><a href="#features">Dokumentasi</a></li>
                 <li><a href="#contact">Kontak Kami</a></li>
             </ul>
@@ -237,27 +217,30 @@
     </header>
 
     <script>
-        // Tangkap elemen tombol dan menu dari HTML
-        const hamburger = document.getElementById('hamburger');
-        const menu = document.getElementById('menu');
-        
-        // 1. Kalau tombol hamburger diklik, tambahin/ilangin class 'active' buat buka tutup menu
-        hamburger.addEventListener('click', function(e) { 
-            e.stopPropagation(); // Biar kliknya nggak nembus ke elemen lain di bawahnya
-            menu.classList.toggle('active'); 
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const menu = document.getElementById('menu');
+            
+            // Toggle menu visibility when hamburger button is clicked
+            hamburger.addEventListener('click', function(e) { 
+                e.stopPropagation(); 
+                menu.classList.toggle('active'); 
+            });
 
-        // 2. Kalau user ngeklik salah satu link di menu, otomatis tutup menunya.
-        const menuLinks = menu.querySelectorAll('a');
-        menuLinks.forEach(link => { 
-            link.addEventListener('click', function() { menu.classList.remove('active'); }); 
-        });
+            // Close the navigation menu when any link inside it is clicked
+            const menuLinks = menu.querySelectorAll('a');
+            menuLinks.forEach(link => { 
+                link.addEventListener('click', () => { 
+                    menu.classList.remove('active'); 
+                }); 
+            });
 
-        // 3. Kalau menu lagi kebuka, terus user ngeklik sembarang area kosong, menu otomatis nutup.
-        document.addEventListener('click', function(e) {
-            if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
-                menu.classList.remove('active');
-            }
+            // Close the navigation menu if user clicks anywhere outside of it
+            document.addEventListener('click', function(e) {
+                if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
+                    menu.classList.remove('active');
+                }
+            });
         });
     </script>
 
@@ -266,52 +249,86 @@
             <div class="slide active" style="background-image: url('images/IMG_20241019_134456.jpg');"></div>
             <div class="slide" style="background-image: url('images/IMG-20250201-WA0064.jpg');"></div>
             <div class="slide" style="background-image: url('images/LMC_20250517_204332582.jpg');"></div>
+            <div class="slide" style="background-image: url('images/IMG-20241109-WA0053.jpg');"></div>
+            <div class="slide" style="background-image: url('images/IMG_20250517_191613.jpg');"></div>
+            <div class="slide" style="background-image: url('images/IMG_20241019_150301.jpg');"></div>
         </div>
 
         <div class="hero-content">
-            <h1>lorem ipsum dolor sit amet</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h1>Jadilah Bagian Dari Kami!</h1>
+            <p>Tunggu Apa Lagi? Ayo Bergabung Dengan Kami Sekarang Dan Rasakan Keseruan Bersama Chip.Com!</p>
             <button class="cta-button">Daftar Sekarang</button>
         </div>
     </section>
 
     <script>
-        let currentSlide = 0; // Mulai dari gambar pertama (index 0)
-        const slides = document.querySelectorAll('.slide'); // Cari semua gambar yang punya class .slide
-        const totalSlides = slides.length; // Hitung total gambarnya ada berapa
-        
-        // Cek dulu, ada gambarnya atau tidak, Kalau ada baru jalanin kodenya
-        if(totalSlides > 0) {
-            // Fungsi buat nampilin gambar sesuai nomor urutannya
-            function showSlide(n) { 
-                // Ilangin dulu class 'active' dari semua gambar biar sembunyi
-                slides.forEach(slide => slide.classList.remove('active')); 
-                // Terus tambahin class 'active' ke gambar yang gilirannya tayang
-                slides[n].classList.add('active'); 
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            let currentSlide = 0; 
+            const slides = document.querySelectorAll('.slide'); 
+            const totalSlides = slides.length; 
             
-            // Fungsi buat ngitung urutan gambar selanjutnya (otomatis balik ke awal kalau udah mentok)
-            function nextSlide() { 
-                currentSlide = (currentSlide + 1) % totalSlides; 
-                showSlide(currentSlide); 
+            if(totalSlides > 0) {
+                // Function to display specific slide by its index
+                const showSlide = (n) => { 
+                    slides.forEach(slide => slide.classList.remove('active')); 
+                    slides[n].classList.add('active'); 
+                };
+                
+                // Function to transition to the next sequential slide
+                const nextSlide = () => { 
+                    currentSlide = (currentSlide + 1) % totalSlides; 
+                    showSlide(currentSlide); 
+                };
+                
+                // Automatically switch slides every 5000 milliseconds (5 seconds)
+                setInterval(nextSlide, 5000); 
             }
-            
-            // Atur timer otomatis ganti gambar tiap 5000 ms (5 detik)
-            setInterval(nextSlide, 5000); 
-        }
+        });
     </script>
 
-    <section class="history">
+    <section class="history" id="sejarah">
         <div class="history-container fade-in-up">
             <h2>Sejarah UKM Chip.Com</h2>
             <div class="history-content">
                 <img src="images/logo.png" alt="ChipCom Logo" class="history-image fade-in-up">
-                
                 <div class="history-text fade-in-up">
-                    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, eget ultricies nunc nisl eget nunc.</p>
-                    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, eget ultricies nunc nisl eget nunc.</p>
-                    <p>lorem ipsum dolor sit amet, consectetur adipiscing elit. nullam auctor, nisl eget ultricies tincidunt, nunc nisl aliquam nisl, eget ultricies nunc nisl eget nunc.</p>
+                    <p>Cikal bakal UKM ini dimulai pada tahun 1999 di AMIK dengan nama DosCom, sebuah wadah berbagi ilmu komputer bagi mahasiswa. Kurangnya partisipasi aktif membuat organisasi ini sempat mengalami masa vakum. Pada tahun 2004, bersamaan dengan perubahan status kampus menjadi STMIK, nama organisasi resmi berganti menjadi Chip.Com. Sayangnya, proses transisi ini masih diwarnai kendala manajemen internal yang menyebabkan organisasi kembali pasif selama beberapa waktu.</p>
+                    <p>Kebangkitan nyata terjadi pada tahun 2007 melalui inisiatif BEM STMIK, yang ditandai dengan perekrutan masif dan penetapan agenda tahunan Pekan Olimpiade Komputer (POK). Organisasi sempat menyematkan nama "Chip.Com Organizer" untuk menjaring kerja sama event external. Namun, keterbatasan fasilitas kampus saat itu memaksa pengurus mengalihkan fokus kegiatan dari pelatihan IT ke materi keorganisasian. Kebijakan ini sempat menimbulkan dinamika dan kekecewaan dari anggota yang berharap pada pelatihan teknis.</p>
+                    <p>Evaluasi menyeluruh akhirnya dilakukan pada Musyawarah Besar (Mubes) I di awal 2010. Organisasi sepakat menghapus kata "Organizer" dan meresmikan nama UKM CHIP.COM STMIK INDONESIA BANJARMASIN. Fokus kegiatan dikembalikan pada peningkatan keterampilan IT dengan melibatkan dosen dan asisten labolatorium, namun tetap seimbang dengan materi keorganisasian. Dengan fasilitas kampus yang kini memadai, UKM terus berjalan stabil dan berfokus mencetak anggota yang kompeten dan solid.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="vision-mission" id="visi-misi">
+        <div class="vision-mission-container fade-in-up">
+            <h2>Visi & Misi</h2>
+            <div class="vm-grid">
+                <div class="vm-card fade-in-up">
+                    <h3>Visi</h3>
+                    <ul>
+                        <li>Meningkatkan pengetahuan dan pengembangan kemampuan anggota Unit Kegiatan Mahasiswa (UKM) Chip.Com STMIK Indonesia Banjarmasin pada khususnya serta Bangsa dan Negara pada umumnya dalam bidang IT dan bidang Organisasi.</li>
+                    </ul>
+                </div>
+                <div class="vm-card fade-in-up">
+                    <h3>Misi</h3>
+                    <ul>
+                        <li>Membekali mahasiswa dan anggota dengan wawasan serta keterampilan di bidang IT.</li>
+                        <li>Mempererat jalinan komunikasi yang aktif antar sesama anggota.</li>
+                        <li>Menumbuhkan rasa kebersamaan dan kesatuan di dalam internal organisasi.</li>
+                        <li>Menyelenggarakan berbagai kegiatan IT dan sosial yang bermanfaat bagi anggota maupun masyarakat luas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="structure" id="struktur">
+        <div class="structure-container fade-in-up">
+            <h2>Struktur Organisasi</h2>
+            <div class="structure-content fade-in-up">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+                <img src="https://via.placeholder.com/800x400?text=Gambar+Struktur+Organisasi" alt="Struktur Organisasi UKM Chip.Com" class="structure-img">
             </div>
         </div>
     </section>
@@ -333,7 +350,7 @@
             </div>
         </div>
         <div class="view-all-wrapper">
-            <a href="https://www.instagram.com/chipcomstmik_id/" class="view-all-link">Lihat Semua Dokumentasi</a>
+            <a href="https://www.instagram.com/chipcomstmik_id/" class="view-all-link" target="_blank" rel="noopener noreferrer">Lihat Semua Dokumentasi</a>
         </div>
     </section>
 
@@ -355,21 +372,27 @@
     </footer>
 
     <script>
-        // Bikin 'mata-mata' (Observer) buat mantau layar
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { 
-                // Kalau elemennya udah nongol di layar (isIntersecting)...
-                if (entry.isIntersecting) { 
-                    // Tambahin class 'animate' biar efek naik+muncil-nya jalan
-                    entry.target.classList.add('animate'); 
-                    // Kalau udah jalan animasinya, berhenti mata-matain elemen itu biar gak berulang terus
-                    observer.unobserve(entry.target); 
-                } 
-            });
-        }, { threshold: 0.1 }); // 0.1 artinya efek bakal jalan pas baru keliatan 10% doang di layar
-        
-        // Cari SEMUA elemen di HTML yang punya class 'fade-in-up', terus daftarin ke mata-mata tadi
-        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+        document.addEventListener('DOMContentLoaded', () => {
+            // Configuration for Intersection Observer (triggers animation on scroll)
+            const observerOptions = {
+                threshold: 0.1 // Animation triggers when 10% of the element is visible
+            };
+
+            // Initialize the observer instance
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => { 
+                    if (entry.isIntersecting) { 
+                        // Add CSS animation class to the element
+                        entry.target.classList.add('animate'); 
+                        // Stop observing the element once animated
+                        observer.unobserve(entry.target); 
+                    } 
+                });
+            }, observerOptions);
+            
+            // Attach observer to all elements possessing the 'fade-in-up' class
+            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+        });
     </script>
 
 </body>
