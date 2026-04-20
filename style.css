@@ -1,7 +1,10 @@
 /* ==========================================================================
-   0. CSS VARIABLES (Konfigurasi Tema Terang & Gelap)
+   0. VARIABEL CSS (Konfigurasi Tema Terang & Gelap)
    ========================================================================== */
 :root {
+    /* Menginstruksikan peramban untuk mengoptimalkan rendering antarmuka standar ke mode terang */
+    color-scheme: light; 
+    
     --bg-body: #ffffff;
     --bg-section: #f8f9fa;
     --bg-card: #ffffff;
@@ -14,6 +17,9 @@
 }
 
 [data-theme="dark"] {
+    /* Menginstruksikan peramban untuk mengoptimalkan rendering antarmuka standar ke mode gelap */
+    color-scheme: dark; 
+    
     --bg-body: #121212;
     --bg-section: #1e1e1e;
     --bg-card: #2d2d2d;
@@ -26,7 +32,7 @@
 }
 
 /* ==========================================================================
-   1. BASE RESET & TYPOGRAPHY
+   1. RESET DASAR & TIPOGRAFI
    ========================================================================== */
 * { 
     margin: 0; 
@@ -44,7 +50,9 @@ body {
     background-color: var(--bg-body);
     color: var(--text-main); 
     overflow-x: hidden; 
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    
+    /* Menggunakan Flexbox untuk memastikan elemen footer selalu berada di dasar viewport */
     display: flex; 
     flex-direction: column; 
     min-height: 100vh; 
@@ -55,7 +63,7 @@ main {
 }
 
 /* ==========================================================================
-   2. HEADER & NAVIGATION
+   2. HEADER & NAVIGASI
    ========================================================================== */
 header { 
     background: var(--nav-bg); 
@@ -65,7 +73,7 @@ header {
     top: 0; 
     z-index: 100; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s ease; 
 }
 
 nav { 
@@ -111,7 +119,7 @@ nav ul a {
     color: white; 
     text-decoration: none; 
     font-weight: 500; 
-    transition: 0.3s; 
+    transition: opacity 0.3s ease; 
 }
 
 nav ul a:hover { 
@@ -132,7 +140,7 @@ nav ul a:hover {
     color: white; 
     font-size: 1.2rem; 
     cursor: pointer; 
-    transition: transform 0.3s; 
+    transition: transform 0.3s ease; 
     outline: none; 
 }
 
@@ -157,7 +165,7 @@ nav ul a:hover {
 }
 
 /* ==========================================================================
-   3. HERO SECTION (Latar Belakang Slideshow)
+   3. SEGMEN HERO (Latar Belakang Slideshow)
    ========================================================================== */
 .hero { 
     position: relative; 
@@ -171,6 +179,7 @@ nav ul a:hover {
     overflow: hidden; 
 }
 
+/* Lapisan overlay transparan untuk meningkatkan keterbacaan teks di atas gambar */
 .hero::before { 
     content: ''; 
     position: absolute; 
@@ -235,7 +244,7 @@ nav ul a:hover {
     font-weight: 600; 
     border: none; 
     cursor: pointer; 
-    transition: 0.3s; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
     display: inline-block; 
 }
 
@@ -250,7 +259,7 @@ nav ul a:hover {
 .history, .structure { 
     background: var(--bg-section); 
     padding: 4rem 1.5rem; 
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s ease; 
 }
 
 .history-container, .structure-container, .vision-mission-container { 
@@ -284,7 +293,7 @@ nav ul a:hover {
     font-size: 1.05rem; 
     line-height: 1.8; 
     color: var(--text-muted); 
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .history-text p { 
@@ -296,7 +305,7 @@ nav ul a:hover {
 .vision-mission { 
     padding: 4rem 1.5rem; 
     background: var(--bg-body); 
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .vm-grid { 
@@ -311,7 +320,7 @@ nav ul a:hover {
     padding: 2.5rem; 
     border-radius: 10px; 
     box-shadow: 0 5px 20px var(--shadow-color); 
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .vm-card h3 { 
@@ -326,7 +335,7 @@ nav ul a:hover {
     font-size: 1.05rem; 
     color: var(--text-muted); 
     line-height: 1.8; 
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .vm-card p, .vm-card li { 
@@ -367,7 +376,7 @@ nav ul a:hover {
     margin: 4rem auto; 
     padding: 0 1.5rem; 
     background: var(--bg-body); 
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
 }
 
 .features-grid { 
@@ -386,7 +395,7 @@ nav ul a:hover {
     flex-direction: column; 
     gap: 1rem; 
     color: var(--text-main); 
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .feature-card h3 { 
@@ -414,7 +423,7 @@ nav ul a:hover {
     font-weight: 600; 
     padding: 0.75rem 2rem; 
     display: inline-block; 
-    transition: 0.3s; 
+    transition: background-color 0.3s ease, color 0.3s ease; 
     border: 2px solid var(--primary-color); 
     border-radius: 50px; 
 }
@@ -432,7 +441,7 @@ footer {
     color: white; 
     margin-top: auto; 
     border-top: 2px solid var(--primary-color); 
-    transition: background-color 0.3s; 
+    transition: background-color 0.3s ease; 
 }
 
 .footer-content { 
@@ -504,7 +513,7 @@ footer {
 .footer-links a { 
     color: #cccccc; 
     text-decoration: none; 
-    transition: 0.3s; 
+    transition: color 0.3s ease, transform 0.3s ease; 
     font-size: 0.95rem; 
     display: flex; 
     align-items: center; 
@@ -569,7 +578,7 @@ footer {
 }
 
 /* ==========================================================================
-   6. ANIMATIONS & RESPONSIVE (Penyesuaian Resolusi Mobile)
+   6. ANIMASI & DESAIN RESPONSIF (Penyesuaian Resolusi Mobile)
    ========================================================================== */
 @keyframes slideUp { 
     from { opacity: 0; transform: translateY(30px); } 
@@ -612,7 +621,7 @@ footer {
         opacity: 0; 
         visibility: hidden; 
         transform: translateY(-10px); 
-        transition: 0.3s; 
+        transition: opacity 0.3s ease, transform 0.3s ease; 
         box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
     }
     

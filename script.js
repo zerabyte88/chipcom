@@ -1,27 +1,30 @@
+'use strict';
+
 /**
  * Event Listener Utama
- * Dieksekusi ketika seluruh hierarki DOM berhasil dimuat oleh peramban.
+ * Blok ini memastikan skrip JavaScript dijalankan setelah seluruh struktur HTML
+ * selesai diproses oleh peramban, mencegah manipulasi DOM pada elemen yang belum ada.
  */
 document.addEventListener('DOMContentLoaded', () => {
     
     // ==========================================================================
-    // 1. MANAJEMEN MENU NAVIGASI MOBILE (HAMBURGER)
+    // 1. MANAJEMEN NAVIGASI RESPONSIF (HAMBURGER MENU)
     // ==========================================================================
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
     
-    // Membuka atau menutup navigasi menu pada tampilan mobile
+    // Toggle status visibilitas menu navigasi pada resolusi layar perangkat seluler
     hamburger.addEventListener('click', (e) => { 
         e.stopPropagation(); 
         menu.classList.toggle('active'); 
     });
 
-    // Menutup menu secara otomatis saat tautan diklik
+    // Delegasi penutupan menu secara otomatis apabila sebuah tautan navigasi diklik
     menu.querySelectorAll('a').forEach(link => { 
         link.addEventListener('click', () => menu.classList.remove('active')); 
     });
 
-    // Menutup navigasi saat pengguna melakukan klik di luar area menu
+    // Menangani penutupan menu apabila pengguna berinteraksi di luar batasan elemen menu
     document.addEventListener('click', (e) => {
         if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
             menu.classList.remove('active');
@@ -29,74 +32,83 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ==========================================================================
-    // 2. LOGIKA TEMA (DARK MODE / LIGHT MODE)
+    // 2. KONTROL TEMA (DARK MODE / LIGHT MODE)
     // ==========================================================================
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
     
-    // Mengevaluasi dan menerapkan preferensi tema dari Local Storage
-    const currentTheme = localStorage.getItem('theme');
-    if (currentTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
+    // Penyesuaian ikon berdasarkan tema yang diinisialisasi oleh skrip sebaris (inline) di tag <head>
+    if (document.documentElement.getAttribute('data-theme') === 'dark') {
         themeIcon.classList.replace('fa-moon', 'fa-sun');
     }
 
-    // Mengganti tema saat tombol diklik serta menyimpan preferensi ke Local Storage
+    // Eksekusi transisi tema dengan prioritas kinerja perenderan (Rendering Performance)
     themeToggleBtn.addEventListener('click', () => {
-        let theme = document.documentElement.getAttribute('data-theme');
-        if (theme === 'dark') {
-            document.documentElement.removeAttribute('data-theme');
-            localStorage.setItem('theme', 'light');
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-        } else {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        const newTheme = isDark ? 'light' : 'dark';
+        
+        // Manipulasi DOM (Perubahan CSS) dieksekusi segera secara sinkron
+        if (newTheme === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
-            localStorage.setItem('theme', 'dark');
             themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
         }
+
+        // Operasi I/O ditunda menggunakan setTimeout agar tidak memblokir antrean 
+        // Main Thread, menghindari fenomena "stuttering" atau jeda visual.
+        setTimeout(() => {
+            localStorage.setItem('theme', newTheme);
+        }, 10);
     });
 
     // ==========================================================================
-    // 3. LOGIKA SLIDESHOW OTOMATIS
+    // 3. LOGIKA OTOMASI SLIDESHOW
     // ==========================================================================
     const slides = document.querySelectorAll('.slide');
     if (slides.length > 1) {
+        // Melakukan pergantian slide dengan interval siklus setiap 5 detik
         setInterval(() => {
-            let active = document.querySelector('.slide.active');
+            const active = document.querySelector('.slide.active');
             active.classList.remove('active');
             
-            // Transisi ke elemen berikutnya atau mengulang dari awal
-            let next = active.nextElementSibling || slides[0];
+            const next = active.nextElementSibling || slides[0];
             next.classList.add('active');
         }, 5000);
     }
 
     // ==========================================================================
-    // 4. ANIMASI GULIR BERBASIS INTERSECTION OBSERVER
+    // 4. ANIMASI BERBASIS INTERSECTION OBSERVER
     // ==========================================================================
     const observerOptions = { 
-        threshold: 0.1 
+        threshold: 0.1 // Eksekusi callback ketika 10% dimensi elemen memasuki viewport
     };
     
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => { 
             if (entry.isIntersecting) { 
                 entry.target.classList.add('animate'); 
+                // Menghentikan observasi elemen yang telah dianimasikan guna menghemat sumber daya memori
                 obs.unobserve(entry.target); 
             } 
         });
     }, observerOptions);
     
+    // Mendaftarkan semua elemen dengan class target untuk diobservasi
     document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 });
 
 // ==========================================================================
-// 5. LAZY LOAD UNTUK ASET GAMBAR LATAR BELAKANG
+// 5. IMPLEMENTASI LAZY LOAD PADA ASET LATAR BELAKANG GAMBAR
 // ==========================================================================
-// Memuat gambar sekunder setelah sumber daya kritis (DOM, CSS, JS) selesai dimuat
+// Menempatkan pemrosesan beban kerja pada siklus event 'load' untuk
+// memastikan aset utama halaman telah diproses secara komprehensif.
 window.addEventListener('load', () => {
     const lazySlides = document.querySelectorAll('.slide[data-bg]');
     lazySlides.forEach(slide => {
         slide.style.backgroundImage = `url('${slide.getAttribute('data-bg')}')`;
+        // Membersihkan atribut untuk menjaga kerapian struktur DOM
         slide.removeAttribute('data-bg');
     });
 });
