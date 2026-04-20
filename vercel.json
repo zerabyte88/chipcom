@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/category/beranda",
+      "source": "/beranda",
       "destination": "/"
     },
     {
