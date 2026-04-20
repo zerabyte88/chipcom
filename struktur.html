@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Struktur - CHIP.COM</title>
+    <title>Struktur Kepengurusan - CHIP.COM</title>
+    
     <link rel="icon" href="images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,6 +22,7 @@
                 <img src="images/logo.svg" alt="UKM Chip.Com Logo" class="logo-img">
                 <span>Chip.Com</span>
             </a>
+
             <ul id="menu">
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="sejarah.html">Sejarah</a></li>
@@ -26,6 +30,7 @@
                 <li><a href="struktur.html">Struktur</a></li>
                 <li><a href="dokumentasi.html">Dokumentasi</a></li>
             </ul>
+
             <div class="nav-actions">
                 <button id="theme-toggle" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
@@ -38,12 +43,26 @@
     </header>
 
     <main>
-        <section class="structure">
-            <div class="structure-container fade-in-up">
+        <!-- Nah ini dia kuncinya, kita pake class 'history' biar layoutnya sama persis! -->
+        <section class="history">
+            <div class="history-container fade-in-up">
                 <h2>Struktur Organisasi</h2>
-                <div class="structure-content fade-in-up">
-                    <p>Mengenal lebih dekat formasi kepengurusan UKM Chip.Com yang bertugas menjalankan roda organisasi, menyusun program kerja, dan memastikan setiap anggota mendapatkan pengalaman terbaik di bidang IT dan keorganisasian.</p>
-                    <img src="images/struktur.webp" alt="Struktur Organisasi UKM Chip.Com" class="structure-img">
+                <div class="history-content">
+                    
+                    <!-- Sisi Kiri: Gambarnya -->
+                    <img src="images/struktur.webp" alt="Struktur Organisasi UKM Chip.Com" class="history-image fade-in-up">
+                    
+                    <!-- Sisi Kanan: Teks yang udah dibikin per paragraf -->
+                    <div class="history-text fade-in-up">
+                        <p>Mengenal lebih dekat struktur kepengurusan UKM Chip.Com. Struktur kepengurusan adalah hal yang sangat penting dalam sebuah organisasi, termasuk UKM Chip.Com. Dengan mengetahui struktur kepengurusan, kita dapat memahami bagaimana organisasi tersebut dijalankan dan siapa saja yang terlibat di dalamnya.</p>
+                        
+                        <p>UKM Chip.Com memiliki struktur kepengurusan yang terdiri dari beberapa divisi, seperti divisi pengajar, divisi humas, dan divisi perlengkapan. Masing-masing divisi memiliki tugas dan tanggung jawab yang berbeda-beda, namun semua divisi tersebut bekerja sama untuk mencapai tujuan organisasi.</p>
+
+                        <p>Dalam struktur kepengurusan UKM Chip.Com, ada beberapa posisi yang sangat penting, seperti ketua, sekretaris, dan bendahara. Ketua merupakan pemimpin tertinggi dalam organisasi, sekretaris bertanggung jawab untuk mengelola administrasi, dan bendahara mengelola keuangan organisasi.</p>
+
+                        <p>Dengan mengenal lebih dekat struktur kepengurusan UKM Chip.Com, kita dapat memahami bagaimana organisasi tersebut dijalankan dan bagaimana kita dapat berkontribusi untuk mencapai tujuan organisasi.</p>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -55,6 +74,7 @@
                 <h3>Tentang Chip.Com</h3>
                 <p>Unit Kegiatan Mahasiswa (UKM) di STMIK Indonesia Banjarmasin yang berfokus pada pengembangan keterampilan Teknologi Informasi dan kepemimpinan keorganisasian.</p>
             </div>
+
             <div class="footer-col footer-links">
                 <div class="footer-links-inner">
                     <h3>Tautan Cepat</h3>
@@ -66,6 +86,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="footer-col contact-wrapper">
                 <div class="contact-inner">
                     <h3>Hubungi Kami</h3>
@@ -77,6 +98,7 @@
                 </div>
             </div>
         </div>
+
         <div class="footer-bottom">
             <p>&copy; 2026 UKM Chip.Com STMIK Indonesia Banjarmasin. All rights reserved.</p>
         </div>
