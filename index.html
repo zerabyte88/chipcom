@@ -1,407 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHIP.COM - STMIK Indonesia Banjarmasin</title>
-    
     <link rel="icon" href="images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* =========================================
-           0. CSS VARIABLES (UNTUK DARK MODE)
-           ========================================= */
-        :root {
-            --bg-body: #ffffff;
-            --bg-section: #f8f9fa;
-            --bg-card: #ffffff;
-            --text-main: #333333;
-            --text-muted: #555555;
-            --primary-color: #0066ff;
-            --nav-bg: #0066ff;
-            --shadow-color: rgba(0, 0, 0, 0.05);
-            --footer-bg: #0a0a0a;
-        }
-
-        [data-theme="dark"] {
-            --bg-body: #121212;
-            --bg-section: #1e1e1e;
-            --bg-card: #2d2d2d;
-            --text-main: #f0f0f0;
-            --text-muted: #cccccc;
-            --primary-color: #3385ff;
-            --nav-bg: #1a1a1a;
-            --shadow-color: rgba(255, 255, 255, 0.05);
-            --footer-bg: #111111;
-        }
-
-        /* =========================================
-           1. BASE RESET & TYPOGRAPHY
-           ========================================= */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; } 
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            line-height: 1.6; 
-            background-color: var(--bg-body);
-            color: var(--text-main); 
-            overflow-x: hidden; 
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        /* =========================================
-           2. HEADER & NAVIGATION
-           ========================================= */
-        header { 
-            background: var(--nav-bg); 
-            color: white; 
-            padding: 0.8rem 0; 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); 
-            transition: background-color 0.3s;
-        }
-        nav { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 0 15px; width: 100%; max-width: 100%; position: relative; 
-        }
-        
-        .logo { 
-            display: flex; align-items: center; gap: 0.75rem; 
-            font-weight: 700; text-decoration: none; color: white; 
-            outline: none; flex: 1; justify-content: flex-start;
-        }
-        .logo:hover { opacity: 0.9; }
-        .logo-img { height: 40px; width: auto; }
-        
-        nav ul { 
-            display: flex; gap: 1.5rem; list-style: none;
-            justify-content: center; flex: 2;
-        }
-        nav ul a { color: white; text-decoration: none; font-weight: 500; transition: 0.3s; }
-        nav ul a:hover { opacity: 0.8; }
-
-        .nav-actions {
-            display: flex; align-items: center; gap: 20px;
-            justify-content: flex-end; flex: 1;
-        }
-
-        #theme-toggle {
-            background: none; border: none; color: white;
-            font-size: 1.2rem; cursor: pointer;
-            transition: transform 0.3s; outline: none;
-        }
-        #theme-toggle:hover { transform: scale(1.1); }
-
-        .hamburger { 
-            background: none; border: none; color: white; 
-            font-size: 1.5rem; cursor: pointer; 
-            transition: transform 0.3s ease; display: none; 
-            outline: none; padding: 5px;
-        }
-        .hamburger:hover { transform: scale(1.1); }
-
-        /* =========================================
-           3. HERO SECTION
-           ========================================= */
-        .hero { 
-            position: relative; color: white; padding: 6rem 2rem; 
-            text-align: center; display: flex; align-items: center; 
-            justify-content: center; min-height: 500px; overflow: hidden; 
-        }
-        .hero::before { 
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; 
-            background: rgba(0, 0, 0, 0.6); z-index: 1; 
-        }
-        
-        .slideshow, .slide { position: absolute; top: 0; left: 0; right: 0; bottom: 0; width: 100%; height: 100%; z-index: 0; }
-        .slide { opacity: 0; transition: opacity 1s ease-in-out; background-size: cover; background-position: center; }
-        .slide.active { opacity: 1; }
-        
-        .hero-content { max-width: 800px; animation: slideUp 0.8s ease-out; position: relative; z-index: 2; width: 100%; }
-        .hero h1 { font-size: 3.5rem; margin-bottom: 1rem; line-height: 1.2; font-weight: 700; }
-        .hero p { font-size: 1.3rem; margin-bottom: 2rem; opacity: 0.95; font-weight: 300; }
-        
-        .cta-button { 
-            background: white; color: var(--primary-color); padding: 0.75rem 2rem; 
-            border-radius: 50px; text-decoration: none; font-weight: 600; 
-            border: none; cursor: pointer; transition: 0.3s; display: inline-block; 
-        }
-        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
-
-        /* =========================================
-           4. HISTORY SECTION
-           ========================================= */
-        .history { background: var(--bg-section); padding: 4rem 1.5rem; transition: background-color 0.3s; }
-        .history-container { max-width: 1000px; margin: 0 auto; }
-        .history h2 { font-size: 2.5rem; margin-bottom: 2rem; text-align: center; color: var(--primary-color); font-weight: 700; }
-        .history-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
-        .history-image { width: 100%; max-width: 350px; margin: 0 auto; object-fit: contain; }
-        
-        .history-text { font-size: 1.05rem; line-height: 1.8; color: var(--text-muted); transition: color 0.3s;}
-        .history-text p { margin-bottom: 1.5rem; text-align: justify; hyphens: auto; }
-
-        /* =========================================
-           5. VISION AND MISSION SECTION
-           ========================================= */
-        .vision-mission { padding: 4rem 1.5rem; background: var(--bg-body); transition: background-color 0.3s;}
-        .vision-mission-container { max-width: 1000px; margin: 0 auto; text-align: center; }
-        .vision-mission h2 { font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary-color); font-weight: 700; }
-        .vm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; text-align: left; }
-        .vm-card { background: var(--bg-section); padding: 2.5rem; border-radius: 10px; box-shadow: 0 5px 20px var(--shadow-color); transition: background-color 0.3s;}
-        .vm-card h3 { color: var(--primary-color); margin-bottom: 1rem; font-size: 1.8rem; text-align: center; font-weight: 600; }
-        .vm-card p, .vm-card ul { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; transition: color 0.3s;}
-        .vm-card p, .vm-card li { text-align: justify; hyphens: auto; }
-        .vm-card ul { padding-left: 1.5rem; margin-top: 1rem; }
-        .vm-card li { margin-bottom: 0.5rem; }
-
-        /* =========================================
-           6. ORGANIZATIONAL STRUCTURE SECTION
-           ========================================= */
-        .structure { padding: 4rem 1.5rem; background: var(--bg-section); transition: background-color 0.3s;}
-        .structure-container { max-width: 1000px; margin: 0 auto; text-align: center; }
-        .structure h2 { font-size: 2.5rem; margin-bottom: 2rem; color: var(--primary-color); font-weight: 700; }
-        .structure-content p { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.8; max-width: 800px; margin: 0 auto; text-align: center; }
-        .structure-img { width: 100%; max-width: 800px; border-radius: 10px; box-shadow: 0 5px 20px rgba(0,0,0,0.2); display: block; margin: 0 auto; }
-
-        /* =========================================
-           7. DOCUMENTATION / FEATURES SECTION
-           ========================================= */
-        .features { max-width: 1200px; margin: 4rem auto; padding: 0 1.5rem; background: var(--bg-body); transition: background-color 0.3s;}
-        .features h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary-color); font-weight: 700; }
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        .feature-card { background: var(--bg-card); padding: 1.5rem; border-radius: 10px; box-shadow: 0 5px 20px var(--shadow-color); text-align: center; display: flex; flex-direction: column; gap: 1rem; color: var(--text-main); transition: background-color 0.3s, color 0.3s;}
-        .feature-card h3 { font-weight: 600; }
-        .feature-image { width: 100%; height: 200px; background: #eee; border-radius: 8px; display: block; object-fit: cover; object-position: center; }
-        
-        .view-all-wrapper { text-align: center; margin-top: 2rem; }
-        .view-all-link { color: var(--primary-color); text-decoration: none; font-weight: 600; padding: 0.75rem 2rem; display: inline-block; transition: 0.3s; border: 2px solid var(--primary-color); border-radius: 50px; }
-        .view-all-link:hover { background: var(--primary-color); color: white; }
-
-        /* =========================================
-           8. FOOTER (VERSI PROFESIONAL BANGET!)
-           ========================================= */
-        footer { 
-            background: var(--footer-bg); 
-            color: white; 
-            margin-top: 4rem; 
-            border-top: 2px solid var(--primary-color); 
-            transition: background-color 0.3s;
-        }
-        
-        .footer-content { 
-            width: 100%; 
-            max-width: 1250px; /* Dikurung max-width biar gak melar jelek */
-            margin: 0 auto; /* Tengahin otomatis */
-            padding: 4rem 20px; 
-            display: grid; 
-            grid-template-columns: 1.5fr 1fr 1.5fr; /* Proporsi elegan */
-            gap: 3rem; 
-            align-items: flex-start;
-        }
-        
-        .footer-col {
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Judul seragam rata kiri dengan aksen garis bawah ala corporate */
-        .footer-col h3 { 
-            color: var(--primary-color); 
-            font-size: 1.2rem; 
-            margin-bottom: 1.5rem; 
-            font-weight: 600; 
-            text-transform: uppercase; 
-            letter-spacing: 1.5px;
-            position: relative;
-            padding-bottom: 10px;
-            text-align: left; /* Wajib rata kiri */
-        }
-        
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 3px;
-            background-color: var(--primary-color);
-            border-radius: 5px;
-        }
-        
-        /* Kolom 1: Tentang Kami */
-        .footer-about p { 
-            color: #cccccc; 
-            font-size: 0.95rem; 
-            line-height: 1.8; 
-            text-align: justify; 
-            hyphens: auto;
-        }
-        
-        /* Kolom 2: Tautan Cepat */
-        .footer-links { align-items: center; } /* Kotaknya di tengah cell grid */
-        .footer-links-inner { width: fit-content; display: flex; flex-direction: column; } /* Bungkus pas isinya */
-        
-        .footer-links ul { 
-            list-style: none; 
-            padding: 0; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; /* Teks di dalamnya rata kiri */
-            gap: 10px;
-        }
-        
-        .footer-links a { 
-            color: #cccccc; 
-            text-decoration: none; 
-            transition: 0.3s; 
-            font-size: 0.95rem; 
-            display: flex; 
-            align-items: center; 
-            gap: 8px;
-        }
-        
-        .footer-links a::before { 
-            content: '›'; 
-            color: var(--primary-color); 
-            font-size: 1.3rem; 
-            font-weight: bold; 
-            line-height: 1;
-        }
-        
-        .footer-links a:hover { 
-            color: var(--primary-color); 
-            transform: translateX(5px); /* Animasi geser dikit */
-        }
-
-        /* Kolom 3: Hubungi Kami */
-        .contact-wrapper { align-items: flex-end; } /* Kotaknya nongkrong di ujung kanan */
-        .contact-inner { 
-            width: 100%; 
-            max-width: 320px; 
-            display: flex; 
-            flex-direction: column; 
-        } 
-        
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 15px; /* Jarak rapi ke bawah */
-        }
-        
-        .contact-info p { 
-            display: flex; 
-            align-items: flex-start; 
-            gap: 15px; 
-            color: #cccccc; 
-            margin: 0; 
-            text-align: left; /* Teks rapi sejajar icon */
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-        
-        .contact-info i { 
-            color: var(--primary-color); 
-            font-size: 1.2rem; 
-            margin-top: 3px; /* Bikin icon lurus sama baris pertama teks */
-            flex-shrink: 0; 
-        }
-        
-        .footer-bottom { 
-            border-top: 1px solid rgba(255,255,255,0.1); 
-            padding: 1.5rem; 
-            text-align: center; 
-            font-size: 0.85rem; 
-            color: #888888; 
-            background: #050505; 
-        }
-
-        /* =========================================
-           9. ANIMATIONS
-           ========================================= */
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-        .fade-in-up { opacity: 0; transform: translateY(30px); }
-        .fade-in-up.animate { animation: slideUp 0.8s ease-out forwards; }
-
-        /* =========================================
-           10. RESPONSIVE DESIGN (MOBILE)
-           ========================================= */
-        @media (max-width: 768px) {
-            nav { padding: 0 1.5rem; }
-            .logo, .nav-actions { flex: initial; }
-            .hamburger { display: block; }
-            
-            nav ul { 
-                flex-direction: column; 
-                position: absolute; top: 100%; left: 0; width: 100%; 
-                background: var(--nav-bg); padding: 1rem; text-align: center; 
-                gap: 1rem; border-radius: 0 0 10px 10px;
-                opacity: 0; visibility: hidden; 
-                transform: translateY(-10px); transition: 0.3s;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            }
-            nav ul.active { opacity: 1; visibility: visible; transform: translateY(0); }
-            nav ul a { display: block; padding: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); }
-            nav ul li:last-child a { border-bottom: none; }
-            
-            .hero { min-height: 400px; padding: 4rem 1rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .history h2, .vision-mission h2, .structure h2, .features h2 { font-size: 2rem; }
-            .history-content, .vm-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
-            
-            .vm-card p, .vm-card li { text-align: center; }
-            .vm-card ul { padding-left: 0; list-style-position: inside; }
-            .feature-image { height: 250px; }
-            
-            /* Reset Full Mobile Footer */
-            .footer-content { 
-                grid-template-columns: 1fr; 
-                gap: 3rem; 
-                padding: 3rem 1.5rem; 
-            }
-            
-            .footer-col, .footer-links, .contact-wrapper { align-items: center !important; }
-            .footer-links-inner, .contact-inner { width: 100%; align-items: center; }
-            
-            .footer-col h3 { text-align: center; padding-bottom: 15px;}
-            .footer-col h3::after { left: 50%; transform: translateX(-50%); } /* Center garis bawah */
-            
-            .footer-about p { text-align: center; }
-            .footer-links ul { align-items: center; }
-            .contact-info p { 
-                justify-content: center; 
-                text-align: center; 
-                flex-direction: column; 
-                align-items: center; 
-                gap: 8px; 
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
     <header>
         <nav>
-            <a href="#" class="logo" id="logo-link">
+            <a href="index.html" class="logo" id="logo-link">
                 <img src="images/logo.svg" alt="UKM Chip.Com Logo" class="logo-img">
                 <span>Chip.Com</span>
             </a>
-
+            <!-- MENU KONTAK UDAH DIHAPUS DARI SINI YA BOS! -->
             <ul id="menu">
-                <li><a href="#sejarah">Sejarah</a></li>
-                <li><a href="#visi-misi">Visi & Misi</a></li>
-                <li><a href="#struktur">Struktur</a></li>
-                <li><a href="#features">Dokumentasi</a></li>
-                <li><a href="#contact">Kontak</a></li>
+                <li><a href="index.html">Beranda</a></li>
+                <li><a href="sejarah.html">Sejarah</a></li>
+                <li><a href="visimisi.html">Visi & Misi</a></li>
+                <li><a href="struktur.html">Struktur</a></li>
+                <li><a href="dokumentasi.html">Dokumentasi</a></li>
             </ul>
-
             <div class="nav-actions">
                 <button id="theme-toggle" aria-label="Toggle Dark Mode">
                     <i class="fas fa-moon"></i>
@@ -413,167 +38,44 @@
         </nav>
     </header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hamburger = document.getElementById('hamburger');
-            const menu = document.getElementById('menu');
-            
-            hamburger.addEventListener('click', (e) => { 
-                e.stopPropagation(); 
-                menu.classList.toggle('active'); 
-            });
-
-            menu.querySelectorAll('a').forEach(link => { 
-                link.addEventListener('click', () => menu.classList.remove('active')); 
-            });
-
-            document.addEventListener('click', (e) => {
-                if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
-                    menu.classList.remove('active');
-                }
-            });
-
-            const themeToggleBtn = document.getElementById('theme-toggle');
-            const themeIcon = themeToggleBtn.querySelector('i');
-            
-            const currentTheme = localStorage.getItem('theme');
-            if (currentTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-                themeIcon.classList.replace('fa-moon', 'fa-sun');
-            }
-
-            themeToggleBtn.addEventListener('click', () => {
-                let theme = document.documentElement.getAttribute('data-theme');
-                if (theme === 'dark') {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                    themeIcon.classList.replace('fa-sun', 'fa-moon');
-                } else {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                    themeIcon.classList.replace('fa-moon', 'fa-sun');
-                }
-            });
-        });
-    </script>
-
-    <section class="hero">
-        <div class="slideshow">
-            <div class="slide active" style="background-image: url('images/pelatihan.webp');"></div>
-            <div class="slide" style="background-image: url('images/fotbar_pelatihan.webp');"></div>
-            <div class="slide" style="background-image: url('images/fotbar_pelatihan2.webp');"></div>
-            <div class="slide" style="background-image: url('images/pedas1.webp');"></div>
-            <div class="slide" style="background-image: url('images/pedas2.webp');"></div>
-            <div class="slide" style="background-image: url('images/diesnatalis1.webp');"></div>
-            <div class="slide" style="background-image: url('images/diesnatalis2.webp');"></div>
-        </div>
-
-        <div class="hero-content">
-            <h1>Jadilah Bagian Dari Kami!</h1>
-            <p>Tunggu Apa Lagi? Ayo Bergabung Dengan Kami Sekarang Dan Rasakan Keseruan Bersama Chip.Com!</p>
-            <a href="https://chat.whatsapp.com/FLdEDPVpLDs4c82XFgCCad?mode=gi_t" class="cta-button" target="_blank" rel="noopener noreferrer">Gabung Sekarang</a>
-        </div>
-    </section>
-
-    <script>
-        setInterval(() => {
-            let slides = document.querySelectorAll('.slide');
-            if(slides.length > 1) {
-                let active = document.querySelector('.slide.active');
-                active.classList.remove('active');
-                let next = active.nextElementSibling || slides[0];
-                next.classList.add('active');
-            }
-        }, 5000);
-    </script>
-
-    <section class="history" id="sejarah">
-        <div class="history-container fade-in-up">
-            <h2>Sejarah UKM Chip.Com</h2>
-            <div class="history-content">
-                <img src="images/logo.svg" alt="ChipCom Logo" class="history-image fade-in-up">
-                <div class="history-text fade-in-up">
-                    <p>Cikal bakal UKM ini dimulai pada tahun 1999 di AMIK dengan nama DosCom, sebuah wadah berbagi ilmu komputer bagi mahasiswa. Kurangnya partisipasi aktif membuat organisasi ini sempat mengalami masa vakum. Pada tahun 2004, bersamaan dengan perubahan status kampus menjadi STMIK, nama organisasi resmi berganti menjadi Chip.Com. Sayangnya, proses transisi ini masih diwarnai kendala manajemen internal yang menyebabkan organisasi kembali pasif selama beberapa waktu.</p>
-                    <p>Kebangkitan nyata terjadi pada tahun 2007 melalui inisiatif BEM STMIK, yang ditandai dengan perekrutan masif dan penetapan agenda tahunan Pekan Olimpiade Komputer (POK). Organisasi sempat menyematkan nama "Chip.Com Organizer" untuk menjaring kerja sama event external.</p>
-                    <p>Evaluasi menyeluruh akhirnya dilakukan pada Musyawarah Besar (Mubes) I di awal 2010. Organisasi sepakat menghapus kata "Organizer" dan meresmikan nama UKM CHIP.COM STMIK INDONESIA BANJARMASIN. Fokus kegiatan dikembalikan pada peningkatan keterampilan IT dengan melibatkan dosen dan asisten labolatorium, namun tetap seimbang dengan materi keorganisasian.</p>
-                </div>
+    <main>
+        <section class="hero">
+            <div class="slideshow">
+                <div class="slide active" style="background-image: url('images/pelatihan.webp');"></div>
+                <div class="slide" style="background-image: url('images/fotbar_pelatihan.webp');"></div>
+                <div class="slide" style="background-image: url('images/fotbar_pelatihan2.webp');"></div>
+                <div class="slide" style="background-image: url('images/pedas1.webp');"></div>
+                <div class="slide" style="background-image: url('images/pedas2.webp');"></div>
+                <div class="slide" style="background-image: url('images/diesnatalis1.webp');"></div>
+                <div class="slide" style="background-image: url('images/diesnatalis2.webp');"></div>
             </div>
-        </div>
-    </section>
 
-    <section class="vision-mission" id="visi-misi">
-        <div class="vision-mission-container fade-in-up">
-            <h2>Visi & Misi</h2>
-            <div class="vm-grid">
-                <div class="vm-card fade-in-up">
-                    <h3>Visi</h3>
-                    <ul>
-                        <li>Meningkatkan pengetahuan dan pengembangan kemampuan anggota Unit Kegiatan Mahasiswa (UKM) Chip.Com STMIK Indonesia Banjarmasin pada khususnya serta Bangsa dan Negara pada umumnya dalam bidang IT dan bidang Organisasi.</li>
-                    </ul>
-                </div>
-                <div class="vm-card fade-in-up">
-                    <h3>Misi</h3>
-                    <ul>
-                        <li>Membekali mahasiswa dan anggota dengan wawasan serta keterampilan di bidang IT.</li>
-                        <li>Mempererat jalinan komunikasi yang aktif antar sesama anggota.</li>
-                        <li>Menumbuhkan rasa kebersamaan dan kesatuan di dalam internal organisasi.</li>
-                        <li>Menyelenggarakan berbagai kegiatan IT dan sosial yang bermanfaat bagi masyarakat.</li>
-                    </ul>
-                </div>
+            <div class="hero-content">
+                <h1>Jadilah Bagian Dari Kami!</h1>
+                <p>Tunggu Apa Lagi? Ayo Bergabung Dengan Kami Sekarang Dan Rasakan Keseruan Bersama Chip.Com!</p>
+                <a href="https://chat.whatsapp.com/FLdEDPVpLDs4c82XFgCCad?mode=gi_t" class="cta-button" target="_blank" rel="noopener noreferrer">Gabung Sekarang</a>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <section class="structure" id="struktur">
-        <div class="structure-container fade-in-up">
-            <h2>Struktur Organisasi</h2>
-            <div class="structure-content fade-in-up">
-                <p>Mengenal lebih dekat formasi kepengurusan UKM Chip.Com yang bertugas menjalankan roda organisasi, menyusun program kerja, dan memastikan setiap anggota mendapatkan pengalaman terbaik di bidang IT dan keorganisasian.</p>
-                <img src="images/struktur.webp" alt="Struktur Organisasi UKM Chip.Com" class="structure-img">
-            </div>
-        </div>
-    </section>
-
-    <section class="features fade-in-up" id="features">
-        <h2>Dokumentasi</h2>
-        <div class="features-grid">
-            <div class="feature-card fade-in-up">
-                <img src="images/pelatihan.webp" alt="Pertemuan" class="feature-image">
-                <h3>Pertemuan</h3>
-            </div>
-            <div class="feature-card fade-in-up">
-                <img src="images/pedas1.webp" alt="Pelatihan Dasar" class="feature-image">
-                <h3>Pelatihan Dasar</h3>
-            </div>
-            <div class="feature-card fade-in-up">
-                <img src="images/diesnatalis1.webp" alt="DIESNATALIS" class="feature-image">
-                <h3>Dies Natalis</h3>
-            </div>
-        </div>
-        <div class="view-all-wrapper">
-            <a href="https://www.instagram.com/chipcomstmik_id/" class="view-all-link" target="_blank" rel="noopener noreferrer">Lihat Semua Dokumentasi</a>
-        </div>
-    </section>
-
+    <!-- FOOTER KONTAK ANDALAN KITA -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-col footer-about">
                 <h3>Tentang Chip.Com</h3>
                 <p>Unit Kegiatan Mahasiswa (UKM) di STMIK Indonesia Banjarmasin yang berfokus pada pengembangan keterampilan Teknologi Informasi dan kepemimpinan keorganisasian.</p>
             </div>
-
             <div class="footer-col footer-links">
                 <div class="footer-links-inner">
                     <h3>Tautan Cepat</h3>
                     <ul>
-                        <li><a href="#sejarah">Sejarah Organisasi</a></li>
-                        <li><a href="#visi-misi">Visi & Misi</a></li>
-                        <li><a href="#struktur">Struktur Pengurus</a></li>
-                        <li><a href="#features">Galeri Kegiatan</a></li>
+                        <li><a href="sejarah.html">Sejarah Organisasi</a></li>
+                        <li><a href="visimisi.html">Visi & Misi</a></li>
+                        <li><a href="struktur.html">Struktur Pengurus</a></li>
+                        <li><a href="dokumentasi.html">Galeri Kegiatan</a></li>
                     </ul>
                 </div>
             </div>
-
             <div class="footer-col contact-wrapper">
                 <div class="contact-inner">
                     <h3>Hubungi Kami</h3>
@@ -585,27 +87,11 @@
                 </div>
             </div>
         </div>
-
         <div class="footer-bottom">
             <p>&copy; 2026 UKM Chip.Com STMIK Indonesia Banjarmasin. All rights reserved.</p>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const observerOptions = { threshold: 0.1 };
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => { 
-                    if (entry.isIntersecting) { 
-                        entry.target.classList.add('animate'); 
-                        obs.unobserve(entry.target); 
-                    } 
-                });
-            }, observerOptions);
-            
-            document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
-        });
-    </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
