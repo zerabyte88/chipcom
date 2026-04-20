@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 2. TOMBOL SAKTI DARK MODE
+    // 2. TOMBOL DARK MODE
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
     
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 3. SLIDESHOW OTOMATIS (JALAN KALO ADA SLIDE AJA)
+    // 3. SLIDESHOW OTOMATIS
     const slides = document.querySelectorAll('.slide');
     if(slides.length > 1) {
         setInterval(() => {
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
-    // 4. ANIMASI MUNCUL CANTIK PAS DI-SCROLL
+    // 4. ANIMASI SCROLL
     const observerOptions = { threshold: 0.1 };
     const observer = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => { 
@@ -66,13 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 });
 
-// 5. TRIK LAZY LOAD BACKGROUND SLIDESHOW BIAR NGGAK NGELAG
-// Kita taruh di luar DOMContentLoaded biar jalan setelah semua aset utama kelar di-load
+// 5. LAZY LOAD BACKGROUND SLIDESHOW
+// taruh di luar DOMContentLoaded biar jalan setelah semua aset utama selesai di load
 window.addEventListener('load', () => {
     const lazySlides = document.querySelectorAll('.slide[data-bg]');
     lazySlides.forEach(slide => {
         slide.style.backgroundImage = `url('${slide.getAttribute('data-bg')}')`;
-        // Opsional: Hapus atribut data-bg kalau udah beres di-load biar rapi
+        // (Opsional) Hapus atribut data-bg kalau sudah di load
         slide.removeAttribute('data-bg');
     });
 });
