@@ -10,6 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    
+    <!-- PRELOAD GAMBAR PERTAMA BIAR NGGAK LEMOT -->
+    <link rel="preload" as="image" href="images/pelatihan.webp">
 </head>
 <body>
 
@@ -19,7 +22,6 @@
                 <img src="images/logo.svg" alt="UKM Chip.Com Logo" class="logo-img">
                 <span>Chip.Com</span>
             </a>
-            <!-- MENU KONTAK UDAH DIHAPUS DARI SINI YA BOS! -->
             <ul id="menu">
                 <li><a href="index.html">Beranda</a></li>
                 <li><a href="sejarah.html">Sejarah</a></li>
@@ -41,13 +43,18 @@
     <main>
         <section class="hero">
             <div class="slideshow">
+                <!-- Slide 1: Langsung di-load -->
                 <div class="slide active" style="background-image: url('images/pelatihan.webp');"></div>
-                <div class="slide" style="background-image: url('images/fotbar_pelatihan.webp');"></div>
-                <div class="slide" style="background-image: url('images/fotbar_pelatihan2.webp');"></div>
-                <div class="slide" style="background-image: url('images/pedas1.webp');"></div>
-                <div class="slide" style="background-image: url('images/pedas2.webp');"></div>
-                <div class="slide" style="background-image: url('images/diesnatalis1.webp');"></div>
-                <div class="slide" style="background-image: url('images/diesnatalis2.webp');"></div>
+                
+                <!-- Slide 2 sampai 8: Di-load diem-diem pake data-bg -->
+                <div class="slide" data-bg="images/fotbar_pelatihan.webp"></div>
+                <div class="slide" data-bg="images/fotbar_pelatihan2.webp"></div>
+                <div class="slide" data-bg="images/pedas1.webp"></div>
+                <div class="slide" data-bg="images/pedas2.webp"></div>
+                <div class="slide" data-bg="images/diesnatalis1.webp"></div>
+                <div class="slide" data-bg="images/diesnatalis2.webp"></div>
+                <!-- Ini gambar ke-8 nya, siapin filenya ya! -->
+                <div class="slide" data-bg="images/mubes1.webp"></div> 
             </div>
 
             <div class="hero-content">
@@ -58,7 +65,6 @@
         </section>
     </main>
 
-    <!-- FOOTER KONTAK ANDALAN KITA -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-col footer-about">

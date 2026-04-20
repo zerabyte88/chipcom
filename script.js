@@ -65,3 +65,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 });
+
+// 5. TRIK LAZY LOAD BACKGROUND SLIDESHOW BIAR NGGAK NGELAG
+// Kita taruh di luar DOMContentLoaded biar jalan setelah semua aset utama kelar di-load
+window.addEventListener('load', () => {
+    const lazySlides = document.querySelectorAll('.slide[data-bg]');
+    lazySlides.forEach(slide => {
+        slide.style.backgroundImage = `url('${slide.getAttribute('data-bg')}')`;
+        // Opsional: Hapus atribut data-bg kalau udah beres di-load biar rapi
+        slide.removeAttribute('data-bg');
+    });
+});
