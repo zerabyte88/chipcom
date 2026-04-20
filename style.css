@@ -1,5 +1,5 @@
 /* ==========================================================================
-   0. CSS VARIABLES (Tema Warna Terang & Gelap)
+   0. CSS VARIABLES (Konfigurasi Tema Terang & Gelap)
    ========================================================================== */
 :root {
     --bg-body: #ffffff;
@@ -13,7 +13,6 @@
     --footer-bg: #0a0a0a;
 }
 
-/* Mengesampingkan variabel default jika atribut data-theme bernilai "dark" */
 [data-theme="dark"] {
     --bg-body: #121212;
     --bg-section: #1e1e1e;
@@ -46,7 +45,6 @@ body {
     color: var(--text-main); 
     overflow-x: hidden; 
     transition: background-color 0.3s, color 0.3s;
-    /* Konfigurasi Flexbox untuk menjaga footer selalu berada di bawah */
     display: flex; 
     flex-direction: column; 
     min-height: 100vh; 
@@ -173,7 +171,6 @@ nav ul a:hover {
     overflow: hidden; 
 }
 
-/* Overlay transparan di atas gambar slideshow */
 .hero::before { 
     content: ''; 
     position: absolute; 
@@ -269,7 +266,6 @@ nav ul a:hover {
     font-weight: 700; 
 }
 
-/* Tata letak grid untuk teks dan gambar berdampingan */
 .history-content { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
@@ -573,7 +569,7 @@ footer {
 }
 
 /* ==========================================================================
-   6. ANIMATIONS & RESPONSIVE (Penyesuaian Layar Perangkat)
+   6. ANIMATIONS & RESPONSIVE (Penyesuaian Resolusi Mobile)
    ========================================================================== */
 @keyframes slideUp { 
     from { opacity: 0; transform: translateY(30px); } 
@@ -589,7 +585,6 @@ footer {
     animation: slideUp 0.8s ease-out forwards; 
 }
 
-/* Media Query untuk perangkat mobile (maksimal lebar 768px) */
 @media (max-width: 768px) {
     nav { 
         padding: 0 1.5rem; 

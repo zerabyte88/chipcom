@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <!-- Pengaturan Meta Dasar -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHIP.COM - STMIK Indonesia Banjarmasin</title>
     
-    <!-- Favicon & Icon Eksternal -->
-    <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+    <!-- Modifikasi Path Menjadi Absolut (Awalan '/') -->
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
-    <!-- Typography (Google Fonts) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Lembar Gaya CSS Eksternal -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Optimasi Performa: Preload untuk gambar latar belakang utama -->
-    <link rel="preload" as="image" href="images/pelatihan.webp">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="preload" as="image" href="/images/pelatihan.webp">
 </head>
 <body>
 
-    <!-- Bagian Header & Navigasi -->
     <header>
         <nav>
-            <a href="index.html" class="logo" id="logo-link">
-                <img src="images/logo.svg" alt="UKM Chip.Com Logo" class="logo-img">
+            <a href="/category/beranda" class="logo" id="logo-link">
+                <img src="/images/logo.svg" alt="UKM Chip.Com Logo" class="logo-img">
                 <span>Chip.Com</span>
             </a>
+            
+            <!-- Implementasi URL Clean (Rewrites /category/...) -->
             <ul id="menu">
-                <li><a href="index.html">Beranda</a></li>
-                <li><a href="sejarah.html">Sejarah</a></li>
-                <li><a href="visimisi.html">Visi & Misi</a></li>
-                <li><a href="struktur.html">Struktur Pengurus</a></li>
-                <li><a href="dokumentasi.html">Dokumentasi</a></li>
+                <li><a href="/category/beranda">Beranda</a></li>
+                <li><a href="/category/sejarah">Sejarah</a></li>
+                <li><a href="/category/visimisi">Visi & Misi</a></li>
+                <li><a href="/category/struktur">Struktur Pengurus</a></li>
+                <li><a href="/category/dokumentasi">Dokumentasi</a></li>
             </ul>
             <div class="nav-actions">
                 <button id="theme-toggle" aria-label="Toggle Dark Mode">
@@ -48,24 +44,18 @@
         </nav>
     </header>
 
-    <!-- Konten Utama Halaman Beranda -->
     <main>
-        <!-- Bagian Slideshow Hero -->
         <section class="hero">
             <div class="slideshow">
-                <!-- Slide Pertama (Prioritas Muat Tinggi) -->
-                <div class="slide active" style="background-image: url('images/pelatihan.webp');"></div>
-                
-                <!-- Slide Lanjutan (Dimuat Menggunakan Metode Lazy Load via Atribut data-bg) -->
-                <div class="slide" data-bg="images/fotbar_pelatihan.webp"></div>
-                <div class="slide" data-bg="images/fotbar_pelatihan2.webp"></div>
-                <div class="slide" data-bg="images/pedas1.webp"></div>
-                <div class="slide" data-bg="images/pedas2.webp"></div>
-                <div class="slide" data-bg="images/diesnatalis1.webp"></div>
-                <div class="slide" data-bg="images/diesnatalis2.webp"></div>
+                <div class="slide active" style="background-image: url('/images/pelatihan.webp');"></div>
+                <div class="slide" data-bg="/images/fotbar_pelatihan.webp"></div>
+                <div class="slide" data-bg="/images/fotbar_pelatihan2.webp"></div>
+                <div class="slide" data-bg="/images/pedas1.webp"></div>
+                <div class="slide" data-bg="/images/pedas2.webp"></div>
+                <div class="slide" data-bg="/images/diesnatalis1.webp"></div>
+                <div class="slide" data-bg="/images/diesnatalis2.webp"></div>
             </div>
 
-            <!-- Pesan Ajakan Bertindak (Call to Action) -->
             <div class="hero-content">
                 <h1>Jadilah Bagian Dari Kami!</h1>
                 <p>Tunggu Apa Lagi? Ayo Bergabung Dengan Kami Sekarang Dan Rasakan Keseruan Bersama Chip.Com!</p>
@@ -74,29 +64,23 @@
         </section>
     </main>
 
-    <!-- Bagian Footer Global -->
     <footer id="contact">
         <div class="footer-content">
-            <!-- Informasi Singkat Organisasi -->
             <div class="footer-col footer-about">
                 <h3>Tentang Chip.Com</h3>
                 <p>Unit Kegiatan Mahasiswa (UKM) di STMIK Indonesia Banjarmasin yang berfokus pada pengembangan keterampilan Teknologi Informasi dan kepemimpinan keorganisasian.</p>
             </div>
-            
-            <!-- Tautan Internal -->
             <div class="footer-col footer-links">
                 <div class="footer-links-inner">
                     <h3>Tautan Cepat</h3>
                     <ul>
-                        <li><a href="sejarah.html">Sejarah Organisasi</a></li>
-                        <li><a href="visimisi.html">Visi & Misi</a></li>
-                        <li><a href="struktur.html">Struktur Pengurus</a></li>
-                        <li><a href="dokumentasi.html">Galeri Kegiatan</a></li>
+                        <li><a href="/category/sejarah">Sejarah Organisasi</a></li>
+                        <li><a href="/category/visimisi">Visi & Misi</a></li>
+                        <li><a href="/category/struktur">Struktur Pengurus</a></li>
+                        <li><a href="/category/dokumentasi">Galeri Kegiatan</a></li>
                     </ul>
                 </div>
             </div>
-            
-            <!-- Informasi Kontak -->
             <div class="footer-col contact-wrapper">
                 <div class="contact-inner">
                     <h3>Hubungi Kami</h3>
@@ -108,14 +92,11 @@
                 </div>
             </div>
         </div>
-        
-        <!-- Hak Cipta -->
         <div class="footer-bottom">
             <p>&copy; 2026 UKM Chip.Com STMIK Indonesia Banjarmasin. All rights reserved.</p>
         </div>
     </footer>
 
-    <!-- Skrip Interaktivitas Eksternal -->
-    <script src="script.js"></script>
+    <script src="/script.js"></script>
 </body>
 </html>
