@@ -713,6 +713,27 @@ footer {
         align-items: center; 
         gap: 8px; 
     }
+
+    /* --- TAMBAHAN FIX UNTUK TOMBOL SLIDESHOW DI HP --- */
+    
+    .slide-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem; /* Tombolnya dikecilin dikit biar nggak makan tempat */
+    }
+    
+    .prev-btn { left: 5px; } /* Makin dipepetin ke ujung layar */
+    .next-btn { right: 5px; }
+
+    .hero-content {
+        padding: 0 2.5rem; /* Tambah jarak di kiri-kanan teks biar nggak nabrak tombol */
+        width: 100%;
+    }
+    
+    .hero p {
+        font-size: 1.1rem; /* Ukuran teks disesuaikan dikit biar proporsional */
+    }
+
 }
 
 /* =========================================
