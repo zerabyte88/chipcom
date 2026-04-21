@@ -2,37 +2,42 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // =================================================
-    // 1. MANAJEMEN NAVIGASI RESPONSIF (HAMBURGER MENU)
-    // =================================================
+    // =========================================================
+    // 1. MANAJEMEN NAVIGASI RESPONSIF
+    // =========================================================
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
     
+    // Mengontrol visibilitas menu navigasi pada resolusi seluler
     hamburger.addEventListener('click', (e) => { 
         e.stopPropagation(); 
         menu.classList.toggle('active'); 
     });
 
+    // Menutup menu secara otomatis saat tautan navigasi dipilih
     menu.querySelectorAll('a').forEach(link => { 
         link.addEventListener('click', () => menu.classList.remove('active')); 
     });
 
+    // Menutup menu jika interaksi klik terjadi di luar batas elemen navigasi
     document.addEventListener('click', (e) => {
         if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
             menu.classList.remove('active');
         }
     });
 
-    // =========================================
-    // 2. KONTROL TEMA (DARK MODE / LIGHT MODE)
-    // =========================================
+    // =========================================================
+    // 2. MANAJEMEN TEMA (GELAP/TERANG)
+    // =========================================================
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
     
+    // Sinkronisasi status awal ikon dengan preferensi tema yang dimuat
     if (document.documentElement.getAttribute('data-theme') === 'dark') {
         themeIcon.classList.replace('fa-moon', 'fa-sun');
     }
 
+    // Menangani logika pertukaran atribut tema pada elemen root
     themeToggleBtn.addEventListener('click', () => {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         const newTheme = isDark ? 'light' : 'dark';
@@ -45,14 +50,15 @@ document.addEventListener('DOMContentLoaded', () => {
             themeIcon.classList.replace('fa-sun', 'fa-moon');
         }
 
+        // Menyimpan preferensi tema secara asinkron untuk menjaga performa render
         setTimeout(() => {
             localStorage.setItem('theme', newTheme);
         }, 10);
     });
 
-    // =============================================
-    // 3. LOGIKA OTOMASI SLIDESHOW & KONTROL MANUAL 
-    // =============================================
+    // =========================================================
+    // 3. LOGIKA SLIDESHOW DAN NAVIGASI MANUAL
+    // =========================================================
     const slides = document.querySelectorAll('.slide');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
@@ -63,16 +69,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let slideInterval;
 
     if (slides.length > 1) {
-        // Fungsi utama ganti slide
+        // Fungsi utama untuk mengatur visibilitas slide dan indikator
         const showSlide = (index) => {
-            // Bersihkan kelas active dari slide dan dots
             slides.forEach(s => s.classList.remove('active'));
             dots.forEach(d => d.classList.remove('active'));
             
-            // Logika looping balik ke awal/akhir
             currentSlide = (index + slides.length) % slides.length; 
             
-            // Tambahin kelas active ke target
             slides[currentSlide].classList.add('active');
             if(dots.length) dots[currentSlide].classList.add('active');
         };
@@ -80,39 +83,39 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextSlide = () => showSlide(currentSlide + 1);
         const prevSlide = () => showSlide(currentSlide - 1);
 
+        // Menginisialisasi perputaran gambar secara otomatis
         const startSlide = () => {
             slideInterval = setInterval(nextSlide, 5000);
         };
 
+        // Menghentikan perputaran otomatis saat dibutuhkan
         const stopSlide = () => {
             clearInterval(slideInterval);
         };
 
-        // Event Listener buat tombol Kiri/Kanan
+        // Event listener untuk kendali navigasi (panah dan indikator titik)
         if(nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); stopSlide(); startSlide(); });
         if(prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); stopSlide(); startSlide(); });
         
-        // Event Listener buat Dots
         dots.forEach(dot => {
             dot.addEventListener('click', (e) => {
                 showSlide(parseInt(e.target.getAttribute('data-index')));
-                stopSlide(); startSlide(); // Reset timer pas diklik manual
+                stopSlide(); startSlide(); 
             });
         });
 
-        // Pause slideshow kalau kursor lagi nge-hover ke area hero
+        // Menunda perpindahan slide saat pengguna mengarahkan kursor ke area konten
         if(heroSection) {
             heroSection.addEventListener('mouseenter', stopSlide);
             heroSection.addEventListener('mouseleave', startSlide);
         }
 
-        // Gass jalan!
         startSlide();
     }
 
-    // ==========================================
-    // 4. ANIMASI BERBASIS INTERSECTION OBSERVER
-    // ==========================================
+    // =========================================================
+    // 4. OBSERVASI ELEMEN UNTUK ANIMASI BERBASIS GULIR
+    // =========================================================
     const observerOptions = { threshold: 0.1 };
     
     const observer = new IntersectionObserver((entries, obs) => {
@@ -127,19 +130,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 });
 
-// ==========================================================
-// 5. IMPLEMENTASI LAZY LOAD PADA ASET LATAR BELAKANG GAMBAR
-// ==========================================================
+// =========================================================
+// 5. IMPLEMENTASI LAZY LOAD & FITUR LANJUTAN SAAT JENDELA DIMUAT
+// =========================================================
 window.addEventListener('load', () => {
+    
+    // Mengoptimalkan pemuatan aset visual beresolusi tinggi (Background Images)
     const lazySlides = document.querySelectorAll('.slide[data-bg]');
     lazySlides.forEach(slide => {
         slide.style.backgroundImage = `url('${slide.getAttribute('data-bg')}')`;
         slide.removeAttribute('data-bg');
     });
 
-// =================================
-// 6. HIGHLIGHT MENU NAVIGASI AKTIF
-// =================================
+    // Menandai tautan navigasi yang mewakili halaman aktif saat ini
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('nav ul a');
     
@@ -150,25 +153,26 @@ window.addEventListener('load', () => {
     });
 });
 
-// =======================
-// 7. TOMBOL SCROLL TO TOP
-// =======================
-    const scrollTopBtn = document.getElementById('scrollToTopBtn');
-    
-    if (scrollTopBtn) {
-        window.addEventListener('scroll', () => {
-            // Munculin tombol kalau udah scroll sejauh 300px
-            if (window.scrollY > 300) {
-                scrollTopBtn.classList.add('show');
-            } else {
-                scrollTopBtn.classList.remove('show');
-            }
-        });
+// =========================================================
+// 6. KENDALI TOMBOL 'SCROLL TO TOP'
+// =========================================================
+const scrollTopBtn = document.getElementById('scrollToTopBtn');
 
-        scrollTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+if (scrollTopBtn) {
+    // Memantau metrik gulir vertikal untuk menentukan visibilitas tombol
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+    });
+
+    // Mengembalikan orientasi pandangan secara halus ke puncak dokumen
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
         });
-    }
+    });
+}

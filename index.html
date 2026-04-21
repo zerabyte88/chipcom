@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Website Resmi UKM Chip.Com STMIK Indonesia Banjarmasin">
     <title>CHIP.COM - STMIK Indonesia Banjarmasin</title>
+    
+    <!-- Meta Data Open Graph untuk Optimisasi Berbagi Tautan Sosial -->
     <meta property="og:title" content="CHIP.COM - STMIK Indonesia Banjarmasin">
     <meta property="og:description" content="Jadilah bagian dari kami! Unit Kegiatan Mahasiswa (UKM) IT & Keorganisasian terbaik di STMIK Indonesia Banjarmasin.">
     <meta property="og:image" content="https://chipcom.vercel.app/images/struktur.webp">
     <meta property="og:url" content="https://chipcom.vercel.app/">
     <meta property="og:type" content="website">
     
+    <!-- Integrasi Sumber Daya Eksternal -->
     <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="/style.css">
     <link rel="preload" as="image" href="/images/pelatihan.webp">
 
-    <!-- Optimisasi : Mencegah Flash of Unstyled Content (FOUC) pada saat memuat halaman dengan Mode Gelap -->
+    <!-- Skrip Inisialisasi: Mencegah Flash of Unstyled Content (FOUC) -->
     <script>
         if (localStorage.getItem('theme') === 'dark') {
             document.documentElement.setAttribute('data-theme', 'dark');
@@ -67,7 +68,7 @@
                 <div class="slide" data-bg="/images/diesnatalis2.webp"></div>
             </div>
 
-            <!-- Kontrol Slideshow -->
+            <!-- Infrastruktur Kontrol Interaktif Slideshow -->
             <button class="slide-btn prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
             <button class="slide-btn next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
             <div class="slide-dots">
@@ -119,12 +120,14 @@
         <div class="footer-bottom">
             <p>&copy; 2026 UKM Chip.Com STMIK Indonesia Banjarmasin. All rights reserved.</p>
         </div>
+        
+        <!-- Implementasi Tombol Aksi Scroll to Top -->
         <button id="scrollToTopBtn" aria-label="Kembali ke atas">
-        <i class="fas fa-arrow-up"></i>
-    </button>
+            <i class="fas fa-arrow-up"></i>
+        </button>
     </footer>
 
-    <!-- Atribut 'defer' memungkinkan skrip dimuat secara asinkron tanpa menahan pemrosesan HTML -->
+    <!-- Eksekusi Skrip Asinkron Eksternal -->
     <script src="/script.js" defer></script>
 </body>
 </html>
