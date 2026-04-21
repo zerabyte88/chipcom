@@ -149,3 +149,26 @@ window.addEventListener('load', () => {
         }
     });
 });
+
+// =======================
+// 7. TOMBOL SCROLL TO TOP
+// =======================
+    const scrollTopBtn = document.getElementById('scrollToTopBtn');
+    
+    if (scrollTopBtn) {
+        window.addEventListener('scroll', () => {
+            // Munculin tombol kalau udah scroll sejauh 300px
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }

@@ -375,6 +375,19 @@ nav ul a.nav-active {
     margin-bottom: 0.5rem; 
 }
 
+.vm-card, .feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.vm-card:hover, .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 102, 255, 0.15);
+}
+
+[data-theme="dark"] .vm-card:hover, [data-theme="dark"] .feature-card:hover {
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.05);
+}
+
 .structure-content p { 
     font-size: 1.05rem; 
     color: var(--text-muted); 
@@ -812,4 +825,35 @@ footer {
 }
 .timeline-list strong {
     color: var(--primary-color);
+}
+
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary-color);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    opacity: 0; /* Sembunyiin dulu pas di atas */
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 99;
+}
+
+#scrollToTopBtn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#scrollToTopBtn:hover {
+    background: #0052cc; /* Warna biru lebih gelap pas dihover */
+    transform: translateY(-5px);
 }
