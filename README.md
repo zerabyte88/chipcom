@@ -1,7 +1,7 @@
-=== WEB CHIP.COM VERSI 2.2 ===
+=== WEB CHIP.COM VERSI 2.3 ===
 
 TODO List:
 
-1. ganti gambar struktur.webP muka edon jadi gambar struktur organisasi
+1. Ganti gambar Struktur.webp muka edon jadi gambar Struktur Organisasi
 
 2. Ganti domain (Opsional)

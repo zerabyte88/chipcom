@@ -3,13 +3,14 @@
 /**
  * Event Listener Utama
  * Blok ini memastikan skrip JavaScript dijalankan setelah seluruh struktur HTML
- * selesai diproses oleh peramban, mencegah manipulasi DOM pada elemen yang belum ada.
+ * selesai diproses oleh browser, mencegah manipulasi DOM pada elemen yang belum ada.
  */
+
 document.addEventListener('DOMContentLoaded', () => {
     
-    // ==========================================================================
+    // ==================================================
     // 1. MANAJEMEN NAVIGASI RESPONSIF (HAMBURGER MENU)
-    // ==========================================================================
+    // ==================================================
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
     
@@ -31,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // ==========================================================================
+    // =========================================
     // 2. KONTROL TEMA (DARK MODE / LIGHT MODE)
-    // ==========================================================================
+    // =========================================
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
     
@@ -63,9 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10);
     });
 
-    // ==========================================================================
+    // ============================
     // 3. LOGIKA OTOMASI SLIDESHOW
-    // ==========================================================================
+    // ============================
     const slides = document.querySelectorAll('.slide');
     if (slides.length > 1) {
         // Melakukan pergantian slide dengan interval siklus setiap 5 detik
@@ -78,9 +79,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     }
 
-    // ==========================================================================
+    // ==========================================
     // 4. ANIMASI BERBASIS INTERSECTION OBSERVER
-    // ==========================================================================
+    // ==========================================
     const observerOptions = { 
         threshold: 0.1 // Eksekusi callback ketika 10% dimensi elemen memasuki viewport
     };
@@ -99,9 +100,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
 });
 
-// ==========================================================================
+// ==========================================================
 // 5. IMPLEMENTASI LAZY LOAD PADA ASET LATAR BELAKANG GAMBAR
-// ==========================================================================
+// ==========================================================
 // Menempatkan pemrosesan beban kerja pada siklus event 'load' untuk
 // memastikan aset utama halaman telah diproses secara komprehensif.
 window.addEventListener('load', () => {
