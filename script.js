@@ -136,4 +136,16 @@ window.addEventListener('load', () => {
         slide.style.backgroundImage = `url('${slide.getAttribute('data-bg')}')`;
         slide.removeAttribute('data-bg');
     });
+
+// =================================
+// 6. HIGHLIGHT MENU NAVIGASI AKTIF
+// =================================
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('nav ul a');
+    
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPath || (currentPath === '/' && link.getAttribute('href') === '/beranda')) {
+            link.classList.add('nav-active');
+        }
+    });
 });
