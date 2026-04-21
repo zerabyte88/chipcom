@@ -52,7 +52,7 @@
 
     <main>
         <section class="hero">
-            <div class="slideshow">
+            <div class="slideshow" id="hero-slideshow">
                 <div class="slide active" style="background-image: url('/images/pelatihan.webp');"></div>
                 <div class="slide" data-bg="/images/fotbar_pelatihan.webp"></div>
                 <div class="slide" data-bg="/images/fotbar_pelatihan2.webp"></div>
@@ -60,6 +60,19 @@
                 <div class="slide" data-bg="/images/pedas2.webp"></div>
                 <div class="slide" data-bg="/images/diesnatalis1.webp"></div>
                 <div class="slide" data-bg="/images/diesnatalis2.webp"></div>
+            </div>
+
+            <!-- Kontrol Slideshow -->
+            <button class="slide-btn prev-btn" aria-label="Previous Slide"><i class="fas fa-chevron-left"></i></button>
+            <button class="slide-btn next-btn" aria-label="Next Slide"><i class="fas fa-chevron-right"></i></button>
+            <div class="slide-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+                <span class="dot" data-index="5"></span>
+                <span class="dot" data-index="6"></span>
             </div>
 
             <div class="hero-content">
