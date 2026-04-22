@@ -754,6 +754,185 @@ footer {
 }
 
 /* =========================================================
+   6. ATURAN RESPONSIVITAS (MEDIA QUERIES)
+   ========================================================= */
+@media (max-width: 768px) {
+    nav { 
+        padding: 0 1.5rem; 
+    }
+
+    .logo, 
+    .nav-actions { 
+        flex: initial; 
+    }
+
+    .hamburger { 
+        display: block; 
+    }
+
+    nav ul { 
+        flex-direction: column; 
+        position: absolute; 
+        top: 100%; 
+        left: 0; 
+        width: 100%; 
+        background: var(--nav-bg); 
+        padding: 1rem; 
+        text-align: center; 
+        gap: 1rem; 
+        border-radius: 0 0 10px 10px; 
+        opacity: 0; 
+        visibility: hidden; 
+        transform: translateY(-10px); 
+        /* Penambahan kontrol visibilitas untuk memastikan animasi penutupan berfungsi */
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; 
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
+    }
+
+    nav ul.active { 
+        opacity: 1; 
+        visibility: visible; 
+        transform: translateY(0); 
+    }
+
+    nav ul a { 
+        display: block; 
+        padding: 0.8rem; 
+        border-bottom: 1px solid rgba(255,255,255,0.1); 
+    }
+
+    nav ul li:last-child a { 
+        border-bottom: none; 
+    }
+    
+    .hero { 
+        min-height: 400px; 
+        padding: 4rem 1rem; 
+    }
+
+    .hero h1 { 
+        font-size: 2.2rem; 
+    }
+
+    .history h2, 
+    .vision-mission h2, 
+    .structure h2, 
+    .features h2 { 
+        font-size: 2rem; 
+    }
+
+    .history-content, 
+    .vm-grid { 
+        grid-template-columns: 1fr; 
+        gap: 2rem; 
+        text-align: center; 
+    }
+
+    .vm-card p, 
+    .vm-card li { 
+        text-align: center; 
+    }
+
+    .vm-card ul { 
+        padding-left: 0; 
+        list-style-position: inside; 
+    }
+
+    .feature-image { 
+        height: 250px; 
+    }
+
+    /* Penyesuaian Dimensi Kontrol Slideshow untuk Perangkat Seluler */
+    .slide-btn { 
+        width: 35px; 
+        height: 35px; 
+        font-size: 1rem; 
+    }
+
+    .prev-btn { 
+        left: 5px; 
+    } 
+
+    .next-btn { 
+        right: 5px; 
+    }
+
+    .hero-content { 
+        padding: 0 2.5rem; 
+        width: 100%; 
+    }
+
+    .hero p { 
+        font-size: 1.1rem; 
+    }
+    
+    /* Pengaturan Area Footer Khusus Layar Seluler */
+    .footer-content { 
+        grid-template-columns: 1fr; 
+        gap: 1.5rem; 
+        padding: 2rem 1.5rem; 
+    }
+
+    .footer-col, 
+    .footer-links, 
+    .contact-wrapper { 
+        align-items: flex-start !important; 
+    }
+
+    .footer-links-inner, 
+    .contact-inner { 
+        width: 100%; 
+        align-items: flex-start; 
+    }
+
+    .footer-col h3 { 
+        text-align: left; 
+        padding-bottom: 10px; 
+        margin-bottom: 1rem; 
+        font-size: 1.1rem; 
+    }
+
+    .footer-col h3::after { 
+        left: 0; 
+        transform: none; 
+    } 
+
+    .footer-about p { 
+        text-align: justify; 
+        font-size: 0.85rem; 
+        line-height: 1.5; 
+    }
+
+    .footer-links ul { 
+        align-items: flex-start; 
+        gap: 5px; 
+    }
+
+    .footer-links a {
+        font-size: 0.85rem; 
+    }
+
+    .contact-info {
+        gap: 10px; 
+    }
+
+    .contact-info p { 
+        justify-content: flex-start; 
+        text-align: left; 
+        flex-direction: row; 
+        align-items: flex-start; 
+        gap: 10px; 
+        font-size: 0.85rem; 
+        line-height: 1.5; 
+    }
+
+    .footer-bottom {
+        font-size: 0.75rem; 
+        padding: 0.8rem; 
+    }
+}   
+
+/* =========================================================
    7. STRUKTUR ORGANISASI (Bagan Hierarki)
    ========================================================= */
 .org-section {
@@ -984,182 +1163,3 @@ footer {
 .org-orange-border { border-top-color: #f97316; } .text-orange { color: #f97316; }
 .org-emerald-border { border-top-color: #10b981; } .text-emerald { color: #10b981; }
 .org-pink-border { border-top-color: #ec4899; } .text-pink { color: #ec4899; }
-
-/* =========================================================
-   6. ATURAN RESPONSIVITAS (MEDIA QUERIES)
-   ========================================================= */
-@media (max-width: 768px) {
-    nav { 
-        padding: 0 1.5rem; 
-    }
-
-    .logo, 
-    .nav-actions { 
-        flex: initial; 
-    }
-
-    .hamburger { 
-        display: block; 
-    }
-
-    nav ul { 
-        flex-direction: column; 
-        position: absolute; 
-        top: 100%; 
-        left: 0; 
-        width: 100%; 
-        background: var(--nav-bg); 
-        padding: 1rem; 
-        text-align: center; 
-        gap: 1rem; 
-        border-radius: 0 0 10px 10px; 
-        opacity: 0; 
-        visibility: hidden; 
-        transform: translateY(-10px); 
-        /* Penambahan kontrol visibilitas untuk memastikan animasi penutupan berfungsi */
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; 
-        box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
-    }
-
-    nav ul.active { 
-        opacity: 1; 
-        visibility: visible; 
-        transform: translateY(0); 
-    }
-
-    nav ul a { 
-        display: block; 
-        padding: 0.8rem; 
-        border-bottom: 1px solid rgba(255,255,255,0.1); 
-    }
-
-    nav ul li:last-child a { 
-        border-bottom: none; 
-    }
-    
-    .hero { 
-        min-height: 400px; 
-        padding: 4rem 1rem; 
-    }
-
-    .hero h1 { 
-        font-size: 2.2rem; 
-    }
-
-    .history h2, 
-    .vision-mission h2, 
-    .structure h2, 
-    .features h2 { 
-        font-size: 2rem; 
-    }
-
-    .history-content, 
-    .vm-grid { 
-        grid-template-columns: 1fr; 
-        gap: 2rem; 
-        text-align: center; 
-    }
-
-    .vm-card p, 
-    .vm-card li { 
-        text-align: center; 
-    }
-
-    .vm-card ul { 
-        padding-left: 0; 
-        list-style-position: inside; 
-    }
-
-    .feature-image { 
-        height: 250px; 
-    }
-
-    /* Penyesuaian Dimensi Kontrol Slideshow untuk Perangkat Seluler */
-    .slide-btn { 
-        width: 35px; 
-        height: 35px; 
-        font-size: 1rem; 
-    }
-
-    .prev-btn { 
-        left: 5px; 
-    } 
-
-    .next-btn { 
-        right: 5px; 
-    }
-
-    .hero-content { 
-        padding: 0 2.5rem; 
-        width: 100%; 
-    }
-
-    .hero p { 
-        font-size: 1.1rem; 
-    }
-    
-    /* Pengaturan Area Footer Khusus Layar Seluler */
-    .footer-content { 
-        grid-template-columns: 1fr; 
-        gap: 1.5rem; 
-        padding: 2rem 1.5rem; 
-    }
-
-    .footer-col, 
-    .footer-links, 
-    .contact-wrapper { 
-        align-items: flex-start !important; 
-    }
-
-    .footer-links-inner, 
-    .contact-inner { 
-        width: 100%; 
-        align-items: flex-start; 
-    }
-
-    .footer-col h3 { 
-        text-align: left; 
-        padding-bottom: 10px; 
-        margin-bottom: 1rem; 
-        font-size: 1.1rem; 
-    }
-
-    .footer-col h3::after { 
-        left: 0; 
-        transform: none; 
-    } 
-
-    .footer-about p { 
-        text-align: justify; 
-        font-size: 0.85rem; 
-        line-height: 1.5; 
-    }
-
-    .footer-links ul { 
-        align-items: flex-start; 
-        gap: 5px; 
-    }
-
-    .footer-links a {
-        font-size: 0.85rem; 
-    }
-
-    .contact-info {
-        gap: 10px; 
-    }
-
-    .contact-info p { 
-        justify-content: flex-start; 
-        text-align: left; 
-        flex-direction: row; 
-        align-items: flex-start; 
-        gap: 10px; 
-        font-size: 0.85rem; 
-        line-height: 1.5; 
-    }
-
-    .footer-bottom {
-        font-size: 0.75rem; 
-        padding: 0.8rem; 
-    }
-}   
