@@ -1,11 +1,65 @@
-<main>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Struktur Kepengurusan Organisasi UKM Chip.Com">
+    <title>Struktur Kepengurusan - CHIP.COM</title>
+    
+    <!-- Meta Data Open Graph -->
+    <meta property="og:title" content="Struktur Kepengurusan - CHIP.COM">
+    <meta property="og:description" content="Mengenal lebih dekat struktur kepengurusan dan divisi dalam UKM Chip.Com.">
+    <meta property="og:image" content="https://chipcom.vercel.app/images/struktur.webp">
+    <meta property="og:url" content="https://chipcom.vercel.app/category/struktur">
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+
+    <script>
+        if (localStorage.getItem('theme') === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="/beranda" class="logo" id="logo-link">
+                <img src="/images/logo.svg" alt="UKM Chip.Com Logo" class="logo-img">
+                <span>Chip.Com</span>
+            </a>
+            <ul id="menu">
+                <li><a href="/beranda">Beranda</a></li>
+                <li><a href="/category/sejarah">Sejarah</a></li>
+                <li><a href="/category/visimisi">Visi & Misi</a></li>
+                <li><a href="/category/struktur">Struktur Organisasi</a></li>
+                <li><a href="/category/dokumentasi">Dokumentasi</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Navigation">
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
         <section class="org-section fade-in-up">
             <div class="history-container">
                 <h2>Struktur <span style="color: var(--text-main);">Organisasi</span></h2>
                 <p class="org-subtitle">Sinergi antar divisi yang kuat untuk menciptakan ekosistem organisasi yang produktif dan profesional.</p>
                 
                 <div class="org-container">
-                    <!-- Level 1: Ketua -->
+                    <!-- Hierarki Level 1: Ketua -->
                     <div class="org-level">
                         <div class="org-card org-blue fade-in-up">
                             <div class="org-header">Ketua</div>
@@ -17,7 +71,7 @@
 
                     <div class="org-line-v"></div>
 
-                    <!-- Level 2: Wakil Ketua -->
+                    <!-- Hierarki Level 2: Wakil Ketua -->
                     <div class="org-level">
                         <div class="org-card org-sky fade-in-up">
                             <div class="org-header">Wakil Ketua</div>
@@ -29,7 +83,7 @@
 
                     <div class="org-line-v"></div>
 
-                    <!-- Level 3: Sekretaris & Bendahara -->
+                    <!-- Hierarki Level 3: Sekretaris & Bendahara -->
                     <div class="org-level lvl-3 fade-in-up">
                         <div class="org-card org-orange">
                             <div class="org-header">Sekretaris</div>
@@ -47,9 +101,10 @@
 
                     <div class="org-line-v desktop-only"></div>
 
-                    <!-- Level 4: Divisi-Divisi -->
+                    <!-- Hierarki Level 4: Divisi-Divisi Utama -->
                     <div class="org-level lvl-4 fade-in-up">
-                        <!-- Divisi Humas -->
+                        
+                        <!-- Blok Divisi Humas -->
                         <div class="div-wrapper">
                             <div class="div-card org-blue-border">
                                 <div class="div-header text-blue">Divisi Humas</div>
@@ -66,7 +121,7 @@
                             </div>
                         </div>
 
-                        <!-- Divisi Pelatihan -->
+                        <!-- Blok Divisi Pelatihan -->
                         <div class="div-wrapper">
                             <div class="div-card org-orange-border">
                                 <div class="div-header text-orange">Divisi Pelatihan</div>
@@ -83,7 +138,7 @@
                             </div>
                         </div>
 
-                        <!-- Divisi Perlengkapan -->
+                        <!-- Blok Divisi Perlengkapan -->
                         <div class="div-wrapper">
                             <div class="div-card org-emerald-border">
                                 <div class="div-header text-emerald">Divisi Perlengkapan</div>
@@ -100,7 +155,7 @@
                             </div>
                         </div>
 
-                        <!-- Divisi Dok. & Kreatif -->
+                        <!-- Blok Divisi Dokumentasi & Kreatif -->
                         <div class="div-wrapper">
                             <div class="div-card org-pink-border">
                                 <div class="div-header text-pink">Divisi Dok. & Kreatif</div>
@@ -116,8 +171,50 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col footer-about">
+                <h3>Tentang Chip.Com</h3>
+                <p>Unit Kegiatan Mahasiswa (UKM) di STMIK Indonesia Banjarmasin yang berfokus pada pengembangan keterampilan Teknologi Informasi dan kepemimpinan keorganisasian.</p>
+            </div>
+            <div class="footer-col footer-links">
+                <div class="footer-links-inner">
+                    <h3>Tautan Cepat</h3>
+                    <ul>
+                        <li><a href="/category/sejarah">Sejarah</a></li>
+                        <li><a href="/category/visimisi">Visi & Misi</a></li>
+                        <li><a href="/category/struktur">Struktur Organisasi</a></li>
+                        <li><a href="/category/dokumentasi">Dokumentasi</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-col contact-wrapper">
+                <div class="contact-inner">
+                    <h3>Hubungi Kami</h3>
+                    <div class="contact-info">
+                        <p><i class="fa-brands fa-instagram"></i> <span>chipcomstmik_id</span></p>
+                        <p><i class="fas fa-phone"></i> <span>+62 822-5185-5328</span></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span>Jl. Pangeran Hidayatullah, Sungai Jingah, Banjarmasin Utara, Kota Banjarmasin, Kalsel 70122</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 UKM Chip.Com STMIK Indonesia Banjarmasin. All rights reserved.</p>
+        </div>
+        
+        <button id="scrollToTopBtn" aria-label="Kembali ke atas">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+    </footer>
+
+    <script src="/script.js" defer></script>
+</body>
+</html>
