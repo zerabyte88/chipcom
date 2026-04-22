@@ -307,7 +307,7 @@ nav ul.has-indicator a.nav-active {
 .dot.active, .dot:hover { background: var(--primary-color); transform: scale(1.3); }
 
 /* =========================================================
-   4. TATA LETAK KONTEN INTERNAL UMUM (SEJARAH, STRUKTUR, DOKUMENTASI)
+   4. TATA LETAK KONTEN INTERNAL UMUM (SEJARAH, STRUKTUR, dll)
    ========================================================= */
 .history, 
 .vision-mission { 
@@ -468,7 +468,7 @@ nav ul.has-indicator a.nav-active {
 
 
 /* =========================================================
-   5. BAGIAN BAWAH HALAMAN (FOOTER) - VERSI REVISI ANTI GENCET
+   5. BAGIAN BAWAH HALAMAN (FOOTER) - VERSI CERAI LOGO & TEKS
    ========================================================= */
 footer { 
     background: var(--footer-bg); 
@@ -480,46 +480,41 @@ footer {
 
 .footer-content { 
     width: 100%; 
-    max-width: 1250px; 
+    max-width: 1350px; /* Aku lebarin dikit biar lega 5 kolom */
     margin: 0 auto; 
     padding: 2.5rem 20px; 
     display: grid; 
     
-    /* PENTING! Kita pake 4 Kolom. 
-       Kolom pertama (2fr) dibikin paling gede biar logo & teks bisa jejeran! */
-    grid-template-columns: 2fr 1fr 1fr 1.5fr; 
-    gap: 3rem; 
+    /* NAH INI DIA! Kita pecah jadi 5 kolom. 
+       Kolom 1 dapet 130px (buat logo), Kolom 2 dapet 1.5fr (buat teks), sisanya ngikut. */
+    grid-template-columns: 130px 1.5fr 1fr 1.3fr 1.5fr; 
+    gap: 2.5rem; 
     align-items: flex-start; 
 }
 
 .footer-col { display: flex; flex-direction: column; }
 
-/* KUNCI RAHASIA: Bikin kontainer flex buat nyatuin logo & teks menyamping */
-.footer-about-container {
+/* Setingan Khusus Bungkus Logo di Paling Kiri */
+.footer-logo-wrapper {
     display: flex;
-    flex-direction: row; /* Berjejer ke samping */
-    gap: 20px; /* Jarak antara logo dan teks */
+    justify-content: flex-start;
     align-items: flex-start;
+    padding-top: 5px; /* Diturunin dikit biar sejajar sama teks sebelahnya */
 }
 
-/* Setingan Logo Biar Gak Rusak */
+/* Setingan Gambar Logonya */
 .footer-logo-img {
-    width: 110px; /* Ukuran pas, gak kegedean */
-    flex-shrink: 0; /* Biar logo gak mengecil gara2 kegencet teks sebelahnya */
+    width: 100%; 
+    max-width: 120px; 
     transition: transform 0.3s ease;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
 
 .footer-logo-img:hover {
-    transform: scale(1.08); /* Efek goyang dikit pas di-hover */
+    transform: scale(1.08); 
 }
 
-/* Setingan Teks "Tentang Chip.com" */
-.footer-about-text {
-    display: flex;
-    flex-direction: column;
-}
-
+/* Setingan Judul H3 di Footer */
 .footer-col h3 { 
     color: var(--footer-accent); 
     font-size: 1.1rem; 
@@ -537,7 +532,8 @@ footer {
     background-color: var(--footer-accent); border-radius: 5px; 
 }
 
-.footer-about-text p { 
+/* Teks Tentang Chip.com */
+.footer-about p { 
     color: var(--footer-text-muted); 
     font-size: 0.95rem; 
     line-height: 1.8; 
@@ -602,18 +598,18 @@ footer {
 /* =========================================================
    6. ATURAN RESPONSIVITAS (MEDIA QUERIES) BIAR HP & TABLET AMAN
    ========================================================= */
-@media (max-width: 992px) {
-    /* Setingan Tablet: Kita jadiin 2 Kolom ke bawah */
+@media (max-width: 1024px) {
+    /* Setingan Tablet: Kita jadiin 2 Kolom ke bawah biar lega */
     .footer-content { 
         grid-template-columns: 1fr 1fr; 
     }
-    .footer-about-container {
-        grid-column: span 2; /* Kolom pertama manjangin biar ngelebar full 2 kolom */
+    .footer-logo-wrapper {
+        display: none; /* Sembunyiin logo di tablet biar rapi */
     }
 }
 
 @media (max-width: 768px) {
-    /* Setingan Mobile Nav & Lainnya (Bawaan Kode Kamu) */
+    /* Setingan Mobile Nav & Lainnya */
     nav { padding: 0 1.5rem; }
     .logo, .nav-actions { flex: initial; }
     .hamburger { display: block; }
@@ -651,19 +647,21 @@ footer {
     /* Setingan Footer khusus Layar HP */
     .footer-content { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.5rem; }
     
-    /* Biar di HP gak sempit, Logo dipindah ke atas teks lagi, tapi di tengah */
-    .footer-about-container {
-        flex-direction: column;
+    /* Munculin lagi logonya kalau di HP, taruh di atas teks */
+    .footer-logo-wrapper {
+        display: flex;
+        justify-content: flex-start;
         align-items: flex-start;
-        grid-column: auto;
+        padding-top: 0;
+        margin-bottom: -15px;
     }
-    .footer-logo-img { max-width: 100px; margin-bottom: -10px; }
+    .footer-logo-img { max-width: 90px; }
     
     .footer-col, .footer-links, .contact-wrapper { align-items: flex-start !important; }
     .footer-links-inner, .contact-inner { width: 100%; align-items: flex-start; }
     .footer-col h3 { text-align: left; padding-bottom: 10px; margin-bottom: 1rem; font-size: 1.1rem; }
     .footer-col h3::after { left: 0; transform: none; } 
-    .footer-about-text p { text-align: justify; font-size: 0.85rem; line-height: 1.5; }
+    .footer-about p { text-align: justify; font-size: 0.85rem; line-height: 1.5; }
     .footer-links ul { align-items: flex-start; gap: 5px; }
     .footer-links a { font-size: 0.85rem; }
     .contact-info { gap: 10px; }
