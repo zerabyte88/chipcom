@@ -121,41 +121,47 @@ nav ul {
     list-style: none; 
     justify-content: center; 
     flex: 2; 
-    position: relative; /* Esensial untuk penempatan indikator absolut */
+    position: relative; 
 }
 
-/* Pengaturan Tautan Menu Default */
 nav ul a { 
     color: white; 
     text-decoration: none; 
     font-weight: 600; 
-    padding: 0.3rem 0.8rem; /* Memberikan ruang pada elemen teks */
+    padding: 0.3rem 0.8rem; 
     transition: opacity 0.3s ease, color 0.3s ease; 
     position: relative;
-    z-index: 1; /* Teks harus berada di atas elemen indikator */
+    z-index: 1; 
 }
 
 nav ul a:hover { 
     opacity: 0.8; 
 }
 
-/* Aturan untuk Menu Aktif (Latar statis dihapus) */
+/* Penyelamatan Latar Navigasi Statis (Solusi Teks Tiba-tiba Hilang) */
 nav ul a.nav-active { 
     color: var(--primary-color); 
+    background: white; 
+    border-radius: 20px; 
     font-weight: 700; 
 }
 
 [data-theme="dark"] nav ul a.nav-active { 
+    background: var(--primary-color); 
     color: white; 
 }
 
-/* Modul Tampilan Indikator Menu Dinamis */
+/* Latar putih statis dihilangkan saat Indikator Animasi siap ambil alih */
+nav ul.has-indicator a.nav-active {
+    background: transparent !important;
+}
+
 .nav-indicator {
     position: absolute;
     background: white;
     border-radius: 20px;
-    z-index: 0; /* Lapisan latar di belakang tautan */
-    pointer-events: none; /* Mencegah intervensi klik */
+    z-index: 0; 
+    pointer-events: none; 
 }
 
 [data-theme="dark"] .nav-indicator {
@@ -266,7 +272,7 @@ nav ul a.nav-active {
 
 .hero-content { 
     max-width: 800px; 
-    animation: slideUp 0.8s ease-out; 
+    animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
     position: relative; 
     z-index: 2; 
     width: 100%; 
@@ -705,7 +711,6 @@ nav ul a.nav-active {
     justify-content: center;
 }
 
-/* Modifikasi Z-Index untuk mencegah tumpang tindih desain */
 .div-wrapper::before {
     content: '';
     position: absolute;
@@ -974,35 +979,23 @@ footer {
     transform: translateY(-5px); 
 }
 
+/* Modul Animasi Bawaan (Mengatasi Bug Flash Objek) */
 @keyframes slideUp { 
     from { opacity: 0; transform: translateY(30px); } 
     to { opacity: 1; transform: translateY(0); } 
 }
 
 .fade-in-up { 
-    opacity: 0; 
-    transform: translateY(30px); 
-}
-
-.fade-in-up.animate { 
-    animation: slideUp 0.8s ease-out forwards; 
+    animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; 
 }
 
 /* =========================================================
    7. ATURAN RESPONSIVITAS (MEDIA QUERIES)
    ========================================================= */
 @media (max-width: 768px) {
-    nav { 
-        padding: 0 1.5rem; 
-    }
-    
-    .logo, .nav-actions { 
-        flex: initial; 
-    }
-    
-    .hamburger { 
-        display: block; 
-    }
+    nav { padding: 0 1.5rem; }
+    .logo, .nav-actions { flex: initial; }
+    .hamburger { display: block; }
     
     nav ul { 
         flex-direction: column; 
@@ -1034,7 +1027,6 @@ footer {
         border-bottom: 1px solid rgba(255,255,255,0.1); 
     }
 
-    /* Penyesuaian khusus tampilan mode seluler agar warna tetap terlihat stabil */
     nav ul a.nav-active {
         background: rgba(255, 255, 255, 0.1); 
         color: white; 
@@ -1046,10 +1038,7 @@ footer {
 
     nav ul li:last-child a { border-bottom: none; }
     
-    /* Nonaktifkan indikator dinamis pada tampilan seluler */
-    .nav-indicator { 
-        display: none; 
-    }
+    .nav-indicator { display: none; }
     
     .hero { min-height: 400px; padding: 4rem 1rem; }
     .hero h1 { font-size: 2.2rem; }
@@ -1117,7 +1106,6 @@ footer {
 
     .lvl-3 .org-card { position: relative; }
 
-    /* Mencegah garis menembus border kartu */
     .lvl-3 .org-card:first-child::after {
         content: '';
         position: absolute;
