@@ -13,7 +13,6 @@
     --nav-bg: #0066ff;
     --shadow-color: rgba(0, 0, 0, 0.05);
     
-    /* Konfigurasi Area Footer - Mode Terang */
     --footer-bg: var(--primary-color); 
     --footer-bottom-bg: rgba(0, 0, 0, 0.15); 
     --footer-text-muted: #e6f0ff;
@@ -33,7 +32,6 @@
     --nav-bg: #1a1a1a;
     --shadow-color: rgba(255, 255, 255, 0.05);
     
-    /* Konfigurasi Area Footer - Mode Gelap */
     --footer-bg: #111111;
     --footer-bottom-bg: #050505;
     --footer-text-muted: #cccccc;
@@ -55,7 +53,6 @@ html {
 } 
 
 body { 
-    /* Mengubah prioritas Font menjadi Plus Jakarta Sans */
     font-family: 'Plus Jakarta Sans', 'Poppins', sans-serif; 
     line-height: 1.6; 
     background-color: var(--bg-body);
@@ -124,30 +121,45 @@ nav ul {
     list-style: none; 
     justify-content: center; 
     flex: 2; 
+    position: relative; /* Esensial untuk penempatan indikator absolut */
 }
 
+/* Pengaturan Tautan Menu Default */
 nav ul a { 
     color: white; 
     text-decoration: none; 
     font-weight: 600; 
-    transition: opacity 0.3s ease; 
+    padding: 0.3rem 0.8rem; /* Memberikan ruang pada elemen teks */
+    transition: opacity 0.3s ease, color 0.3s ease; 
+    position: relative;
+    z-index: 1; /* Teks harus berada di atas elemen indikator */
 }
 
 nav ul a:hover { 
     opacity: 0.8; 
 }
 
+/* Aturan untuk Menu Aktif (Latar statis dihapus) */
 nav ul a.nav-active { 
     color: var(--primary-color); 
-    background: white; 
-    padding: 0.3rem 0.8rem; 
-    border-radius: 20px; 
     font-weight: 700; 
 }
 
 [data-theme="dark"] nav ul a.nav-active { 
-    background: var(--primary-color); 
     color: white; 
+}
+
+/* Modul Tampilan Indikator Menu Dinamis */
+.nav-indicator {
+    position: absolute;
+    background: white;
+    border-radius: 20px;
+    z-index: 0; /* Lapisan latar di belakang tautan */
+    pointer-events: none; /* Mencegah intervensi klik */
+}
+
+[data-theme="dark"] .nav-indicator {
+    background: var(--primary-color);
 }
 
 .nav-actions { 
@@ -370,7 +382,6 @@ nav ul a.nav-active {
     margin: 0 auto; 
 }
 
-/* Penambahan .org-section h2 agar teks terpusat dan memiliki warna konsisten */
 .history h2, 
 .vision-mission h2, 
 .structure h2, 
@@ -592,7 +603,6 @@ nav ul a.nav-active {
     z-index: 2;
 }
 
-/* Konfigurasi Kartu Utama dengan Efek Kursor */
 .org-card {
     background: var(--bg-card);
     border-radius: 12px;
@@ -601,7 +611,7 @@ nav ul a.nav-active {
     max-width: 240px;
     text-align: center;
     overflow: hidden;
-    cursor: pointer; /* Memberikan efek pointer saat dihover */
+    cursor: pointer; 
     transition: transform 0.3s ease;
 }
 
@@ -695,6 +705,7 @@ nav ul a.nav-active {
     justify-content: center;
 }
 
+/* Modifikasi Z-Index untuk mencegah tumpang tindih desain */
 .div-wrapper::before {
     content: '';
     position: absolute;
@@ -704,9 +715,9 @@ nav ul a.nav-active {
     height: 35px;
     background: #e2e8f0;
     transform: translateX(-50%);
+    z-index: -1; 
 }
 
-/* Konfigurasi Kartu Divisi dengan Efek Kursor */
 .div-card {
     background: var(--bg-card);
     border-radius: 12px;
@@ -716,7 +727,7 @@ nav ul a.nav-active {
     border: 1px solid rgba(0,0,0,0.05);
     border-top-width: 4px;
     overflow: hidden;
-    cursor: pointer; /* Memberikan efek pointer saat dihover */
+    cursor: pointer; 
     transition: transform 0.3s ease;
 }
 
@@ -981,9 +992,17 @@ footer {
    7. ATURAN RESPONSIVITAS (MEDIA QUERIES)
    ========================================================= */
 @media (max-width: 768px) {
-    nav { padding: 0 1.5rem; }
-    .logo, .nav-actions { flex: initial; }
-    .hamburger { display: block; }
+    nav { 
+        padding: 0 1.5rem; 
+    }
+    
+    .logo, .nav-actions { 
+        flex: initial; 
+    }
+    
+    .hamburger { 
+        display: block; 
+    }
     
     nav ul { 
         flex-direction: column; 
@@ -1015,7 +1034,22 @@ footer {
         border-bottom: 1px solid rgba(255,255,255,0.1); 
     }
 
+    /* Penyesuaian khusus tampilan mode seluler agar warna tetap terlihat stabil */
+    nav ul a.nav-active {
+        background: rgba(255, 255, 255, 0.1); 
+        color: white; 
+    }
+
+    [data-theme="dark"] nav ul a.nav-active { 
+        background: var(--primary-color); 
+    }
+
     nav ul li:last-child a { border-bottom: none; }
+    
+    /* Nonaktifkan indikator dinamis pada tampilan seluler */
+    .nav-indicator { 
+        display: none; 
+    }
     
     .hero { min-height: 400px; padding: 4rem 1rem; }
     .hero h1 { font-size: 2.2rem; }
@@ -1083,6 +1117,7 @@ footer {
 
     .lvl-3 .org-card { position: relative; }
 
+    /* Mencegah garis menembus border kartu */
     .lvl-3 .org-card:first-child::after {
         content: '';
         position: absolute;
@@ -1092,6 +1127,7 @@ footer {
         height: 35px;
         background: #e2e8f0;
         transform: translateX(-50%);
+        z-index: -1; 
     }
 
     [data-theme="dark"] .lvl-3 .org-card:first-child::after { background: #334155; }

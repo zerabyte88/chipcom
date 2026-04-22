@@ -8,18 +8,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
     
-    // Mengontrol visibilitas menu navigasi pada resolusi seluler
     hamburger.addEventListener('click', (e) => { 
         e.stopPropagation(); 
         menu.classList.toggle('active'); 
     });
 
-    // Menutup menu secara otomatis saat tautan navigasi dipilih
     menu.querySelectorAll('a').forEach(link => { 
         link.addEventListener('click', () => menu.classList.remove('active')); 
     });
 
-    // Menutup menu jika interaksi klik terjadi di luar batas elemen navigasi
     document.addEventListener('click', (e) => {
         if (!menu.contains(e.target) && !hamburger.contains(e.target)) {
             menu.classList.remove('active');
@@ -32,20 +29,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
     
-    // Sinkronisasi status awal ikon dengan preferensi tema yang dimuat
     if (document.documentElement.getAttribute('data-theme') === 'dark') {
         themeIcon.classList.replace('fa-moon', 'fa-sun');
     }
 
-    // Menangani logika pertukaran atribut tema beserta animasinya
     themeToggleBtn.addEventListener('click', () => {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         const newTheme = isDark ? 'light' : 'dark';
         
-        // Memicu efek transisi CSS (rotasi dan pemudaran)
         themeIcon.classList.add('icon-transition');
 
-        // Menunda pergantian ikon hingga pertengahan durasi animasi (150ms)
         setTimeout(() => {
             if (newTheme === 'dark') {
                 document.documentElement.setAttribute('data-theme', 'dark');
@@ -55,10 +48,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 themeIcon.classList.replace('fa-sun', 'fa-moon');
             }
 
-            // Menghapus kelas transisi agar ikon kembali membesar dan berputar
             themeIcon.classList.remove('icon-transition');
 
-            // Menyimpan preferensi tema secara asinkron
             setTimeout(() => {
                 localStorage.setItem('theme', newTheme);
             }, 10);
@@ -78,7 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let slideInterval;
 
     if (slides.length > 1) {
-        // Fungsi utama untuk mengatur visibilitas slide dan indikator
         const showSlide = (index) => {
             slides.forEach(s => s.classList.remove('active'));
             dots.forEach(d => d.classList.remove('active'));
@@ -92,17 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextSlide = () => showSlide(currentSlide + 1);
         const prevSlide = () => showSlide(currentSlide - 1);
 
-        // Menginisialisasi perputaran gambar secara otomatis
         const startSlide = () => {
             slideInterval = setInterval(nextSlide, 5000);
         };
 
-        // Menghentikan perputaran otomatis saat dibutuhkan
         const stopSlide = () => {
             clearInterval(slideInterval);
         };
 
-        // Event listener untuk kendali navigasi (panah dan indikator titik)
         if(nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); stopSlide(); startSlide(); });
         if(prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); stopSlide(); startSlide(); });
         
@@ -113,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Menunda perpindahan slide saat pengguna mengarahkan kursor ke area konten
         if(heroSection) {
             heroSection.addEventListener('mouseenter', stopSlide);
             heroSection.addEventListener('mouseleave', startSlide);
@@ -140,26 +126,63 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // =========================================================
-// 5. IMPLEMENTASI LAZY LOAD & FITUR LANJUTAN SAAT JENDELA DIMUAT
+// 5. PENANGANAN SIKLUS MUAT (LOAD) & INDIKATOR NAVIGASI
 // =========================================================
 window.addEventListener('load', () => {
     
-    // Mengoptimalkan pemuatan aset visual beresolusi tinggi
     const lazySlides = document.querySelectorAll('.slide[data-bg]');
     lazySlides.forEach(slide => {
         slide.style.backgroundImage = `url('${slide.getAttribute('data-bg')}')`;
         slide.removeAttribute('data-bg');
     });
 
-    // Menandai tautan navigasi yang mewakili halaman aktif saat ini
+    // Menentukan tautan aktif berdasarkan URL
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('nav ul a');
+    const navUl = document.querySelector('nav ul');
     
     navLinks.forEach(link => {
         if (link.getAttribute('href') === currentPath || (currentPath === '/' && link.getAttribute('href') === '/beranda')) {
             link.classList.add('nav-active');
         }
     });
+
+    // Implementasi Indikator Geser (Sliding Indicator)
+    if (navUl && window.innerWidth > 768) {
+        const indicator = document.createElement('li');
+        indicator.classList.add('nav-indicator');
+        navUl.appendChild(indicator);
+
+        const updateIndicator = (link, animate = true) => {
+            if (!link) return;
+            indicator.style.transition = animate ? 'all 0.4s cubic-bezier(0.25, 1, 0.5, 1)' : 'none';
+            indicator.style.width = `${link.offsetWidth}px`;
+            indicator.style.height = `${link.offsetHeight}px`;
+            indicator.style.left = `${link.offsetLeft}px`;
+            indicator.style.top = `${link.offsetTop}px`;
+        };
+
+        const activeLink = navUl.querySelector('a.nav-active');
+        if (activeLink) {
+            // Pengaturan posisi awal tanpa animasi transisi
+            setTimeout(() => updateIndicator(activeLink, false), 50);
+        }
+
+        // Memicu animasi pergeseran saat item menu diklik
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                updateIndicator(link, true);
+            });
+        });
+
+        // Sinkronisasi ukuran saat jendela peramban diubah ukurannya
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                const currentActive = navUl.querySelector('a.nav-active');
+                if (currentActive) updateIndicator(currentActive, false);
+            }
+        });
+    }
 });
 
 // =========================================================
@@ -168,7 +191,6 @@ window.addEventListener('load', () => {
 const scrollTopBtn = document.getElementById('scrollToTopBtn');
 
 if (scrollTopBtn) {
-    // Memantau metrik gulir vertikal untuk menentukan visibilitas tombol
     window.addEventListener('scroll', () => {
         if (window.scrollY > 300) {
             scrollTopBtn.classList.add('show');
@@ -177,7 +199,6 @@ if (scrollTopBtn) {
         }
     });
 
-    // Mengembalikan orientasi pandangan secara halus ke puncak dokumen
     scrollTopBtn.addEventListener('click', () => {
         window.scrollTo({
             top: 0,
