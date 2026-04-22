@@ -754,6 +754,238 @@ footer {
 }
 
 /* =========================================================
+   7. STRUKTUR ORGANISASI (Bagan Hierarki)
+   ========================================================= */
+.org-section {
+    padding: 4rem 1.5rem;
+    background: var(--bg-section);
+    transition: background-color 0.3s ease;
+}
+
+.org-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: -1rem auto 3rem auto;
+    font-size: 1.1rem;
+}
+
+.org-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: 2rem;
+    box-shadow: 0 15px 40px var(--shadow-color);
+}
+
+.org-level {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    z-index: 2;
+}
+
+/* Konfigurasi Kartu Utama (Ketua, Wakil, Sekretaris, Bendahara) */
+.org-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    width: 240px;
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.org-card:hover {
+    transform: scale(1.05);
+}
+
+.org-header {
+    padding: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: white;
+}
+
+.org-body {
+    padding: 15px 10px;
+}
+
+.org-body h3 {
+    font-size: 1.1rem;
+    color: var(--text-main);
+    font-weight: 800;
+}
+
+/* Pewarnaan Spesifik Kartu Utama */
+.org-blue { border: 2px solid #2563eb; }
+.org-blue .org-header { background: #2563eb; }
+.org-sky { border: 2px solid #0ea5e9; }
+.org-sky .org-header { background: #0ea5e9; }
+.org-orange { border: 2px solid #f97316; }
+.org-orange .org-header { background: #f97316; }
+.org-emerald { border: 2px solid #10b981; }
+.org-emerald .org-header { background: #10b981; }
+
+/* Garis Penghubung Hierarki */
+.org-line-v {
+    width: 3px;
+    height: 35px;
+    background: #e2e8f0;
+    margin: 0 auto;
+}
+
+[data-theme="dark"] .org-line-v,
+[data-theme="dark"] .lvl-3::before,
+[data-theme="dark"] .lvl-4::before,
+[data-theme="dark"] .div-wrapper::before {
+    background: #334155; /* Penyesuaian garis untuk mode gelap */
+}
+
+/* Penempatan Baris ke-3 (Sekretaris & Bendahara) */
+.lvl-3 {
+    justify-content: space-between;
+    max-width: 600px;
+    position: relative;
+}
+
+.lvl-3::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: #e2e8f0;
+    z-index: -1;
+    transform: translateY(-50%);
+}
+
+/* Penempatan Baris ke-4 (Divisi-divisi) */
+.lvl-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    max-width: 1000px;
+    position: relative;
+    margin-top: 35px;
+}
+
+.lvl-4::before {
+    content: '';
+    position: absolute;
+    top: -35px;
+    left: 12.5%;
+    right: 12.5%;
+    height: 3px;
+    background: #e2e8f0;
+    z-index: -1;
+}
+
+/* Konfigurasi Kartu Divisi */
+.div-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.div-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -35px;
+    left: 50%;
+    width: 3px;
+    height: 35px;
+    background: #e2e8f0;
+    transform: translateX(-50%);
+}
+
+.div-card {
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 240px;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-top-width: 4px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.div-card:hover {
+    transform: translateY(-5px);
+}
+
+.div-header {
+    text-align: center;
+    padding: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    background: rgba(0,0,0,0.02);
+}
+
+[data-theme="dark"] .div-header { background: rgba(255,255,255,0.02); border-bottom-color: rgba(255,255,255,0.05); }
+[data-theme="dark"] .div-card { border-color: rgba(255,255,255,0.05); }
+
+.div-body { padding: 20px; }
+
+.div-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.mt-3 { margin-top: 15px; }
+
+.div-body h4 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--text-main);
+    text-align: center;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 12px;
+}
+
+[data-theme="dark"] .div-body h4 { border-bottom-color: rgba(255,255,255,0.05); }
+
+.div-body ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.div-body li {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.div-body li i { font-size: 0.5rem; }
+
+/* Pewarnaan Elemen Teks & Border Divisi */
+.org-blue-border { border-top-color: #2563eb; } .text-blue { color: #2563eb; }
+.org-orange-border { border-top-color: #f97316; } .text-orange { color: #f97316; }
+.org-emerald-border { border-top-color: #10b981; } .text-emerald { color: #10b981; }
+.org-pink-border { border-top-color: #ec4899; } .text-pink { color: #ec4899; }
+
+/* =========================================================
    6. ATURAN RESPONSIVITAS (MEDIA QUERIES)
    ========================================================= */
 @media (max-width: 768px) {
@@ -930,4 +1162,4 @@ footer {
         font-size: 0.75rem; 
         padding: 0.8rem; 
     }
-}
+}   
