@@ -68,6 +68,8 @@ body {
 
 main { 
     flex: 1; 
+    display: flex; /* Disesuaikan agar elemen di dalamnya dapat diatur skalanya */
+    flex-direction: column;
 }
 
 /* =========================================================
@@ -202,6 +204,7 @@ nav ul a.nav-active {
     align-items: center; 
     justify-content: center; 
     min-height: 500px; 
+    flex: 1; /* Memaksa elemen mengisi sisa ruang kosong layar (Menghapus white gap) */
     overflow: hidden; 
 }
 
@@ -395,33 +398,6 @@ nav ul a.nav-active {
     margin-bottom: 1.5rem; 
     text-align: justify; 
     hyphens: auto; 
-}
-
-/* Gaya Desain untuk Daftar Riwayat (Timeline) */
-.timeline-list { 
-    list-style: none; 
-    padding: 0; 
-    margin-top: 1rem; 
-}
-
-.timeline-list li { 
-    position: relative; 
-    padding-left: 30px; 
-    margin-bottom: 1.5rem; 
-    line-height: 1.6; 
-    text-align: left; 
-}
-
-.timeline-list li::before { 
-    content: '📌'; 
-    position: absolute; 
-    left: 0; 
-    top: 0; 
-    font-size: 1.2rem; 
-}
-
-.timeline-list strong { 
-    color: var(--primary-color); 
 }
 
 .vision-mission { 
@@ -853,50 +829,6 @@ footer {
     .feature-image { 
         height: 250px; 
     }
-    
-    .footer-content { 
-        grid-template-columns: 1fr; 
-        gap: 3rem; 
-        padding: 3rem 1.5rem; 
-    }
-
-    .footer-col, 
-    .footer-links, 
-    .contact-wrapper { 
-        align-items: center !important; 
-    }
-
-    .footer-links-inner, 
-    .contact-inner { 
-        width: 100%; 
-        align-items: center; 
-    }
-
-    .footer-col h3 { 
-        text-align: center; 
-        padding-bottom: 15px; 
-    }
-
-    .footer-col h3::after { 
-        left: 50%; 
-        transform: translateX(-50%); 
-    } 
-
-    .footer-about p { 
-        text-align: center; 
-    }
-
-    .footer-links ul { 
-        align-items: center; 
-    }
-
-    .contact-info p { 
-        justify-content: center; 
-        text-align: center; 
-        flex-direction: column; 
-        align-items: center; 
-        gap: 8px; 
-    }
 
     /* Penyesuaian Dimensi Kontrol Slideshow untuk Perangkat Seluler */
     .slide-btn { 
@@ -920,5 +852,70 @@ footer {
 
     .hero p { 
         font-size: 1.1rem; 
+    }
+    
+    /* Pengaturan Area Footer Khusus Layar Seluler */
+    .footer-content { 
+        grid-template-columns: 1fr; 
+        gap: 1.5rem; 
+        padding: 2rem 1.5rem; 
+    }
+
+    .footer-col, 
+    .footer-links, 
+    .contact-wrapper { 
+        align-items: flex-start !important; 
+    }
+
+    .footer-links-inner, 
+    .contact-inner { 
+        width: 100%; 
+        align-items: flex-start; 
+    }
+
+    .footer-col h3 { 
+        text-align: left; 
+        padding-bottom: 10px; 
+        margin-bottom: 1rem; 
+        font-size: 1.1rem; 
+    }
+
+    .footer-col h3::after { 
+        left: 0; 
+        transform: none; 
+    } 
+
+    .footer-about p { 
+        text-align: justify; 
+        font-size: 0.85rem; 
+        line-height: 1.5; 
+    }
+
+    .footer-links ul { 
+        align-items: flex-start; 
+        gap: 5px; 
+    }
+
+    .footer-links a {
+        font-size: 0.85rem; 
+    }
+
+    .contact-info {
+        gap: 10px; 
+    }
+
+    .contact-info p { 
+        justify-content: flex-start; 
+        text-align: left; 
+        flex-direction: row; 
+        align-items: flex-start; 
+        gap: 10px; 
+        font-size: 0.85rem; 
+        line-height: 1.5; 
+    }
+
+    .footer-bottom {
+        font-size: 0.75rem; 
+        padding: 0.8rem; 
     }
 }
