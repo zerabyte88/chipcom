@@ -138,7 +138,6 @@ nav ul a:hover {
     opacity: 0.8; 
 }
 
-/* Penyelamatan Latar Navigasi Statis (Solusi Teks Tiba-tiba Hilang) */
 nav ul a.nav-active { 
     color: var(--primary-color); 
     background: white; 
@@ -151,7 +150,6 @@ nav ul a.nav-active {
     color: white; 
 }
 
-/* Latar putih statis dihilangkan saat Indikator Animasi siap ambil alih */
 nav ul.has-indicator a.nav-active {
     background: transparent !important;
 }
@@ -523,6 +521,7 @@ nav ul.has-indicator a.nav-active {
     gap: 1rem; 
     color: var(--text-main); 
     transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; 
+    cursor: pointer;
 }
 
 .feature-card h3 { 
@@ -609,20 +608,32 @@ nav ul.has-indicator a.nav-active {
     z-index: 2;
 }
 
-.org-card {
+/* Memastikan Semua Kartu Memiliki Efek Kursor (Termasuk Ketua & Wakil) */
+.org-card, .div-card {
     background: var(--bg-card);
     border-radius: 12px;
     box-shadow: 0 10px 20px rgba(0,0,0,0.08);
     width: 100%;
-    max-width: 240px;
     text-align: center;
     overflow: hidden;
     cursor: pointer; 
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
 }
 
-.org-card:hover {
-    transform: scale(1.05);
+.org-card {
+    max-width: 240px;
+}
+
+.div-card {
+    max-width: 240px;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-top-width: 4px;
+}
+
+.org-card:hover, .div-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.12);
 }
 
 .org-header {
@@ -653,36 +664,45 @@ nav ul.has-indicator a.nav-active {
 .org-emerald { border: 2px solid #10b981; }
 .org-emerald .org-header { background: #10b981; }
 
+/* Algoritma Penempatan Garis Penghubung (Matematis Presisi) */
 .org-line-v {
-    width: 3px;
-    height: 35px;
+    width: 2px;
+    height: 30px;
     background: #e2e8f0;
     margin: 0 auto;
 }
 
-[data-theme="dark"] .org-line-v,
-[data-theme="dark"] .lvl-3::before,
-[data-theme="dark"] .lvl-4::before,
-[data-theme="dark"] .div-wrapper::before {
-    background: #334155; 
-}
-
 .lvl-3 {
-    justify-content: space-between;
-    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Jarak antara Sekretaris dan Bendahara */
     position: relative;
+    padding-top: 15px; /* Ruang untuk garis turun vertikal */
 }
 
+/* Garis Horizontal Level 3 */
 .lvl-3::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 20%;
-    right: 20%;
-    height: 3px;
+    top: 0;
+    /* Lebar garis ditarik tepat dari titik tengah kartu kiri ke kartu kanan */
+    left: calc(50% - 140px); /* 120px (setengah kartu) + 20px (setengah gap) = 140px */
+    width: 280px;
+    height: 2px;
     background: #e2e8f0;
+}
+
+/* Garis Turun Vertikal ke Kartu Sekretaris & Bendahara */
+.lvl-3 .org-card::before {
+    content: '';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    width: 2px;
+    height: 15px;
+    background: #e2e8f0;
+    transform: translateX(-50%);
     z-index: -1;
-    transform: translateY(-50%);
 }
 
 .lvl-4 {
@@ -690,54 +710,40 @@ nav ul.has-indicator a.nav-active {
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     max-width: 1000px;
+    width: 100%;
     position: relative;
-    margin-top: 35px;
+    padding-top: 15px;
 }
 
+/* Garis Horizontal Level 4 (Pusat Kolom 1 ke Pusat Kolom 4) */
 .lvl-4::before {
     content: '';
     position: absolute;
-    top: -35px;
+    top: 0;
     left: 12.5%;
     right: 12.5%;
-    height: 3px;
+    height: 2px;
     background: #e2e8f0;
-    z-index: -1;
 }
 
 .div-wrapper {
     position: relative;
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
+/* Garis Turun Vertikal ke Kartu Divisi */
 .div-wrapper::before {
     content: '';
     position: absolute;
-    top: -35px;
+    top: -15px;
     left: 50%;
-    width: 3px;
-    height: 35px;
+    width: 2px;
+    height: 15px;
     background: #e2e8f0;
     transform: translateX(-50%);
     z-index: -1; 
-}
-
-.div-card {
-    background: var(--bg-card);
-    border-radius: 12px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
-    width: 100%;
-    max-width: 240px;
-    border: 1px solid rgba(0,0,0,0.05);
-    border-top-width: 4px;
-    overflow: hidden;
-    cursor: pointer; 
-    transition: transform 0.3s ease;
-}
-
-.div-card:hover {
-    transform: translateY(-5px);
 }
 
 .div-header {
@@ -803,6 +809,16 @@ nav ul.has-indicator a.nav-active {
 .org-emerald-border { border-top-color: #10b981; } .text-emerald { color: #10b981; }
 .org-pink-border { border-top-color: #ec4899; } .text-pink { color: #ec4899; }
 
+/* Pewarnaan Garis Skema Gelap Secara Menyeluruh */
+[data-theme="dark"] .org-line-v,
+[data-theme="dark"] .lvl-3::before,
+[data-theme="dark"] .lvl-3 .org-card::before,
+[data-theme="dark"] .lvl-4::before,
+[data-theme="dark"] .div-wrapper::before,
+[data-theme="dark"] .org-card::after,
+[data-theme="dark"] .div-card::after {
+    background: #334155; 
+}
 
 /* =========================================================
    6. BAGIAN BAWAH HALAMAN (FOOTER) & UTILITAS EKSTRA
@@ -862,82 +878,18 @@ footer {
     hyphens: auto; 
 }
 
-.footer-links { 
-    align-items: center; 
-} 
+.footer-links { align-items: center; } 
+.footer-links-inner { width: fit-content; display: flex; flex-direction: column; } 
+.footer-links ul { list-style: none; padding: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.footer-links a { color: var(--footer-text-muted); text-decoration: none; transition: color 0.3s ease, transform 0.3s ease; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+.footer-links a::before { content: '›'; color: var(--footer-accent); font-size: 1.3rem; font-weight: bold; line-height: 1; }
+.footer-links a:hover { color: #ffffff; transform: translateX(5px); }
 
-.footer-links-inner { 
-    width: fit-content; 
-    display: flex; 
-    flex-direction: column; 
-} 
-
-.footer-links ul { 
-    list-style: none; 
-    padding: 0; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 10px; 
-}
-
-.footer-links a { 
-    color: var(--footer-text-muted); 
-    text-decoration: none; 
-    transition: color 0.3s ease, transform 0.3s ease; 
-    font-size: 0.95rem; 
-    display: flex; 
-    align-items: center; 
-    gap: 8px; 
-}
-
-.footer-links a::before { 
-    content: '›'; 
-    color: var(--footer-accent); 
-    font-size: 1.3rem; 
-    font-weight: bold; 
-    line-height: 1; 
-}
-
-.footer-links a:hover { 
-    color: #ffffff; 
-    transform: translateX(5px); 
-}
-
-.contact-wrapper { 
-    align-items: flex-end; 
-} 
-
-.contact-inner { 
-    width: 100%; 
-    max-width: 320px; 
-    display: flex; 
-    flex-direction: column; 
-} 
-
-.contact-info { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 15px; 
-}
-
-.contact-info p { 
-    display: flex; 
-    align-items: flex-start; 
-    gap: 15px; 
-    color: var(--footer-text-muted); 
-    margin: 0; 
-    text-align: left; 
-    font-size: 0.95rem; 
-    line-height: 1.6; 
-}
-
-.contact-info i { 
-    color: var(--footer-accent); 
-    font-size: 1.2rem; 
-    margin-top: 3px; 
-    flex-shrink: 0; 
-}
+.contact-wrapper { align-items: flex-end; } 
+.contact-inner { width: 100%; max-width: 320px; display: flex; flex-direction: column; } 
+.contact-info { display: flex; flex-direction: column; gap: 15px; }
+.contact-info p { display: flex; align-items: flex-start; gap: 15px; color: var(--footer-text-muted); margin: 0; text-align: left; font-size: 0.95rem; line-height: 1.6; }
+.contact-info i { color: var(--footer-accent); font-size: 1.2rem; margin-top: 3px; flex-shrink: 0; }
 
 .footer-bottom { 
     border-top: 1px solid var(--footer-border); 
@@ -979,7 +931,6 @@ footer {
     transform: translateY(-5px); 
 }
 
-/* Modul Animasi Bawaan (Mengatasi Bug Flash Objek) */
 @keyframes slideUp { 
     from { opacity: 0; transform: translateY(30px); } 
     to { opacity: 1; transform: translateY(0); } 
@@ -1032,40 +983,25 @@ footer {
         color: white; 
     }
 
-    [data-theme="dark"] nav ul a.nav-active { 
-        background: var(--primary-color); 
-    }
-
+    [data-theme="dark"] nav ul a.nav-active { background: var(--primary-color); }
     nav ul li:last-child a { border-bottom: none; }
-    
     .nav-indicator { display: none; }
     
     .hero { min-height: 400px; padding: 4rem 1rem; }
     .hero h1 { font-size: 2.2rem; }
     .history h2, .vision-mission h2, .structure h2, .features h2, .org-section h2 { font-size: 2rem; }
     
-    .history-content, .vm-grid { 
-        grid-template-columns: 1fr; 
-        gap: 2rem; 
-        text-align: center; 
-    }
-
+    .history-content, .vm-grid { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
     .vm-card p, .vm-card li { text-align: center; }
     .vm-card ul { padding-left: 0; list-style-position: inside; }
     .feature-image { height: 250px; }
 
     .slide-btn { width: 35px; height: 35px; font-size: 1rem; }
-    .prev-btn { left: 5px; } 
-    .next-btn { right: 5px; }
+    .prev-btn { left: 5px; } .next-btn { right: 5px; }
     .hero-content { padding: 0 2.5rem; width: 100%; }
     .hero p { font-size: 1.1rem; }
     
-    .footer-content { 
-        grid-template-columns: 1fr; 
-        gap: 1.5rem; 
-        padding: 2rem 1.5rem; 
-    }
-
+    .footer-content { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.5rem; }
     .footer-col, .footer-links, .contact-wrapper { align-items: flex-start !important; }
     .footer-links-inner, .contact-inner { width: 100%; align-items: flex-start; }
     .footer-col h3 { text-align: left; padding-bottom: 10px; margin-bottom: 1rem; font-size: 1.1rem; }
@@ -1074,57 +1010,57 @@ footer {
     .footer-links ul { align-items: flex-start; gap: 5px; }
     .footer-links a { font-size: 0.85rem; }
     .contact-info { gap: 10px; }
-    
-    .contact-info p { 
-        justify-content: flex-start; 
-        text-align: left; 
-        flex-direction: row; 
-        align-items: flex-start; 
-        gap: 10px; 
-        font-size: 0.85rem; 
-        line-height: 1.5; 
-    }
-
+    .contact-info p { justify-content: flex-start; text-align: left; flex-direction: row; align-items: flex-start; gap: 10px; font-size: 0.85rem; line-height: 1.5; }
     .footer-bottom { font-size: 0.75rem; padding: 0.8rem; }
 
-    /* Responsivitas Bagan Struktur Organisasi */
+    /* =======================================================
+       Restrukturisasi Total Bagan Hierarki Seluler (Mobile)
+       Menghindari Tumpang Tindih Menggunakan Single Vertical Chain
+       ======================================================= */
     .org-container {
         padding: 1.5rem 1rem;
         background: transparent;
         box-shadow: none;
     }
     
-    .desktop-only { display: none; }
+    /* Semua garis hierarki desain desktop dimatikan */
+    .org-line-v, .desktop-only { display: none !important; }
+    .lvl-3::before, .lvl-4::before { display: none !important; }
+    .lvl-3 .org-card::before, .div-wrapper::before { display: none !important; }
 
-    .lvl-3 {
+    .lvl-3, .lvl-4 {
         flex-direction: column;
-        align-items: center;
-        gap: 35px;
+        display: flex;
+        gap: 0;
+        width: 100%;
+        padding-top: 0;
     }
 
-    .lvl-3::before { display: none; }
+    /* Penataan ulang margin agar terbentuk rantai lurus ke bawah */
+    .org-card, .div-wrapper {
+        margin-top: 0 !important;
+        margin-bottom: 30px; 
+    }
 
-    .lvl-3 .org-card { position: relative; }
+    .div-wrapper:last-child {
+        margin-bottom: 0;
+    }
 
-    .lvl-3 .org-card:first-child::after {
+    /* Eksekusi Garis Rantai Tunggal (Single Chain) */
+    .org-card::after, .div-card::after {
         content: '';
         position: absolute;
-        bottom: -35px;
+        bottom: -30px; /* Garis berada tepat di ruang kosong margin */
         left: 50%;
-        width: 3px;
-        height: 35px;
+        width: 2px;
+        height: 30px;
         background: #e2e8f0;
         transform: translateX(-50%);
-        z-index: -1; 
+        z-index: 0; 
     }
 
-    [data-theme="dark"] .lvl-3 .org-card:first-child::after { background: #334155; }
-
-    .lvl-4 {
-        grid-template-columns: 1fr;
-        gap: 35px;
-        margin-top: 0;
+    /* Hilangkan garis pada elemen paling ujung */
+    .div-wrapper:last-child .div-card::after {
+        display: none;
     }
-
-    .lvl-4::before { display: none; }
 }
