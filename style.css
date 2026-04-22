@@ -479,15 +479,57 @@ footer {
     transition: background-color 0.3s ease, border-color 0.3s ease; 
 }
 
+/* TIMPA KODE LAMA DENGAN INI BIAR JADI 4 KOLOM */
 .footer-content { 
     width: 100%; 
     max-width: 1250px; 
     margin: 0 auto; 
     padding: 2.5rem 20px; 
     display: grid; 
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 3rem; 
+    /* Formasi 4 Kolom: 1.2fr | 1fr | 1fr | 1.5fr */
+    grid-template-columns: 1.2fr 1fr 1fr 1.5fr; 
+    gap: 2.5rem; 
     align-items: flex-start; 
+}
+
+/* STYLING TAMBAHAN UNTUK LOGO & LINK KONTAK BARU */
+.footer-logo {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.footer-logo:hover {
+    transform: scale(1.05);
+}
+
+.contact-link {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    color: var(--footer-text-muted);
+    text-decoration: none;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.contact-link:hover {
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+/* JANGAN LUPA UPDATE MEDIA QUERY DI BAWAH SENDIRI BIAR DI HP GAK BERANTAKAN */
+@media (max-width: 768px) {
+    .footer-content { 
+        grid-template-columns: 1fr; /* Jadi 1 kolom bersusun di HP */
+        gap: 2.5rem; 
+    }
+    .footer-map iframe {
+        height: 200px; /* Peta di HP dibikin agak tinggi */
+    }
+    /* Pastikan link kontak juga rapi di HP */
+    .contact-link {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
 }
 
 .footer-col { display: flex; flex-direction: column; }
