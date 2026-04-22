@@ -68,7 +68,7 @@ body {
 
 main { 
     flex: 1; 
-    display: flex; /* Disesuaikan agar elemen di dalamnya dapat diatur skalanya */
+    display: flex; 
     flex-direction: column;
 }
 
@@ -172,6 +172,17 @@ nav ul a.nav-active {
     transform: scale(1.1); 
 }
 
+/* Elemen dan Transisi Animasi Ikon Mode Gelap/Terang */
+#theme-toggle i {
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.icon-transition {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.5);
+}
+
 .hamburger { 
     background: none; 
     border: none; 
@@ -204,7 +215,7 @@ nav ul a.nav-active {
     align-items: center; 
     justify-content: center; 
     min-height: 500px; 
-    flex: 1; /* Memaksa elemen mengisi sisa ruang kosong layar (Menghapus white gap) */
+    flex: 1; 
     overflow: hidden; 
 }
 
@@ -773,7 +784,8 @@ footer {
         opacity: 0; 
         visibility: hidden; 
         transform: translateY(-10px); 
-        transition: opacity 0.3s ease, transform 0.3s ease; 
+        /* Penambahan kontrol visibilitas untuk memastikan animasi penutupan berfungsi */
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease; 
         box-shadow: 0 4px 10px rgba(0,0,0,0.2); 
     }
 

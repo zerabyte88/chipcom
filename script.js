@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================================
-    // 2. MANAJEMEN TEMA (GELAP/TERANG)
+    // 2. MANAJEMEN TEMA (GELAP/TERANG) DAN ANIMASI IKON
     // =========================================================
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn.querySelector('i');
@@ -37,23 +37,32 @@ document.addEventListener('DOMContentLoaded', () => {
         themeIcon.classList.replace('fa-moon', 'fa-sun');
     }
 
-    // Menangani logika pertukaran atribut tema pada elemen root
+    // Menangani logika pertukaran atribut tema beserta animasinya
     themeToggleBtn.addEventListener('click', () => {
         const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
         const newTheme = isDark ? 'light' : 'dark';
         
-        if (newTheme === 'dark') {
-            document.documentElement.setAttribute('data-theme', 'dark');
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-        } else {
-            document.documentElement.removeAttribute('data-theme');
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-        }
+        // Memicu efek transisi CSS (rotasi dan pemudaran)
+        themeIcon.classList.add('icon-transition');
 
-        // Menyimpan preferensi tema secara asinkron untuk menjaga performa render
+        // Menunda pergantian ikon hingga pertengahan durasi animasi (150ms)
         setTimeout(() => {
-            localStorage.setItem('theme', newTheme);
-        }, 10);
+            if (newTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            }
+
+            // Menghapus kelas transisi agar ikon kembali membesar dan berputar
+            themeIcon.classList.remove('icon-transition');
+
+            // Menyimpan preferensi tema secara asinkron
+            setTimeout(() => {
+                localStorage.setItem('theme', newTheme);
+            }, 10);
+        }, 150); 
     });
 
     // =========================================================
@@ -135,7 +144,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // =========================================================
 window.addEventListener('load', () => {
     
-    // Mengoptimalkan pemuatan aset visual beresolusi tinggi (Background Images)
+    // Mengoptimalkan pemuatan aset visual beresolusi tinggi
     const lazySlides = document.querySelectorAll('.slide[data-bg]');
     lazySlides.forEach(slide => {
         slide.style.backgroundImage = `url('${slide.getAttribute('data-bg')}')`;
