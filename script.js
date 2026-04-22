@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
     // =========================================================
-    // 1. MANAJEMEN NAVIGASI RESPONSIF SELULER
+    // 1. MANAJEMEN NAVIGASI HAMBURGER SELULER
     // =========================================================
     const hamburger = document.getElementById('hamburger');
     const menu = document.getElementById('menu');
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================
-    // 2. MANAJEMEN TEMA (GELAP/TERANG) DAN ANIMASI IKON
+    // 2. MANAJEMEN TEMA & ANIMASI ROTASI BULAN/MATAHARI
     // =========================================================
     const themeToggleBtn = document.getElementById('theme-toggle');
     const themeIcon = themeToggleBtn ? themeToggleBtn.querySelector('i') : null;
@@ -58,13 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================
-    // 3. EFEK PERGESERAN (SLIDING) PEMILIHAN KATEGORI DESKTOP
+    // 3. INDIKATOR NAVIGASI MENU (SLIDING EFFECT)
     // =========================================================
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('nav ul a');
     const navUl = document.querySelector('nav ul');
     
-    // Tetapkan status aktif statis saat halaman dimuat
     navLinks.forEach(link => {
         if (link.getAttribute('href') === currentPath || (currentPath === '/' && link.getAttribute('href') === '/beranda')) {
             link.classList.add('nav-active');
@@ -87,27 +86,24 @@ document.addEventListener('DOMContentLoaded', () => {
             indicator.style.top = `${link.offsetTop}px`;
         };
 
-        const activeLink = navUl.querySelector('a.nav-active');
-        if (activeLink) {
-            updateIndicator(activeLink, false);
-            // Penyesuaian presisi setelah font dimuat
-            window.addEventListener('load', () => updateIndicator(navUl.querySelector('a.nav-active'), false));
-        }
+        window.addEventListener('load', () => {
+            const activeLink = navUl.querySelector('a.nav-active');
+            if (activeLink) updateIndicator(activeLink, false);
+        });
 
-        // Tahan navigasi halaman untuk mengeksekusi animasi geser terlebih dahulu
         navLinks.forEach(link => {
             link.addEventListener('click', (e) => {
+                // Menghentikan aksi default untuk memutar animasi terlebih dahulu
                 e.preventDefault(); 
                 
                 updateIndicator(link, true);
-                
                 navLinks.forEach(l => l.classList.remove('nav-active'));
                 link.classList.add('nav-active');
 
-                // Lanjutkan perpindahan halaman setelah animasi geser selesai (350ms)
+                // Jeda 250ms agar animasi slide terlihat sebelum pindah halaman
                 setTimeout(() => {
                     window.location.href = link.getAttribute('href');
-                }, 350);
+                }, 250);
             });
         });
 
@@ -120,51 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // =========================================================
-    // 4. LOGIKA SLIDESHOW DAN NAVIGASI MANUAL
-    // =========================================================
-    const slides = document.querySelectorAll('.slide');
-    const prevBtn = document.querySelector('.prev-btn');
-    const nextBtn = document.querySelector('.next-btn');
-    const dots = document.querySelectorAll('.dot');
-    const heroSection = document.querySelector('.hero');
-    
-    let currentSlide = 0;
-    let slideInterval;
-
-    if (slides.length > 1) {
-        const showSlide = (index) => {
-            slides.forEach(s => s.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
-            currentSlide = (index + slides.length) % slides.length; 
-            slides[currentSlide].classList.add('active');
-            if(dots.length) dots[currentSlide].classList.add('active');
-        };
-
-        const nextSlide = () => showSlide(currentSlide + 1);
-        const prevSlide = () => showSlide(currentSlide - 1);
-        const startSlide = () => { slideInterval = setInterval(nextSlide, 5000); };
-        const stopSlide = () => { clearInterval(slideInterval); };
-
-        if(nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); stopSlide(); startSlide(); });
-        if(prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); stopSlide(); startSlide(); });
-        
-        dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                showSlide(parseInt(e.target.getAttribute('data-index')));
-                stopSlide(); startSlide(); 
-            });
-        });
-
-        if(heroSection) {
-            heroSection.addEventListener('mouseenter', stopSlide);
-            heroSection.addEventListener('mouseleave', startSlide);
-        }
-
-        startSlide();
-    }
-
-    // =========================================================
-    // 5. KENDALI TOMBOL 'SCROLL TO TOP'
+    // 4. KENDALI TOMBOL 'SCROLL TO TOP'
     // =========================================================
     const scrollTopBtn = document.getElementById('scrollToTopBtn');
 
@@ -181,13 +133,4 @@ document.addEventListener('DOMContentLoaded', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     }
-});
-
-// Pemuatan Aset Latar Belakang Ditetapkan Terakhir
-window.addEventListener('load', () => {
-    const lazySlides = document.querySelectorAll('.slide[data-bg]');
-    lazySlides.forEach(slide => {
-        slide.style.backgroundImage = `url('${slide.getAttribute('data-bg')}')`;
-        slide.removeAttribute('data-bg');
-    });
 });

@@ -14,9 +14,12 @@
 
     <link rel="icon" href="/images/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Pembaruan Font ke Plus Jakarta Sans untuk tampilan ultra-modern -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="/style.css">
 
     <script>
@@ -52,56 +55,67 @@
     </header>
 
     <main>
-        <section class="org-section fade-in-up">
-            <div class="history-container">
-                <h2>Struktur Organisasi</h2>
-                <p class="org-subtitle">Sinergi antar divisi yang kuat untuk menciptakan ekosistem organisasi yang produktif dan profesional.</p>
+        <section class="org-section">
+            <div class="org-title-wrapper">
+                <h2 class="section-title">Struktur Organisasi</h2>
+                <p class="section-subtitle">Sinergi antar divisi yang kuat untuk menciptakan ekosistem<br>organisasi yang produktif dan profesional.</p>
+            </div>
+            
+            <div class="org-tree-container">
                 
-                <div class="org-container">
-                    
-                    <div class="org-level">
-                        <div class="org-card org-blue fade-in-up">
-                            <div class="org-header">Ketua</div>
-                            <div class="org-body">
-                                <h3>Ridhan Maulidi</h3>
+                <!-- Level 1: Ketua -->
+                <div class="org-node">
+                    <div class="org-card border-blue">
+                        <div class="org-header bg-blue">Ketua</div>
+                        <div class="org-body">Ridhan Maulidi</div>
+                    </div>
+                </div>
+
+                <div class="org-vline"></div>
+
+                <!-- Level 2: Wakil Ketua -->
+                <div class="org-node">
+                    <div class="org-card border-sky">
+                        <div class="org-header bg-sky">Wakil Ketua</div>
+                        <div class="org-body">Khairil</div>
+                    </div>
+                </div>
+
+                <div class="org-vline"></div>
+
+                <!-- Level 3: Sekretaris & Bendahara -->
+                <div class="org-layer org-layer-3">
+                    <div class="org-hline org-hline-3"></div>
+                    <div class="org-backbone"></div>
+                    <div class="org-nodes org-nodes-3">
+                        <div class="org-node">
+                            <div class="org-vline-drop"></div>
+                            <div class="org-card border-orange">
+                                <div class="org-header bg-orange">Sekretaris</div>
+                                <div class="org-body">Cita Citata</div>
+                            </div>
+                        </div>
+                        <div class="org-node">
+                            <div class="org-vline-drop"></div>
+                            <div class="org-card border-emerald">
+                                <div class="org-header bg-emerald">Bendahara</div>
+                                <div class="org-body">Febryan Putra</div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="org-line-v"></div>
+                <div class="org-vline"></div>
 
-                    <div class="org-level">
-                        <div class="org-card org-sky fade-in-up">
-                            <div class="org-header">Wakil Ketua</div>
-                            <div class="org-body">
-                                <h3>Khairil</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="org-line-v"></div>
-
-                    <div class="org-level lvl-3 fade-in-up">
-                        <div class="org-card org-orange">
-                            <div class="org-header">Sekretaris</div>
-                            <div class="org-body">
-                                <h3>Cita Citata</h3>
-                            </div>
-                        </div>
-                        <div class="org-card org-emerald">
-                            <div class="org-header">Bendahara</div>
-                            <div class="org-body">
-                                <h3>Febryan Putra</h3>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="org-line-v desktop-only"></div>
-
-                    <div class="org-level lvl-4 fade-in-up">
+                <!-- Level 4: Divisi -->
+                <div class="org-layer org-layer-4">
+                    <div class="org-hline org-hline-4"></div>
+                    <div class="org-nodes org-nodes-4">
                         
-                        <div class="div-wrapper">
-                            <div class="div-card org-blue-border">
+                        <!-- Humas -->
+                        <div class="org-node">
+                            <div class="org-vline-drop"></div>
+                            <div class="div-card border-top-blue">
                                 <div class="div-header text-blue">Divisi Humas</div>
                                 <div class="div-body">
                                     <span class="div-label">Ketua Divisi</span>
@@ -116,8 +130,10 @@
                             </div>
                         </div>
 
-                        <div class="div-wrapper">
-                            <div class="div-card org-orange-border">
+                        <!-- Pelatihan -->
+                        <div class="org-node">
+                            <div class="org-vline-drop"></div>
+                            <div class="div-card border-top-orange">
                                 <div class="div-header text-orange">Divisi Pelatihan</div>
                                 <div class="div-body">
                                     <span class="div-label">Ketua Divisi</span>
@@ -132,8 +148,10 @@
                             </div>
                         </div>
 
-                        <div class="div-wrapper">
-                            <div class="div-card org-emerald-border">
+                        <!-- Perlengkapan -->
+                        <div class="org-node">
+                            <div class="org-vline-drop"></div>
+                            <div class="div-card border-top-emerald">
                                 <div class="div-header text-emerald">Divisi Perlengkapan</div>
                                 <div class="div-body">
                                     <span class="div-label">Ketua Divisi</span>
@@ -148,8 +166,10 @@
                             </div>
                         </div>
 
-                        <div class="div-wrapper">
-                            <div class="div-card org-pink-border">
+                        <!-- Dok & Kreatif -->
+                        <div class="org-node">
+                            <div class="org-vline-drop"></div>
+                            <div class="div-card border-top-pink">
                                 <div class="div-header text-pink">Divisi Dok. & Kreatif</div>
                                 <div class="div-body">
                                     <span class="div-label">Ketua Divisi</span>
@@ -166,11 +186,13 @@
 
                     </div>
                 </div>
+
             </div>
         </section>
     </main>
 
     <footer id="contact">
+        <!-- Kode Footer standar Anda -->
         <div class="footer-content">
             <div class="footer-col footer-about">
                 <h3>Tentang Chip.Com</h3>
