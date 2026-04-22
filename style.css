@@ -314,7 +314,7 @@ nav ul.has-indicator a.nav-active {
     background: var(--bg-section); 
     padding: 4rem 1.5rem; 
     transition: background-color 0.3s ease; 
-    width: 100%; /* Mencegah penyusutan di dalam Flexbox */
+    width: 100%; 
 }
 
 .history-container, 
@@ -400,19 +400,17 @@ nav ul.has-indicator a.nav-active {
 .vm-card ul { padding-left: 1.5rem; margin-top: 1rem; }
 .vm-card li { margin-bottom: 0.5rem; }
 
-/* === PERBAIKAN BUG HALAMAN DOKUMENTASI === */
 .features { 
     max-width: 1200px; 
     margin: 4rem auto; 
     padding: 0 1.5rem; 
     background: var(--bg-body); 
     transition: background-color 0.3s ease; 
-    width: 100%; /* KUNCI PERBAIKAN: Mencegah kontainer mengecil */
+    width: 100%; 
 }
 
 .features-grid { 
     display: grid; 
-    /* Memaksa 3 kolom kaku untuk tampilan desktop agar tidak menumpuk */
     grid-template-columns: repeat(3, 1fr); 
     gap: 2rem; 
     width: 100%;
@@ -468,8 +466,9 @@ nav ul.has-indicator a.nav-active {
     box-shadow: 0 15px 30px rgba(255, 255, 255, 0.05); 
 }
 
+
 /* =========================================================
-   5. BAGIAN BAWAH HALAMAN (FOOTER)
+   5. BAGIAN BAWAH HALAMAN (FOOTER) - VERSI REVISI ANTI GENCET
    ========================================================= */
 footer { 
     background: var(--footer-bg); 
@@ -479,23 +478,48 @@ footer {
     transition: background-color 0.3s ease, border-color 0.3s ease; 
 }
 
-/* KITA UBAH JADI 5 KOLOM BIAR LOGO PUNYA TEMPAT SENDIRI DI KIRI */
 .footer-content { 
     width: 100%; 
-    /* Lebarin dikit kontainernya biar 5 kolom gak sempit */
-    max-width: 1350px; 
+    max-width: 1250px; 
     margin: 0 auto; 
     padding: 2.5rem 20px; 
     display: grid; 
-    /* Formasi 5 Kolom: Ukuran Logo | Tentang | Tautan | Kontak | Map */
-    grid-template-columns: 130px 1.5fr 1fr 1.2fr 1.5fr; 
-    gap: 2.5rem; 
+    
+    /* PENTING! Kita pake 4 Kolom. 
+       Kolom pertama (2fr) dibikin paling gede biar logo & teks bisa jejeran! */
+    grid-template-columns: 2fr 1fr 1fr 1.5fr; 
+    gap: 3rem; 
     align-items: flex-start; 
 }
 
 .footer-col { display: flex; flex-direction: column; }
 
-/* STYLING BUAT JUDUL TIAP KOLOM (Tentang, Tautan, dll) */
+/* KUNCI RAHASIA: Bikin kontainer flex buat nyatuin logo & teks menyamping */
+.footer-about-container {
+    display: flex;
+    flex-direction: row; /* Berjejer ke samping */
+    gap: 20px; /* Jarak antara logo dan teks */
+    align-items: flex-start;
+}
+
+/* Setingan Logo Biar Gak Rusak */
+.footer-logo-img {
+    width: 110px; /* Ukuran pas, gak kegedean */
+    flex-shrink: 0; /* Biar logo gak mengecil gara2 kegencet teks sebelahnya */
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+.footer-logo-img:hover {
+    transform: scale(1.08); /* Efek goyang dikit pas di-hover */
+}
+
+/* Setingan Teks "Tentang Chip.com" */
+.footer-about-text {
+    display: flex;
+    flex-direction: column;
+}
+
 .footer-col h3 { 
     color: var(--footer-accent); 
     font-size: 1.1rem; 
@@ -508,27 +532,21 @@ footer {
     text-align: left; 
 }
 
-/* Garis kecil di bawah judul kolom */
 .footer-col h3::after { 
     content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 3px; 
     background-color: var(--footer-accent); border-radius: 5px; 
 }
 
-/* STYLING KHUSUS GAMBAR LOGO FOOTER */
-.footer-logo-img {
-    width: 100%; /* Lebarnya ngikutin kolom pertama (130px) */
-    max-width: 130px;
-    transition: transform 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)); /* Kasih bayangan dikit biar kece */
-}
-.footer-logo-img:hover {
-    transform: scale(1.08); /* Efek membesar pas kursor diarahkan */
+.footer-about-text p { 
+    color: var(--footer-text-muted); 
+    font-size: 0.95rem; 
+    line-height: 1.8; 
+    text-align: justify; 
+    hyphens: auto; 
+    margin: 0;
 }
 
-/* Teks paragraf Tentang Chip.com */
-.footer-about p { color: var(--footer-text-muted); font-size: 0.95rem; line-height: 1.8; text-align: justify; hyphens: auto; }
-
-/* Menu Tautan Cepat */
+/* Styling Menu Tautan Cepat */
 .footer-links { align-items: flex-start; } 
 .footer-links-inner { width: fit-content; display: flex; flex-direction: column; } 
 .footer-links ul { list-style: none; padding: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -536,14 +554,13 @@ footer {
 .footer-links a::before { content: '›'; color: var(--footer-accent); font-size: 1.3rem; font-weight: bold; line-height: 1; }
 .footer-links a:hover { color: #ffffff; transform: translateX(5px); }
 
-/* Kontak Kami & Link Aktif IG/WA */
+/* Styling Kontak IG/WA */
 .contact-wrapper { align-items: flex-start; } 
 .contact-inner { width: 100%; display: flex; flex-direction: column; } 
 .contact-info { display: flex; flex-direction: column; gap: 15px; }
 .contact-info p { display: flex; align-items: flex-start; gap: 15px; color: var(--footer-text-muted); margin: 0; text-align: left; font-size: 0.95rem; line-height: 1.6; }
 .contact-info i { color: var(--footer-accent); font-size: 1.2rem; margin-top: 3px; flex-shrink: 0; }
 
-/* Efek Hover buat Link Instagram dan WA */
 .contact-link {
     display: flex;
     align-items: flex-start;
@@ -553,10 +570,9 @@ footer {
     transition: color 0.3s ease, transform 0.3s ease;
 }
 .contact-link:hover {
-    color: #ffffff; /* Berubah putih pas disorot */
-    transform: translateX(5px); /* Geser kanan dikit */
+    color: #ffffff; 
+    transform: translateX(5px); 
 }
-/* Menghindari iconnya dobel karena di HTML udah ada icon di dalam link */
 .contact-link i { margin-top: 3px; flex-shrink: 0; }
 
 /* Copyright Paling Bawah */
@@ -565,7 +581,7 @@ footer {
     font-size: 0.85rem; color: var(--footer-text-muted); background: var(--footer-bottom-bg); 
 }
 
-/* Tombol Scroll to Top */
+/* Tombol Scroll to Top Animasi */
 #scrollToTopBtn { 
     position: fixed; bottom: 30px; right: 30px; background: var(--primary-color); color: white; 
     width: 45px; height: 45px; border-radius: 50%; border: none; font-size: 1.2rem; cursor: pointer; 
@@ -575,24 +591,29 @@ footer {
 #scrollToTopBtn.show { opacity: 1; visibility: visible; transform: translateY(0); }
 #scrollToTopBtn:hover { background: #0052cc; transform: translateY(-5px); }
 
+@keyframes slideUp { 
+    from { opacity: 0; transform: translateY(30px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+.fade-in-up { opacity: 0; transform: translateY(30px); }
+.fade-in-up.animate { animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
+
 
 /* =========================================================
-   6. ATURAN RESPONSIVITAS (MEDIA QUERIES) BIAR AMAN DI HP
+   6. ATURAN RESPONSIVITAS (MEDIA QUERIES) BIAR HP & TABLET AMAN
    ========================================================= */
 @media (max-width: 992px) {
-    /* Kalau layarnya seukuran tablet, ubah formasi gridnya */
+    /* Setingan Tablet: Kita jadiin 2 Kolom ke bawah */
     .footer-content { 
-        grid-template-columns: 1fr 1fr; /* Jadi 2 kolom */
+        grid-template-columns: 1fr 1fr; 
     }
-    .footer-logo-wrapper {
-        grid-column: span 2; /* Logonya dibikin nengahin 2 kolom */
-        align-items: center;
-        margin-bottom: -1rem;
+    .footer-about-container {
+        grid-column: span 2; /* Kolom pertama manjangin biar ngelebar full 2 kolom */
     }
 }
 
 @media (max-width: 768px) {
-    /* Setingan untuk tampilan Layar HP Kecil (Udah ada di kode kamu sebelumnya, aku sesuaikan) */
+    /* Setingan Mobile Nav & Lainnya (Bawaan Kode Kamu) */
     nav { padding: 0 1.5rem; }
     .logo, .nav-actions { flex: initial; }
     .hamburger { display: block; }
@@ -627,20 +648,27 @@ footer {
     .hero-content { padding: 0 2.5rem; width: 100%; }
     .hero p { font-size: 1.1rem; }
     
-    /* SETINGAN KHUSUS FOOTER DI HP BIAR JADI 1 KOLOM KE BAWAH */
+    /* Setingan Footer khusus Layar HP */
     .footer-content { grid-template-columns: 1fr; gap: 2rem; padding: 2rem 1.5rem; }
-    .footer-logo-wrapper { grid-column: auto; align-items: flex-start; margin-bottom: 0; }
-    .footer-logo-img { max-width: 100px; } /* Logo dikecilin dikit di HP */
+    
+    /* Biar di HP gak sempit, Logo dipindah ke atas teks lagi, tapi di tengah */
+    .footer-about-container {
+        flex-direction: column;
+        align-items: flex-start;
+        grid-column: auto;
+    }
+    .footer-logo-img { max-width: 100px; margin-bottom: -10px; }
+    
     .footer-col, .footer-links, .contact-wrapper { align-items: flex-start !important; }
     .footer-links-inner, .contact-inner { width: 100%; align-items: flex-start; }
     .footer-col h3 { text-align: left; padding-bottom: 10px; margin-bottom: 1rem; font-size: 1.1rem; }
     .footer-col h3::after { left: 0; transform: none; } 
-    .footer-about p { text-align: justify; font-size: 0.85rem; line-height: 1.5; }
+    .footer-about-text p { text-align: justify; font-size: 0.85rem; line-height: 1.5; }
     .footer-links ul { align-items: flex-start; gap: 5px; }
     .footer-links a { font-size: 0.85rem; }
     .contact-info { gap: 10px; }
     .contact-link { font-size: 0.85rem; line-height: 1.5; }
     .contact-info p { justify-content: flex-start; text-align: left; flex-direction: row; align-items: flex-start; gap: 10px; font-size: 0.85rem; line-height: 1.5; }
-    .footer-map iframe { height: 200px; } /* Peta dikasih tinggi 200px pas di HP */
+    .footer-map iframe { height: 200px; }
     .footer-bottom { font-size: 0.75rem; padding: 0.8rem; }
 }
