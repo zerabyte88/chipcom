@@ -670,16 +670,3 @@ footer {
     .footer-map iframe { height: 200px; }
     .footer-bottom { font-size: 0.75rem; padding: 0.8rem; }
 }
-
-#dvd-ad {
-  position: fixed;
-  width: 250px;
-  height: 150px;
-  background-color: #00FFFF; /* Warna cyan cerah biar makin mencolok */
-  border: 2px solid white;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-  z-index: 9999; /* Biar selalu di paling depan */
-  top: 0;
-  left: 0;
-}
