@@ -198,3 +198,39 @@ window.addEventListener('load', () => {
         slide.removeAttribute('data-bg');
     });
 });
+
+const ad = document.getElementById('dvd-ad');
+let x = 0; // Posisi awal horizontal
+let y = 0; // Posisi awal vertikal
+let speedX = 2; // Kecepatan gerak horizontal (makin gede makin ngebut!)
+let speedY = 2; // Kecepatan gerak vertikal
+
+function gerakJalan() {
+  const rect = ad.getBoundingClientRect();
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+
+  // Cek kalau nabrak kanan atau kiri
+  if (rect.right >= screenWidth || rect.left <= 0) {
+    speedX = -speedX; // Balik arah!
+  }
+  
+  // Cek kalau nabrak bawah atau atas
+  if (rect.bottom >= screenHeight || rect.top <= 0) {
+    speedY = -speedY; // Balik arah!
+  }
+
+  // Tambahin posisi dengan kecepatan
+  x += speedX;
+  y += speedY;
+
+  // Terapin posisi baru ke elemen CSS
+  ad.style.left = x + 'px';
+  ad.style.top = y + 'px';
+
+  // Looping terus-menerus
+  requestAnimationFrame(gerakJalan);
+}
+
+// Mulai animasinya
+gerakJalan();
