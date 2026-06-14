@@ -1,0 +1,3 @@
+/beranda               /                  301
+/category/:path        /:path             301
+/*                     /index.html        200
