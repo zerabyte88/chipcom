@@ -22,84 +22,84 @@
 
 ---
 
-## 📖 Table of Contents
+## Table of Contents
 
-- [About The Project](#-about-the-project)
-- [Key Features](#-key-features)
-- [Site Pages & Architecture](#-site-pages--architecture)
-- [Tech Stack](#-tech-stack)
-- [Directory Structure](#-directory-structure)
-- [Getting Started](#-getting-started)
+- [About The Project](#about-the-project)
+- [Key Features](#key-features)
+- [Site Pages & Architecture](#site-pages--architecture)
+- [Tech Stack](#tech-stack)
+- [Directory Structure](#directory-structure)
+- [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Running Locally](#running-locally)
-- [Deployment & Routing](#-deployment--routing)
-- [Roadmap & Version History](#-roadmap--version-history)
-- [Contact & Organization](#-contact--organization)
-- [License](#-license)
+- [Deployment & Routing](#deployment--routing)
+- [Roadmap & Version History](#roadmap--version-history)
+- [Contact & Organization](#contact--organization)
+- [License](#license)
 
 ---
 
-## 📌 About The Project
+## About The Project
 
-**UKM Chip.Com** is a premier Student Activity Unit (*Unit Kegiatan Mahasiswa*) at **STMIK Indonesia Banjarmasin**, dedicated to fostering student excellence in Information Technology (software, hardware, and creative digital skills) along with strong organizational leadership and teamwork.
+**UKM Chip.Com** is a Student Activity Unit (*Unit Kegiatan Mahasiswa*) at **STMIK Indonesia Banjarmasin**, focused on developing student competencies in Information Technology (software development, hardware systems, and digital creative skills) alongside organizational leadership.
 
-This repository hosts the official front-facing website of UKM Chip.Com. It serves as an informative hub for prospective members, current students, campus faculty, and external partners to explore the organization's history, vision and mission, leadership hierarchy, and event documentation.
-
----
-
-## ✨ Key Features
-
-- **🌙 Dual-Theme Mode (Light & Dark)**:
-  - Supports dynamic toggling between light and dark visual themes.
-  - State persisted locally via `localStorage`.
-  - Built-in FOUC (*Flash of Unstyled Content*) prevention logic executed prior to body render.
-  - Fluid rotation and icon transition animations between sun and moon states.
-
-- **🖼️ Interactive Hero Slideshow**:
-  - Automated timed transition with pause-on-hover capability.
-  - Manual navigation via previous/next chevron buttons and clickable dot indicators.
-  - Performance optimization using lazy background image hydration (`data-bg`).
-
-- **🧭 Dynamic Navigation System**:
-  - Sliding pill indicator for desktop viewports that tracks and highlights the active route with smooth cubic-bezier transitions.
-  - Collapsible slide-out mobile drawer menu triggered by a hamburger button with click-outside auto-dismissal.
-
-- **⚡ Performance & Smooth Motion**:
-  - Scroll-triggered reveal animations powered by the `IntersectionObserver` API (`.fade-in-up`).
-  - Floating smooth-scroll "Back to Top" button appearing dynamically when scrolling past a threshold.
-  - Preloaded and WebP-optimized imagery for fast loading and reduced bandwidth consumption.
-
-- **🔍 SEO & Social Media Optimization**:
-  - Open Graph (OG) meta tags configured on all main pages for rich previews on platforms such as WhatsApp, LinkedIn, Discord, and Twitter/X.
-  - Semantic HTML5 structure adhering to modern web accessibility best practices.
+This repository contains the source code for the official website of UKM Chip.Com. The website serves as a public information portal for prospective members, students, faculty, and institutional partners to access organizational information, vision and mission statements, management structure, and event documentation.
 
 ---
 
-## 📄 Site Pages & Architecture
+## Key Features
+
+- **Dual-Theme Mode (Light & Dark)**
+  - Dynamic toggling between light and dark color schemes.
+  - Theme preference persisted locally in `localStorage`.
+  - Inline script execution prior to body rendering to eliminate Flash of Unstyled Content (FOUC).
+  - Smooth icon transition and rotation effects between modes.
+
+- **Interactive Hero Slideshow**
+  - Automated interval transitions with pause-on-hover functionality.
+  - Manual navigation via chevron controls and indicator dots.
+  - Asynchronous background image loading via `data-bg` attributes.
+
+- **Dynamic Navigation System**
+  - Desktop sliding pill indicator with cubic-bezier easing to track active links.
+  - Mobile slide-out drawer menu with touch-friendly navigation and backdrop dismiss.
+
+- **Performance & Motion Optimization**
+  - Viewport-based scroll reveal animations using the `IntersectionObserver` API.
+  - Floating back-to-top button with smooth scrolling behavior.
+  - WebP asset formats and optimized imagery for minimal payload size.
+
+- **SEO & Metadata Standards**
+  - Complete Open Graph (OG) tags for link previews across messaging and social platforms.
+  - Semantic HTML5 document structure compliant with accessibility guidelines.
+
+---
+
+## Site Pages & Architecture
 
 | Route | File | Description |
 | :--- | :--- | :--- |
-| `/` or `/beranda` | [`index.html`](file:///d:/Code/Personal%20Project/chipcom/index.html) | Landing page featuring the hero carousel, call-to-action to join, and campus location map. |
-| `/category/sejarah` | [`sejarah.html`](file:///d:/Code/Personal%20Project/chipcom/sejarah.html) | Historical journey from DosCom (1999) to the rebirth and formalization of UKM Chip.Com. |
-| `/category/visimisi` | [`visimisi.html`](file:///d:/Code/Personal%20Project/chipcom/visimisi.html) | Core vision and strategic missions in IT literacy, unity, and community service. |
-| `/category/struktur` | [`struktur.html`](file:///d:/Code/Personal%20Project/chipcom/struktur.html) | Organizational hierarchy, divisional duties (Education, PR, Logistics, Core Executives). |
-| `/category/dokumentasi` | [`dokumentasi.html`](file:///d:/Code/Personal%20Project/chipcom/dokumentasi.html) | Activity gallery (Basic Training / PEDAS, Workshops, Dies Natalis) with social links. |
-| Custom 404 | [`404.html`](file:///d:/Code/Personal%20Project/chipcom/404.html) | Custom not-found error page with quick navigation back to home. |
+| `/` or `/beranda` | [index.html](file:///d:/Personal%20Project/chipcom/index.html) | Landing page featuring the hero carousel, call-to-action to join, and campus location map. |
+| `/category/sejarah` | [sejarah.html](file:///d:/Personal%20Project/chipcom/sejarah.html) | Historical journey from DosCom (1999) to the formalization of UKM Chip.Com. |
+| `/category/visimisi` | [visimisi.html](file:///d:/Personal%20Project/chipcom/visimisi.html) | Core vision and strategic missions in IT literacy, unity, and community service. |
+| `/category/struktur` | [struktur.html](file:///d:/Personal%20Project/chipcom/struktur.html) | Organizational hierarchy and divisional roles (Education, PR, Logistics, Core Executives). |
+| `/category/dokumentasi` | [dokumentasi.html](file:///d:/Personal%20Project/chipcom/dokumentasi.html) | Activity gallery (Basic Training / PEDAS, Workshops, Dies Natalis) with social links. |
+| Custom 404 | [404.html](file:///d:/Personal%20Project/chipcom/404.html) | Custom not-found error page with navigation back to the home page. |
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Markup**: [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML) (Semantic & accessible)
-- **Styling**: [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS) (CSS Custom Properties / Variables, Flexbox, Grid, Keyframe Animations)
-- **Scripting**: Vanilla [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (ES6+, DOM Manipulation, Intersection Observer API)
+- **Styling**: [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS) (CSS Custom Properties, Flexbox, CSS Grid, Keyframe Animations)
+- **Scripting**: Vanilla [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) (ES6+, DOM API, Intersection Observer API)
 - **Typography**: [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) via Google Fonts
 - **Iconography**: [Font Awesome 6](https://fontawesome.com/)
 - **Hosting & Deployment**: [Vercel](https://vercel.com/)
 
 ---
 
-## 📂 Directory Structure
+## Directory Structure
 
 ```text
 chipcom/
@@ -120,38 +120,38 @@ chipcom/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
-Because this project is built entirely on native web standards (HTML/CSS/JS), **no build step, bundler, or package installation is required**.
+Because this project is built entirely on native web standards (HTML5, CSS3, JavaScript), **no build step, package manager, or bundler is required**.
 
 ### Running Locally
 
-You can run and preview the website locally using any static web server:
+You can preview the website locally using any static web server:
 
 #### Option 1: VS Code Live Server
-1. Open this repository folder in Visual Studio Code.
-2. Install the **Live Server** extension (by Ritwick Dey).
-3. Right-click on [`index.html`](file:///d:/Code/Personal%20Project/chipcom/index.html) and select **"Open with Live Server"**.
+1. Open this project directory in Visual Studio Code.
+2. Install the **Live Server** extension.
+3. Right-click on [index.html](file:///d:/Personal%20Project/chipcom/index.html) and select **Open with Live Server**.
 
 #### Option 2: Python HTTP Server
 ```bash
 # Python 3.x
 python -m http.server 8000
 ```
-Then visit `http://localhost:8000` in your web browser.
+Open `http://localhost:8000` in your web browser.
 
-#### Option 3: Node.js `serve`
+#### Option 3: Node.js Serve
 ```bash
 npx serve .
 ```
 
 ---
 
-## 🌐 Deployment & Routing
+## Deployment & Routing
 
-The project is preconfigured for deployment on **Vercel** via [`vercel.json`](file:///d:/Code/Personal%20Project/chipcom/vercel.json):
+The project is preconfigured for deployment on **Vercel** via [vercel.json](file:///d:/Personal%20Project/chipcom/vercel.json):
 
 ```json
 {
@@ -170,12 +170,12 @@ The project is preconfigured for deployment on **Vercel** via [`vercel.json`](fi
 ```
 
 This configuration enables:
-- **Clean URLs**: Strips `.html` extensions automatically from browser URLs.
-- **Rewrites**: Provides SEO-friendly category paths (e.g. `/category/sejarah` routes seamlessly to `/sejarah.html`).
+- **Clean URLs**: Automatically strips `.html` extensions from browser URLs.
+- **Rewrites**: Provides category-based paths (e.g., `/category/sejarah` routes seamlessly to `/sejarah.html`).
 
 ---
 
-## 🗺️ Roadmap & Version History
+## Roadmap & Version History
 
 ### Current Release: `v2.6`
 - [x] Dual-theme switching (Light & Dark) with local storage persistence.
@@ -184,13 +184,13 @@ This configuration enables:
 - [x] Hero carousel with manual and automated controls.
 
 ### Upcoming Milestones
-- [ ] Add an interactive modal/lightbox slider for event documentation on [`dokumentasi.html`](file:///d:/Code/Personal%20Project/chipcom/dokumentasi.html).
-- [ ] Update organizational chart visualization with interactive tree/card components on [`struktur.html`](file:///d:/Code/Personal%20Project/chipcom/struktur.html).
-- [ ] Link and configure custom top-level domain (TLD).
+- [ ] Add an interactive modal/lightbox slider for event documentation on [dokumentasi.html](file:///d:/Personal%20Project/chipcom/dokumentasi.html).
+- [ ] Update organizational chart visualization with interactive tree/card components on [struktur.html](file:///d:/Personal%20Project/chipcom/struktur.html).
+- [ ] Configure custom top-level domain (TLD).
 
 ---
 
-## 📞 Contact & Organization
+## Contact & Organization
 
 - **Organization**: UKM Chip.Com STMIK Indonesia Banjarmasin
 - **Address**: Jl. Pangeran Hidayatullah, Sungai Jingah, Banjarmasin Utara, Kota Banjarmasin, Kalimantan Selatan 70122
@@ -200,6 +200,6 @@ This configuration enables:
 
 ---
 
-## ⚖️ License
+## License
 
 &copy; 2026 **UKM Chip.Com STMIK Indonesia Banjarmasin**. All rights reserved.
