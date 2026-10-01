@@ -200,7 +200,6 @@ This configuration enables:
 
 ---
 
-p
 ## License
 
 &copy; 2026 **UKM Chip.Com STMIK Indonesia Banjarmasin**. All rights reserved.
